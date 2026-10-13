@@ -1,0 +1,19 @@
+{"event":"start","label":"preparations-pool10-counter-r1","variant":"counter","repeat":1,"position":1}
+{"event":"start","label":"preparations-pool10-counter-r1","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T14:34:06.826Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":2399.2255698132085,"p95Ms":36.653542000000016,"p99Ms":41.96379200000001,"errors":0,"poolWaiting":50,"acquireP95Ms":14.386166000000003,"lockFraction":0.8427672955974843,"dbCpu":89.90843814172882}
+{"event":"start","label":"preparations-pool10-sequence-r1","variant":"sequence","repeat":1,"position":2}
+{"event":"start","label":"preparations-pool10-sequence-r1","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T14:34:13.747Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":4445.194707699947,"p95Ms":15.01845800000001,"p99Ms":17.027207999999973,"errors":0,"poolWaiting":50,"acquireP95Ms":6.323666999999659,"lockFraction":0,"dbCpu":101.58164203183703}
+{"event":"start","label":"preparations-pool10-sequence-r2","variant":"sequence","repeat":2,"position":1}
+{"event":"start","label":"preparations-pool10-sequence-r2","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T14:34:17.890Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":4443.521521732882,"p95Ms":14.953500000000076,"p99Ms":16.951665999999932,"errors":0,"poolWaiting":50,"acquireP95Ms":6.293458999999984,"lockFraction":0,"dbCpu":102.28429693585181}
+{"event":"start","label":"preparations-pool10-counter-r2","variant":"counter","repeat":2,"position":2}
+{"event":"start","label":"preparations-pool10-counter-r2","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T14:34:22.029Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":2442.8373102374944,"p95Ms":37.01195800000005,"p99Ms":43.06383300000016,"errors":0,"poolWaiting":50,"acquireP95Ms":14.180333999999675,"lockFraction":0.8507462686567164,"dbCpu":90.95130707384816}
+{"event":"start","label":"preparations-pool10-counter-r3","variant":"counter","repeat":3,"position":1}
+{"event":"start","label":"preparations-pool10-counter-r3","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T14:34:28.800Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":2422.259821216503,"p95Ms":37.08650000000034,"p99Ms":42.90520800000013,"errors":0,"poolWaiting":50,"acquireP95Ms":14.272417000000132,"lockFraction":0.8143459915611815,"dbCpu":89.67441642777048}
+{"event":"start","label":"preparations-pool10-sequence-r3","variant":"sequence","repeat":3,"position":2}
+{"event":"start","label":"preparations-pool10-sequence-r3","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T14:34:35.712Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":4392.071701106353,"p95Ms":15.451624999999922,"p99Ms":17.069708999999875,"errors":0,"poolWaiting":50,"acquireP95Ms":6.402125000000069,"lockFraction":0,"dbCpu":102.43437079283393}
+Completed 6 preparation comparison cases

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { poolSchedule } from './pool-protocol.mjs';
+import { poolSchedule, preparationComparisonSchedule } from './pool-protocol.mjs';
 
 test('pool schedule has three repeats per condition and balances every pool across positions', () => {
     const rows = poolSchedule(3);
@@ -13,4 +13,21 @@ test('pool schedule has three repeats per condition and balances every pool acro
         assert.equal(new Set(cases.map(row => row.position)).size, 3);
     }
     assert.deepEqual(rows.slice(0, 6).map(row => `${row.scenario}${row.poolMax}`), ['C10', 'D30', 'C60', 'D10', 'C30', 'D60']);
+});
+
+test('selected pool schedule measures only preparation with ten connections', () => {
+    const rows = poolSchedule(3, ['C'], [10]);
+    assert.equal(rows.length, 3);
+    assert.ok(rows.every(row => row.scenario === 'C' && row.poolMax === 10 && row.concurrency === 60));
+    assert.deepEqual(rows.map(row => row.repeat), [1, 2, 3]);
+    assert.deepEqual(rows.map(row => row.position), [1, 1, 1]);
+    assert.throws(() => poolSchedule(3, ['X'], [10]));
+    assert.throws(() => poolSchedule(3, ['C'], [11]));
+});
+
+test('preparation comparison runs both implementations in each counterbalanced round', () => {
+    const rows = preparationComparisonSchedule(3);
+    assert.deepEqual(rows.map(row => row.variant), ['counter', 'sequence', 'sequence', 'counter', 'counter', 'sequence']);
+    for (const variant of ['counter', 'sequence']) assert.deepEqual(rows.filter(row => row.variant === variant).map(row => row.repeat), [1, 2, 3]);
+    assert.equal(rows.length, 6);
 });

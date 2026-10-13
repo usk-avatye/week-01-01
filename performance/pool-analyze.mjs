@@ -13,7 +13,7 @@ const directory = `performance/results/${label}`;
 const manifest = JSON.parse(await readFile(`${directory}/manifest.json`));
 const index = JSON.parse(await readFile(`${directory}/index.json`));
 const protocol = manifest.protocol;
-assert.deepEqual(protocol.schedule, poolSchedule(protocol.repeats));
+assert.deepEqual(protocol.schedule, poolSchedule(protocol.repeats, protocol.scenarios, protocol.poolSizes));
 assert.equal(index.length, protocol.schedule.length);
 assert.equal(manifest.completedCases, index.length);
 assert.ok(manifest.finishedAt);
@@ -92,7 +92,7 @@ for (const scenario of protocol.scenarios) for (const poolMax of protocol.poolSi
         waitEvents, lockQueries,
         trials: rows.map(row => ({ ...row, resourceWindowToHttpElapsedRatio: row.resources.elapsedMs / row.elapsedMs })) });
 }
-const comparisons = groups.filter(group => group.poolMax !== 30).map(group => {
+const comparisons = groups.filter(group => group.poolMax !== 30 && protocol.poolSizes.includes(30)).map(group => {
     const baseline = groups.find(row => row.scenario === group.scenario && row.poolMax === 30);
     const paired = group.trials.map(row => {
         const before = baseline.trials.find(candidate => candidate.repeat === row.repeat);

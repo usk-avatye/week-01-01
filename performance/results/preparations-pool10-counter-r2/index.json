@@ -1,0 +1,81 @@
+[
+  {
+    "scenario": "C",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 1,
+    "position": 1,
+    "caseId": "C-p10-c60-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 4912.320583,
+    "rps": 2442.8373102374944,
+    "successfulRps": 2442.8373102374944,
+    "errorRate": 0,
+    "p50Ms": 22.095500000000357,
+    "p95Ms": 37.01195800000005,
+    "p99Ms": 43.06383300000016,
+    "workItemsPerSecond": 2442.8373102374944,
+    "operations": {
+      "prepare": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 4912.320583,
+        "rps": 2442.8373102374944,
+        "successfulRps": 2442.8373102374944,
+        "errorRate": 0,
+        "p50Ms": 22.095500000000357,
+        "p95Ms": 37.01195800000005,
+        "p99Ms": 43.06383300000016
+      }
+    },
+    "cpuOneCorePercent": 75.0101695117297,
+    "generatorCpuOneCorePercent": 19.462532704168993,
+    "apiRssBytes": 128696320,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9879032258064516,
+    "acquireP95Ms": 14.180333999999675,
+    "acquireP99Ms": 15.94058300000006,
+    "postgres": {
+      "sampleCount": 50,
+      "lockWaitingBackendFraction": 0.8507462686567164,
+      "lockWaitingSampleRate": 0.98,
+      "maxLockWaiting": 9,
+      "events": {
+        "tuple": 316,
+        "transactionid": 83
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 399
+      },
+      "observerQueryMs": {
+        "count": 50,
+        "p50Ms": 1.1167089999999007,
+        "p95Ms": 1.533833000000186,
+        "p99Ms": 3.175707999999986,
+        "maxMs": 3.175707999999986
+      }
+    },
+    "resources": {
+      "cpuMs": 4510,
+      "elapsedMs": 4958.697291,
+      "cpuOneCorePercent": 90.95130707384816,
+      "maxAggregateRssBytes": 272384000,
+      "maxProcesses": 24,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 0,
+        "records": 14000,
+        "approved": 0,
+        "prepared": 14000,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "81a5a914e817d46e45723d009da7faa3d5c65885504a6af7febb33baa7504486"
+  }
+]

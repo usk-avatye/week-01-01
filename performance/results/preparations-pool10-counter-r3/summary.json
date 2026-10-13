@@ -1,0 +1,152 @@
+{
+  "label": "preparations-pool10-counter-r3",
+  "verifiedCases": 1,
+  "measuredHttpRequests": 12000,
+  "measuredWorkItems": 12000,
+  "errors": 0,
+  "aggregation": "arithmetic mean trial RPS/CPU/peak RSS; median trial quantiles; mean sampled lock fraction per trial",
+  "groups": [
+    {
+      "scenario": "C",
+      "concurrency": 60,
+      "repeats": 1,
+      "rps": 2422.259821216503,
+      "rpsMin": 2422.259821216503,
+      "rpsMax": 2422.259821216503,
+      "rpsCv": 0,
+      "workItemsPerSecond": 2422.259821216503,
+      "p50Ms": 22.20837500000016,
+      "p95Ms": 37.08650000000034,
+      "p99Ms": 42.90520800000013,
+      "requests": 12000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 75.71330045217972,
+      "generatorCpuOneCorePercent": 19.422345367964752,
+      "acquireP95Ms": 14.272417000000132,
+      "poolMaxUsed": 10,
+      "poolMaxWaiting": 50,
+      "poolWaitingSampleRate": 0.988,
+      "lockWaitingBackendFraction": 0.8143459915611815,
+      "maxLockWaiting": 9,
+      "runs": [
+        {
+          "caseId": "C-p10-c60-r1",
+          "rps": 2422.259821216503,
+          "p95Ms": 37.08650000000034,
+          "p99Ms": 42.90520800000013
+        }
+      ],
+      "poolMax": 10,
+      "acquireP99Ms": 17.114749999999958,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 22.20837500000016,
+          "p95Ms": 37.08650000000034,
+          "p99Ms": 42.90520800000013
+        }
+      },
+      "dbCpuOneCorePercent": 89.67441642777048,
+      "dbCpuOneCorePercentMin": 89.67441642777048,
+      "dbCpuOneCorePercentMax": 89.67441642777048,
+      "apiRssEndMiB": 124.5625,
+      "dbAggregateRssPeakMiB": 260.453125,
+      "dbMaxProcesses": 24,
+      "resourceSamples": 22,
+      "postgresSamples": 51,
+      "eventLoopP99Ms": 10.158079,
+      "waitEvents": {
+        "Lock:tuple": 317,
+        "LWLock:BufferContent": 1,
+        "Lock:transactionid": 69,
+        "Client:ClientRead": 36,
+        "IO:WalWrite": 3
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 386
+      },
+      "trials": [
+        {
+          "scenario": "C",
+          "poolMax": 10,
+          "concurrency": 60,
+          "repeat": 1,
+          "position": 1,
+          "caseId": "C-p10-c60-r1",
+          "requests": 12000,
+          "errors": 0,
+          "elapsedMs": 4954.051541,
+          "rps": 2422.259821216503,
+          "successfulRps": 2422.259821216503,
+          "errorRate": 0,
+          "p50Ms": 22.20837500000016,
+          "p95Ms": 37.08650000000034,
+          "p99Ms": 42.90520800000013,
+          "workItemsPerSecond": 2422.259821216503,
+          "operations": {
+            "prepare": {
+              "requests": 12000,
+              "errors": 0,
+              "elapsedMs": 4954.051541,
+              "rps": 2422.259821216503,
+              "successfulRps": 2422.259821216503,
+              "errorRate": 0,
+              "p50Ms": 22.20837500000016,
+              "p95Ms": 37.08650000000034,
+              "p99Ms": 42.90520800000013
+            }
+          },
+          "cpuOneCorePercent": 75.71330045217972,
+          "generatorCpuOneCorePercent": 19.422345367964752,
+          "apiRssBytes": 130613248,
+          "poolMaxUsed": 10,
+          "poolMaxWaiting": 50,
+          "poolWaitingSampleRate": 0.988,
+          "acquireP95Ms": 14.272417000000132,
+          "acquireP99Ms": 17.114749999999958,
+          "postgres": {
+            "sampleCount": 51,
+            "lockWaitingBackendFraction": 0.8143459915611815,
+            "lockWaitingSampleRate": 0.9803921568627451,
+            "maxLockWaiting": 9,
+            "events": {
+              "tuple": 317,
+              "transactionid": 69
+            },
+            "queries": {
+              "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 386
+            },
+            "observerQueryMs": {
+              "count": 51,
+              "p50Ms": 1.1247500000008586,
+              "p95Ms": 1.6648749999999382,
+              "p99Ms": 3.347291000000041,
+              "maxMs": 3.347291000000041
+            }
+          },
+          "resources": {
+            "cpuMs": 4540,
+            "elapsedMs": 5062.759459,
+            "cpuOneCorePercent": 89.67441642777048,
+            "maxAggregateRssBytes": 273104896,
+            "maxProcesses": 24,
+            "externalActiveObservations": 0
+          },
+          "invariant": {
+            "consistent": true,
+            "campaigns": 1,
+            "totals": {
+              "spent": 0,
+              "records": 14000,
+              "approved": 0,
+              "prepared": 14000,
+              "rejected": 0
+            }
+          },
+          "rawSha256": "f88ab27fdd500e301ffa751519724b4cb4e16dbe92e1eee4caeb8aa5758cff38",
+          "resourceWindowToHttpElapsedRatio": 1.0219432351682916
+        }
+      ]
+    }
+  ]
+}

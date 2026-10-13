@@ -16,7 +16,8 @@ const settings = {};
 for (const setting of ['server_version', 'max_connections', 'shared_buffers', 'synchronous_commit', 'fsync', 'full_page_writes', 'transaction_isolation']) {
     settings[setting] = (await fixture.pool.query(`SHOW ${setting}`)).rows[0][setting];
 }
-process.send({ event: 'ready', url, schema: fixture.schema, applicationName: fixture.applicationName, pid: process.pid, poolMax: fixture.pool.options.max, settings });
+const numberStrategy = (await fixture.pool.query("SELECT to_regclass('execution_no_seq') IS NOT NULL AS sequence")).rows[0].sequence ? 'sequence' : 'counter';
+process.send({ event: 'ready', url, schema: fixture.schema, applicationName: fixture.applicationName, pid: process.pid, poolMax: fixture.pool.options.max, numberStrategy, settings });
 let closing = false;
 async function close() {
     if (closing) return; closing = true; metrics.close(); server.closeAllConnections();

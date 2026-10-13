@@ -1,0 +1,76 @@
+[
+  {
+    "scenario": "C",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 1,
+    "position": 1,
+    "caseId": "C-p10-c60-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 2732.1958329999998,
+    "rps": 4392.071701106353,
+    "successfulRps": 4392.071701106353,
+    "errorRate": 0,
+    "p50Ms": 13.500083000000132,
+    "p95Ms": 15.451624999999922,
+    "p99Ms": 17.069708999999875,
+    "workItemsPerSecond": 4392.071701106353,
+    "operations": {
+      "prepare": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 2732.1958329999998,
+        "rps": 4392.071701106353,
+        "successfulRps": 4392.071701106353,
+        "errorRate": 0,
+        "p50Ms": 13.500083000000132,
+        "p95Ms": 15.451624999999922,
+        "p99Ms": 17.069708999999875
+      }
+    },
+    "cpuOneCorePercent": 108.98940716853068,
+    "generatorCpuOneCorePercent": 30.60490722884431,
+    "apiRssBytes": 130056192,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9784172661870504,
+    "acquireP95Ms": 6.402125000000069,
+    "acquireP99Ms": 7.892790999999988,
+    "postgres": {
+      "sampleCount": 28,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 28,
+        "p50Ms": 1.112083999999868,
+        "p95Ms": 1.4837079999999787,
+        "p99Ms": 3.0641669999999976,
+        "maxMs": 3.0641669999999976
+      }
+    },
+    "resources": {
+      "cpuMs": 2850,
+      "elapsedMs": 2782.2692500000003,
+      "cpuOneCorePercent": 102.43437079283393,
+      "maxAggregateRssBytes": 285605888,
+      "maxProcesses": 25,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 0,
+        "records": 14000,
+        "approved": 0,
+        "prepared": 14000,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "36f899743b26cbfb4775d80304e84a7872067e0d0337055acf30641ad21cd088"
+  }
+]

@@ -1,0 +1,91 @@
+{
+  "prefix": "preparations-pool10",
+  "startedAt": "2026-10-13T14:34:06.716Z",
+  "sourceRefs": {
+    "counter": "d8664e2b89873ed979acbb32b486c3d00571ef7c",
+    "sequence": "093dfb56ec245f157110018b305ab8630022dcf7"
+  },
+  "protocol": {
+    "scenarios": [
+      "C"
+    ],
+    "poolSizes": [
+      10
+    ],
+    "concurrency": 60,
+    "operations": 12000,
+    "warmup": 2000,
+    "repeats": 3,
+    "schedule": [
+      {
+        "variant": "counter",
+        "repeat": 1,
+        "position": 1
+      },
+      {
+        "variant": "sequence",
+        "repeat": 1,
+        "position": 2
+      },
+      {
+        "variant": "sequence",
+        "repeat": 2,
+        "position": 1
+      },
+      {
+        "variant": "counter",
+        "repeat": 2,
+        "position": 2
+      },
+      {
+        "variant": "counter",
+        "repeat": 3,
+        "position": 1
+      },
+      {
+        "variant": "sequence",
+        "repeat": 3,
+        "position": 2
+      }
+    ]
+  },
+  "runs": [
+    {
+      "variant": "counter",
+      "repeat": 1,
+      "position": 1,
+      "label": "preparations-pool10-counter-r1"
+    },
+    {
+      "variant": "sequence",
+      "repeat": 1,
+      "position": 2,
+      "label": "preparations-pool10-sequence-r1"
+    },
+    {
+      "variant": "sequence",
+      "repeat": 2,
+      "position": 1,
+      "label": "preparations-pool10-sequence-r2"
+    },
+    {
+      "variant": "counter",
+      "repeat": 2,
+      "position": 2,
+      "label": "preparations-pool10-counter-r2"
+    },
+    {
+      "variant": "counter",
+      "repeat": 3,
+      "position": 1,
+      "label": "preparations-pool10-counter-r3"
+    },
+    {
+      "variant": "sequence",
+      "repeat": 3,
+      "position": 2,
+      "label": "preparations-pool10-sequence-r3"
+    }
+  ],
+  "finishedAt": "2026-10-13T14:34:39.761Z"
+}

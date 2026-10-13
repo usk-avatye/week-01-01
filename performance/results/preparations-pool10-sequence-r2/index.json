@@ -1,0 +1,76 @@
+[
+  {
+    "scenario": "C",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 1,
+    "position": 1,
+    "caseId": "C-p10-c60-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 2700.560792,
+    "rps": 4443.521521732882,
+    "successfulRps": 4443.521521732882,
+    "errorRate": 0,
+    "p50Ms": 13.397208000000319,
+    "p95Ms": 14.953500000000076,
+    "p99Ms": 16.951665999999932,
+    "workItemsPerSecond": 4443.521521732882,
+    "operations": {
+      "prepare": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 2700.560792,
+        "rps": 4443.521521732882,
+        "successfulRps": 4443.521521732882,
+        "errorRate": 0,
+        "p50Ms": 13.397208000000319,
+        "p95Ms": 14.953500000000076,
+        "p99Ms": 16.951665999999932
+      }
+    },
+    "cpuOneCorePercent": 108.55680409875438,
+    "generatorCpuOneCorePercent": 31.088024475769696,
+    "apiRssBytes": 129417216,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9781021897810219,
+    "acquireP95Ms": 6.293458999999984,
+    "acquireP99Ms": 7.730249999999842,
+    "postgres": {
+      "sampleCount": 28,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 28,
+        "p50Ms": 1.1272500000000036,
+        "p95Ms": 1.6311659999998938,
+        "p99Ms": 2.9592079999999896,
+        "maxMs": 2.9592079999999896
+      }
+    },
+    "resources": {
+      "cpuMs": 2850,
+      "elapsedMs": 2786.3514590000004,
+      "cpuOneCorePercent": 102.28429693585181,
+      "maxAggregateRssBytes": 265715712,
+      "maxProcesses": 24,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 0,
+        "records": 14000,
+        "approved": 0,
+        "prepared": 14000,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "7e5a54f1a965645164ee194c5b6eda0f4eff8079d8ed4293df87c1cf53b029bb"
+  }
+]

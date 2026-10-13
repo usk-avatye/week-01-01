@@ -1,0 +1,56 @@
+TAP version 13
+# Subtest: concurrent preparations issue distinct numbers without spending while paused
+ok 1 - concurrent preparations issue distinct numbers without spending while paused
+  ---
+  duration_ms: 498.706375
+  ...
+# Subtest: twenty distinct thousand-won spends approve exactly ten against ten-thousand budget
+ok 2 - twenty distinct thousand-won spends approve exactly ten against ten-thousand budget
+  ---
+  duration_ms: 550.433375
+  ...
+# Subtest: twenty transmissions of one request debit once and preserve the original result after pause
+ok 3 - twenty transmissions of one request debit once and preserve the original result after pause
+  ---
+  duration_ms: 450.7855
+  ...
+# Subtest: budget rejection remains fixed after increase and only a new number receives a new decision
+ok 4 - budget rejection remains fixed after increase and only a new number receives a new decision
+  ---
+  duration_ms: 410.870042
+  ...
+# Subtest: paused rejection has priority and is not changed by resume
+ok 5 - paused rejection has priority and is not changed by resume
+  ---
+  duration_ms: 409.922791
+  ...
+# Subtest: request sequence above the JavaScript safe integer limit remains exact
+ok 6 - request sequence above the JavaScript safe integer limit remains exact
+  ---
+  duration_ms: 395.465292
+  ...
+# Request failed: error
+# Subtest: database failure after debit rolls back both balance and result
+ok 7 - database failure after debit rolls back both balance and result
+  ---
+  duration_ms: 417.248334
+  ...
+# Subtest: pause queued first determines the state used by the concurrent spend
+ok 8 - pause queued first determines the state used by the concurrent spend
+  ---
+  duration_ms: 463.758417
+  ...
+# Subtest: spend queued first determines the state used by the concurrent spend
+ok 9 - spend queued first determines the state used by the concurrent spend
+  ---
+  duration_ms: 441.084541
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4498.964916

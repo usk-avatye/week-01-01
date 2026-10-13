@@ -1,0 +1,76 @@
+[
+  {
+    "scenario": "C",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 1,
+    "position": 1,
+    "caseId": "C-p10-c60-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 2699.544292,
+    "rps": 4445.194707699947,
+    "successfulRps": 4445.194707699947,
+    "errorRate": 0,
+    "p50Ms": 13.352333000000044,
+    "p95Ms": 15.01845800000001,
+    "p99Ms": 17.027207999999973,
+    "workItemsPerSecond": 4445.194707699947,
+    "operations": {
+      "prepare": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 2699.544292,
+        "rps": 4445.194707699947,
+        "successfulRps": 4445.194707699947,
+        "errorRate": 0,
+        "p50Ms": 13.352333000000044,
+        "p95Ms": 15.01845800000001,
+        "p99Ms": 17.027207999999973
+      }
+    },
+    "cpuOneCorePercent": 108.81434264040003,
+    "generatorCpuOneCorePercent": 30.861579210569957,
+    "apiRssBytes": 129073152,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9781021897810219,
+    "acquireP95Ms": 6.323666999999659,
+    "acquireP99Ms": 7.69925000000012,
+    "postgres": {
+      "sampleCount": 28,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 28,
+        "p50Ms": 1.0605420000001686,
+        "p95Ms": 1.4043750000000728,
+        "p99Ms": 3.564582999999857,
+        "maxMs": 3.564582999999857
+      }
+    },
+    "resources": {
+      "cpuMs": 2830,
+      "elapsedMs": 2785.936458,
+      "cpuOneCorePercent": 101.58164203183703,
+      "maxAggregateRssBytes": 265814016,
+      "maxProcesses": 24,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 0,
+        "records": 14000,
+        "approved": 0,
+        "prepared": 14000,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "613f456a1646a348d5010ee5665dc4ac8e728a8197bcdfc00484bc0baff82488"
+  }
+]

@@ -20,7 +20,9 @@ assert.match(label, /^[a-z][a-z0-9-]*$/);
 const operations = Number(args.get('--operations') ?? 12000), warmup = Number(args.get('--warmup') ?? 2000), repeats = Number(args.get('--repeats') ?? 3);
 assert.ok(Number.isInteger(operations) && operations >= 60);
 assert.ok(Number.isInteger(warmup) && warmup >= 60);
-const schedule = poolSchedule(repeats), output = `performance/results/${label}`;
+const scenarios = (args.get('--scenarios') ?? 'C,D').split(',');
+const poolSizes = (args.get('--pool-max') ?? '10,30,60').split(',').map(Number);
+const schedule = poolSchedule(repeats, scenarios, poolSizes), output = `performance/results/${label}`;
 await mkdir(output, { recursive: true });
 try { await readFile(`${output}/manifest.json`); throw new Error(`Output ${label} already exists; use a fresh label`); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
@@ -28,8 +30,8 @@ const source = await fingerprint(['src/server', 'src/contracts', 'db']);
 const compiled = await fingerprint(['dist/src/server', 'dist/src/contracts']);
 const harnessSources = (await fingerprint(['performance'], '.mjs')).sources;
 const manifest = { label, startedAt: new Date().toISOString(), gitHead: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
-    source, compiled, harness: harnessSources, protocol: { operations, warmup, repeats, concurrency: 60, scenarios: ['C', 'D'],
-        poolSizes: [10, 30, 60], schedule, loadModel: 'closed-loop HTTP/1.1 keep-alive; no retry; new API process and schema for each case',
+    source, compiled, harness: harnessSources, protocol: { operations, warmup, repeats, concurrency: 60, scenarios,
+        poolSizes, schedule, loadModel: 'closed-loop HTTP/1.1 keep-alive; no retry; new API process and schema for each case',
         amountWon: 1, campaignBudgetWon: 1000000000, monitorIntervalMs: 100, poolSampleIntervalMs: 20, resourceIntervalMs: 250 },
     runtime: { node: process.version, platform: process.platform, architecture: process.arch, cpuModel: os.cpus()[0]?.model,
         logicalCpus: os.cpus().length, totalMemoryBytes: os.totalmem() } };

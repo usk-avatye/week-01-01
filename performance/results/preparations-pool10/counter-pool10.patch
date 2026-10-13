@@ -1,0 +1,12 @@
+diff --git a/src/server/db/pool.ts b/src/server/db/pool.ts
+index 09b603d..bf8eeef 100644
+--- a/src/server/db/pool.ts
++++ b/src/server/db/pool.ts
+@@ -1,6 +1,6 @@
+ import pg from 'pg';
+ export function createDatabasePool(connectionString: string): pg.Pool {
+-    const pool = new pg.Pool({ connectionString, max: 30, connectionTimeoutMillis: 3000, idleTimeoutMillis: 10000 });
++    const pool = new pg.Pool({ connectionString, max: 10, connectionTimeoutMillis: 3000, idleTimeoutMillis: 10000 });
+     pool.on('error', () => console.error('An idle database connection failed.'));
+     return pool;
+ }

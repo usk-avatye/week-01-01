@@ -1,0 +1,7 @@
+┌─────────┬────────────┬──────────┬─────────┬─────────┬─────────────┬─────────┬────────┐
+│ (index) │ variant    │ rps      │ p95     │ p99     │ lockPercent │ dbCpu   │ errors │
+├─────────┼────────────┼──────────┼─────────┼─────────┼─────────────┼─────────┼────────┤
+│ 0       │ 'counter'  │ '2421.4' │ '37.01' │ '42.91' │ '83.6'      │ '90.2'  │ 0      │
+│ 1       │ 'sequence' │ '4426.9' │ '15.02' │ '17.03' │ '0.0'       │ '102.1' │ 0      │
+└─────────┴────────────┴──────────┴─────────┴─────────┴─────────────┴─────────┴────────┘
+{"scenario":"C","concurrency":60,"rpsChangePercent":82.82210849777431,"p95ChangePercent":-59.42268712182157,"p99ChangePercent":-60.31435624318633,"dbCpuChangePercent":13.220566267829348,"dbCpuPerPreparationChangePercent":-37.279411764705884,"rpsRangesOverlap":false,"paired":[{"repeat":1,"rpsChangePercent":85.27623094839004,"p95ChangePercent":-59.025902598990285,"p99ChangePercent":-59.42404823663227},{"repeat":2,"rpsChangePercent":81.90001860176599,"p95ChangePercent":-59.59819256252248,"p99ChangePercent":-60.63595639524269},{"repeat":3,"rpsChangePercent":81.32124649207016,"p95ChangePercent":-58.33625443220638,"p99ChangePercent":-60.2152983386077}]}

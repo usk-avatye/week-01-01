@@ -115,3 +115,20 @@ npm start
 `results/pool-size-experiment/`에 실제 측정 18개 원본 gzip, 환경과 순서 manifest, index, summary JSON/CSV, max30 대비 comparison과 검증 로그를 보존했다. 분석기는 원본 SHA-256과 요청별 지연, 연결 획득 시간, 풀 샘플, PID별 CPU 및 정합성 결과를 다시 계산한다. `results/pool-harness-smoke/`는 작은 작업량으로 실행기를 점검한 결과다.
 
 DB 자원 관찰은 같은 호스트의 PostgreSQL에 접속해 250ms마다 `/bin/ps`를 실행한다. CPU는 프로세스 누적 CPU 시간 차이이며 100%는 한 코어다. DB에는 관찰 연결과 백그라운드 프로세스를 포함한다. RSS 합계에는 프로세스 간 공유 페이지가 중복될 수 있다. API RSS는 측정 종료 시점 값이다. DB CPU 관찰 구간과 HTTP 측정 구간의 길이는 각각 원본에 저장한다.
+
+## 풀 10의 번호 발급 비교
+
+저장소 루트에서 이전 코드의 분리된 사본을 준비한다. 기존 d8664e2 사본이 있으면 그 경로를 사용한다.
+
+```sh
+git worktree add --detach /private/tmp/guard-counter-pool10-repro d8664e2b89873ed979acbb32b486c3d00571ef7c
+ln -s "$PWD/node_modules" /private/tmp/guard-counter-pool10-repro/node_modules
+node --env-file=.env performance/compare-preparations.mjs /private/tmp/guard-counter-pool10-repro preparations-pool10-repro
+node performance/analyze-preparations.mjs preparations-pool10-repro
+```
+
+현재 코드의 API 빌드를 준비한 상태에서 실행한다. 드라이버가 이전 사본의 풀 max만30에서10으로 바꾸고 빌드 및 동시 집행 관련 테스트를 실행한다. 그 외 서버/계약/DB 변경이 있으면 중단한다. 두 사본에 같은 측정 파일을 사용하고 `.env`는 현재 저장소의 파일을 읽는다.
+
+C, Pool10, 동시성60, 워밍업2,000, 측정12,000을3회씩 실행한다. 순서는 기존/SEQUENCE, SEQUENCE/기존, 기존/SEQUENCE다. 매 조건은 새 API/테스트 스키마로 실행하며 실제 풀 크기와 번호 발급 방식을 확인한다. 측정 대상 포트는3101이고 모든 부하를 이 API에 보낸다.
+
+`results/preparations-pool10/`의 manifest에 교차 순서와 조건별 폴더 경로가 있다. 여섯 `preparations-pool10-counter-r*`, `preparations-pool10-sequence-r*` 폴더에 요청, 풀, 잠금 및 자원의 원본을 보존했다. 분석기는 기존 pool-analyze를 실행해 원본을 검증하고 두 구현의 평균 RPS, 반복 범위, 지연 중앙값과 변화율을 비교한다. 실제 측정 도구 사본은 measurement-harness.tar.gz에 있다.
