@@ -46,7 +46,7 @@ B 추가 비교에서도 운영 API, 계약과 DB 소스를 바꾸지 않았다.
 - **P: Connection Pool Size Experiment.** 같은 날 21:55:05~21:57:39 KST. SEQUENCE에서 max10/30/60을 비교했다. [summary.json](performance/results/pool-size-experiment/summary.json).
 - **E: B 분산 집행 Pool 추가 비교.** 2026-10-14 00:35:00~00:35:58 KST. 10캠페인의 집행만 풀10/30, 동시성30/60으로 비교했다. [summary.json](performance/results/distributed-pool-experiment/summary.json).
 
-두 실험의 비교율은 각각 같은 실행 안의 조건끼리 계산한다. RPS와 작업/초는3회 산술평균, p50/p95/p99는 반복별 백분위수의 중앙값이다. 요청 지연은 nearest-rank로 계산했다. 오류는 HTTP/통신/파싱 실패와 예상 상태 및 금액 불일치를 포함한다.
+각 실험의 비교율은 같은 실행 안의 조건끼리 계산한다. RPS와 작업/초는3회 산술평균, p50/p95/p99는 반복별 백분위수의 중앙값이다. 요청 지연은 nearest-rank로 계산했다. 오류는 HTTP/통신/파싱 실패와 예상 상태 및 금액 불일치를 포함한다.
 
 ### Baseline: 기존 순번도 Pool10
 
@@ -175,6 +175,8 @@ E는 캠페인10개에 집행을 균등 배분했다. 조건마다 워밍업2,00
 API CPU는 두 풀 모두 약106~108%로 한 코어 수준이었다. API 처리 비용이 처리량의 다음 병목 후보라는 추론이며 함수별 프로파일은 수집하지 않았다. 샘플에서 락 대기가0%인 경우도 짧은 모든 대기가0이라는 뜻으로 해석하지 않는다.
 
 **B 동시성30/60 결과도 기본 Pool max10 유지를 지지한다.** 처리량은 비슷하거나 소폭 높았고 각 반복에서 집행 p95/p99가 낮았다. DB CPU도13.4%/11.1% 감소했다. 10캠페인 균등 분산과 이번 데이터 조건을 권고 범위에 포함한다.
+
+E 독립 리뷰에서 원본의 RPS, 지연, DB CPU와 락 관찰 비율을 재계산해 표와 일치함을 확인했다. [리뷰 기록](performance/results/distributed-pool-experiment/verification/final-review.md).
 
 E의 반복별 값과 비교율은 [summary](performance/results/distributed-pool-experiment/summary.json), [comparison](performance/results/distributed-pool-experiment/comparison.json)에 있다. 원본에는 요청별 지연, 연결 획득, 풀/DB/CPU 샘플과 캠페인별 승인 합계를 보존했다.
 
