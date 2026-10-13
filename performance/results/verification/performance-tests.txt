@@ -6,39 +6,44 @@ TAP version 13
 # Subtest: aggregate uses trial mean throughput and median trial percentiles
 ok 1 - aggregate uses trial mean throughput and median trial percentiles
   ---
-  duration_ms: 0.925833
+  duration_ms: 0.897917
   ...
 # Subtest: comparison distinguishes throughput gains from latency reductions
 ok 2 - comparison distinguishes throughput gains from latency reductions
   ---
-  duration_ms: 0.099084
+  duration_ms: 0.099292
+  ...
+# Subtest: confirmation reproduction uses fresh labels and preserves existing result evidence
+ok 3 - confirmation reproduction uses fresh labels and preserves existing result evidence
+  ---
+  duration_ms: 307.119
   ...
 # Subtest: destructive performance fixtures reject service databases and missing configuration
-ok 3 - destructive performance fixtures reject service databases and missing configuration
+ok 4 - destructive performance fixtures reject service databases and missing configuration
   ---
-  duration_ms: 0.786125
+  duration_ms: 0.863459
   ...
 # Subtest: nearest-rank percentiles preserve the measured tail and throughput uses elapsed wall time
-ok 4 - nearest-rank percentiles preserve the measured tail and throughput uses elapsed wall time
+ok 5 - nearest-rank percentiles preserve the measured tail and throughput uses elapsed wall time
   ---
-  duration_ms: 0.929084
+  duration_ms: 0.982084
   ...
 # Subtest: empty samples and invalid elapsed time cannot produce a successful measurement
-ok 5 - empty samples and invalid elapsed time cannot produce a successful measurement
+ok 6 - empty samples and invalid elapsed time cannot produce a successful measurement
   ---
-  duration_ms: 0.137542
+  duration_ms: 0.148959
   ...
 # Subtest: pool wait summaries distinguish zero waiting from actual acquire latency
-ok 6 - pool wait summaries distinguish zero waiting from actual acquire latency
+ok 7 - pool wait summaries distinguish zero waiting from actual acquire latency
   ---
-  duration_ms: 0.371834
+  duration_ms: 0.378042
   ...
-1..6
-# tests 6
+1..7
+# tests 7
 # suites 0
-# pass 6
+# pass 7
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 75.042625
+# duration_ms 350.672916

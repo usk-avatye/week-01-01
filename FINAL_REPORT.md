@@ -4,7 +4,7 @@
 
 ## 1. Executive Summary
 
-기능 검증과 성능 실험을 완료했다. 최종 전체 테스트 64개, 측정 도구 테스트 6개와 빌드가 통과했다. 회원가입부터 예산 수정, 승인, 거절, 동일 요청 재전송을 HTTP로 확인했고, 초기 구현은 Chrome에서도 시연했다.
+기능 검증과 성능 실험을 완료했다. 최종 전체 테스트 64개, 측정 도구 테스트 7개와 빌드가 통과했다. 회원가입부터 예산 수정, 승인, 거절, 동일 요청 재전송을 HTTP로 확인했고, 초기 구현은 Chrome에서도 시연했다.
 
 최종 채택은 **DB SEQUENCE로 번호 발급, 준비 단계의 명시적 캠페인 잠금 제거, 집행과 예산 변경의 기존 FOR UPDATE 유지**다. `spent_amount`와 비용 및 결과를 함께 커밋하는 처리는 유지했다. `FOR NO KEY UPDATE` 후보는 혼합 부하 악화로 폐기했다.
 
@@ -21,7 +21,7 @@
 | P0 빌드 | 종료 코드 0 | `p0-build.txt` |
 | 첫 후보 테스트와 빌드 | 64/64, 빌드 종료 코드 0 | `candidate-tests.txt`, `candidate-build.txt` |
 | 최종 테스트와 빌드 | 64/64, 빌드 종료 코드 0 | `final-tests.txt`, `final-build.txt` |
-| 통계와 도구 | 6/6 통과 | `performance-tests.txt` |
+| 통계와 도구 | 7/7 통과 | `performance-tests.txt` |
 | 실제 HTTP 흐름 | 각 구현에서 15단계 통과, 재전송 후 사용액 1,000원 | `http-smoke.json`, `candidate-http-smoke.json`, `final-http-smoke.json` |
 | Chrome 시연 | 가입, 캠페인 생성, 예산 수정, 승인, 거절과 각각의 재전송 성공 | `browser-p0.png` |
 | 전체 성능 실행 | 각 구현 48/48 조합 완료, 오류와 집계 불일치 0 | 각 구현 `manifest.json`, `index.json`, 요청 원본 |
@@ -29,6 +29,8 @@
 HTTP 흐름은 가입, 로그인, 일시정지 캠페인 생성, 예산 5,000원 → 10,000원 수정, 시작, 1,000원 승인과 재전송, 20,000원 거절, 예산 50,000원으로 증가 후 거절 재전송을 확인했다. 거절 결과와 처리 시각은 유지됐으며 사용액은 1,000원이었다. Chrome에서는 전용 테스트 스키마의 가상 계정으로 같은 핵심 흐름을 확인했다.
 
 초기 기능에서 수정할 실패는 발견되지 않았다. 성능 후보를 위해 번호 발급, 시드와 영향받은 테스트만 변경했다. 시작 시 존재하던 가입 안내 문구 편집은 보존하고 이번 커밋에서 제외했다. API와 초기 마이그레이션은 기준 커밋과 같았으며 측정 중 소스와 빌드 해시는 고정됐다.
+
+독립 최종 리뷰에서 168개 원본의 해시, 백분위수, 처리량과 비교 조건을 다시 계산해 보고서와 대조했다. 재현 명령의 경로 이동과 결과 레이블 오류 두 가지를 수정했고 기존 결과 보존 회귀 테스트를 추가했다. 리뷰 기록은 `performance/results/verification/final-review.md`에 있다.
 
 ## 3. Baseline
 
@@ -191,6 +193,8 @@ SEQ 값은 롤백 때 되돌아가지 않으며, 응답은 PREPARED 행의 커�
 
 실제 DB 감사는 READ ONLY 트랜잭션으로 행 수와 전체 행 내용의 해시를 비교했다. members 4행, campaigns 11행, executions 37행은 시작 전과 종료 후 모두 동일했다. sessions는 1행에서 2행으로 바뀌었다. 추가 세션 생성 시각은 19:51:45 KST이고 Baseline 시작 19:55:05보다 앞선다. 토큰을 제외한 시각 감사는 session-audit.json에 있다. schema_migrations에 최종 마이그레이션 기록 한 행을 추가했다. 원본은 `real-data-before.json`, `real-data-after-benchmarks.json`, `real-data-after.json`이다.
 
+추가 읽기 감사에서 실제 캠페인의 사용액과 승인 비용 합계 불일치는 0건이었다. 기존 집행 번호와 카운터의 최댓값은 6이고 SEQUENCE도 6에서 발급을 이어갈 상태였다. 결과는 `public-integrity.json`에 보존했다.
+
 ## 7. 재현 방법과 측정 환경
 
 | 항목 | 값 |
@@ -229,7 +233,7 @@ DB 실행과 이전 커밋 checkout을 포함한 전체 재현 절차는 [perfor
 - `performance/results/confirm-base-*`, `performance/results/confirm-sequence-*`: 네 구간의 추가 비교 24개 원본, 각 3회 반복.
 - `performance/results/verification/`: 테스트, 빌드, API 시연, DB 감사, 환경과 콘솔 로그.
 
-분석기는 원본 gzip의 SHA-256, 요청 지연의 재계산, 각 조합의 3회 반복과 부하 조건 및 도구 해시 일치를 확인했다. 최종 API 소스와 마이그레이션의 digest는 `65f4dffcb1108a385675bf90f338cbd78810c7da779c212987b9a07d72819521`이며 실행 파일 해시는 같은 manifest에 있다.
+분석기는 원본 gzip의 SHA-256, 요청 지연의 재계산, 각 조합의 3회 반복과 부하 조건 및 도구 해시 일치를 확인했다. 측정 시 src와 db의 digest는 `65f4dffcb1108a385675bf90f338cbd78810c7da779c212987b9a07d72819521`이며 실행 파일 해시는 같은 manifest에 있다.
 
 ## 8. 남은 한계와 리스크
 

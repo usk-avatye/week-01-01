@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-13T11:40:11.859Z",
+  "readOnly": true,
+  "consistent": true,
+  "mismatches": 0,
+  "sequence": {
+    "max_execution_no": "6",
+    "max_legacy_counter": "6",
+    "last_value": "6",
+    "is_called": true
+  }
+}

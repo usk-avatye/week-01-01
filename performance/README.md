@@ -28,6 +28,7 @@ node performance/analyze.mjs reproduction
 Baseline 코드는 `d8664e2b89873ed979acbb32b486c3d00571ef7c`다. 도구는 이전 캠페인 카운터와 SEQUENCE 구현을 모두 지원한다. 기존 PostgreSQL에 접속할 설정을 준비한 뒤 저장소 루트에서 아래 명령으로 Baseline을 재현한다.
 
 ```sh
+baseline_source_checkout="$PWD"
 git worktree add --detach /private/tmp/guard-baseline d8664e2b89873ed979acbb32b486c3d00571ef7c
 cp -R performance /private/tmp/guard-baseline/performance
 cp .env.example /private/tmp/guard-baseline/.env
@@ -40,6 +41,7 @@ node --env-file=.env performance/runner.mjs --label baseline-repro
 현재 checkout을 빌드해 후보를 측정하고, Baseline 결과를 가져와 비교한다.
 
 ```sh
+cd "$baseline_source_checkout"
 npm run build
 npm run perf:run -- --label optimized-repro
 cp -R /private/tmp/guard-baseline/performance/results/baseline-repro performance/results/baseline-repro
@@ -85,9 +87,11 @@ A/B는 14,000개 PREPARED 행을 SQL로 미리 생성하고 생성 시간을 원
 추가 비교는 동일 도구가 준비된 Baseline checkout 경로를 넘겨 실행한다. A/1, B/10, A/30, D/30을 각각 Baseline 3회 후 SEQUENCE 후보 3회 순서로 실행한다. 각 API는 순차적으로 종료하며 작업량과 워밍업은 전체 측정과 같다.
 
 ```sh
-node performance/confirm.mjs /private/tmp/guard-baseline
-node performance/analyze.mjs confirm-base-a1 confirm-sequence-a1
-node performance/analyze.mjs confirm-base-b10 confirm-sequence-b10
-node performance/analyze.mjs confirm-base-a30 confirm-sequence-a30
-node performance/analyze.mjs confirm-base-d30 confirm-sequence-d30
+node performance/confirm.mjs /private/tmp/guard-baseline reproduction-confirm
+node performance/analyze.mjs reproduction-confirm-base-a1 reproduction-confirm-sequence-a1
+node performance/analyze.mjs reproduction-confirm-base-b10 reproduction-confirm-sequence-b10
+node performance/analyze.mjs reproduction-confirm-base-a30 reproduction-confirm-sequence-a30
+node performance/analyze.mjs reproduction-confirm-base-d30 reproduction-confirm-sequence-d30
 ```
+
+세 번째 인자는 새 결과 접두사다. 다시 측정할 때는 새 접두사를 사용한다.

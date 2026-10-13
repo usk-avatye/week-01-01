@@ -1,0 +1,56 @@
+TAP version 13
+# Subtest: confirmation reproduction uses fresh labels and preserves existing result evidence
+not ok 1 - confirmation reproduction uses fresh labels and preserves existing result evidence
+  ---
+  duration_ms: 72.787709
+  location: '/Users/usk/dev/mission/week-01-01/performance/confirm.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    file:///private/var/folders/6f/6n47y7l15932rgw09twzngfc0000gn/T/guard-confirm-iMzajw/baseline/performance/runner.mjs:3
+            try { await readFile(path+'/manifest.json'); throw new Error('Existing evidence'); }
+                                                               ^
+    
+    Error: Existing evidence
+        at file:///private/var/folders/6f/6n47y7l15932rgw09twzngfc0000gn/T/guard-confirm-iMzajw/baseline/performance/runner.mjs:3:60
+    
+    Node.js v20.20.2
+    file:///Users/usk/dev/mission/week-01-01/performance/confirm.mjs:18
+                child.once('error', fail); child.once('exit', code => code === 0 ? done() : fail(new Error(`${label}: exit ${code}`)));
+                                                                                                 ^
+    
+    Error: confirm-base-a1: exit 1
+        at ChildProcess.<anonymous> (file:///Users/usk/dev/mission/week-01-01/performance/confirm.mjs:18:94)
+        at Object.onceWrapper (node:events:639:26)
+        at ChildProcess.emit (node:events:524:28)
+        at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    
+    Node.js v20.20.2
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    file:///private/var/folders/6f/6n47y7l15932rgw09twzngfc0000gn/T/guard-confirm-iMzajw/baseline/performance/runner.mjs:3:60
+    ChildProcess.<anonymous> (file:///Users/usk/dev/mission/week-01-01/performance/confirm.mjs:18:94)
+    Object.onceWrapper (node:events:639:26)
+    ChildProcess.emit (node:events:524:28)
+    ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    TestContext.<anonymous> (file:///Users/usk/dev/mission/week-01-01/performance/confirm.test.mjs:31:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    async Test.run (node:internal/test_runner/test:797:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 115.61825
