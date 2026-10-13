@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "at": "2026-10-13T11:13:07.829Z",
+  "steps": [
+    {
+      "step": "signup",
+      "status": 201,
+      "memberId": "1"
+    },
+    {
+      "step": "login",
+      "status": 200,
+      "role": "ADVERTISER"
+    },
+    {
+      "step": "create paused campaign",
+      "status": 201,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "PAUSED",
+        "totalBudget": 5000,
+        "spentAmount": 0,
+        "remainingBudget": 5000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.804Z"
+      }
+    },
+    {
+      "step": "set budget",
+      "status": 200,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "PAUSED",
+        "totalBudget": 10000,
+        "spentAmount": 0,
+        "remainingBudget": 10000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.807Z"
+      }
+    },
+    {
+      "step": "activate",
+      "status": 200,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "ACTIVE",
+        "totalBudget": 10000,
+        "spentAmount": 0,
+        "remainingBudget": 10000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.809Z"
+      }
+    },
+    {
+      "step": "prepare approved request",
+      "status": 201,
+      "data": {
+        "campaignId": "1",
+        "requestId": "1",
+        "status": "PREPARED",
+        "requestedAmount": null,
+        "approvedAmount": 0,
+        "rejectionReason": null,
+        "createdAt": "2026-10-13T11:13:07.811Z",
+        "processedAt": null
+      }
+    },
+    {
+      "step": "approve",
+      "status": 200,
+      "data": {
+        "campaignId": "1",
+        "requestId": "1",
+        "status": "APPROVED",
+        "requestedAmount": 1000,
+        "approvedAmount": 1000,
+        "rejectionReason": null,
+        "createdAt": "2026-10-13T11:13:07.811Z",
+        "processedAt": "2026-10-13T11:13:07.814Z"
+      }
+    },
+    {
+      "step": "replay approval",
+      "status": 200,
+      "data": {
+        "campaignId": "1",
+        "requestId": "1",
+        "status": "APPROVED",
+        "requestedAmount": 1000,
+        "approvedAmount": 1000,
+        "rejectionReason": null,
+        "createdAt": "2026-10-13T11:13:07.811Z",
+        "processedAt": "2026-10-13T11:13:07.814Z"
+      }
+    },
+    {
+      "step": "prepare rejected request",
+      "status": 201,
+      "data": {
+        "campaignId": "1",
+        "requestId": "2",
+        "status": "PREPARED",
+        "requestedAmount": null,
+        "approvedAmount": 0,
+        "rejectionReason": null,
+        "createdAt": "2026-10-13T11:13:07.818Z",
+        "processedAt": null
+      }
+    },
+    {
+      "step": "reject insufficient budget",
+      "status": 200,
+      "data": {
+        "campaignId": "1",
+        "requestId": "2",
+        "status": "REJECTED",
+        "requestedAmount": 20000,
+        "approvedAmount": 0,
+        "rejectionReason": "INSUFFICIENT_BUDGET",
+        "createdAt": "2026-10-13T11:13:07.818Z",
+        "processedAt": "2026-10-13T11:13:07.820Z"
+      }
+    },
+    {
+      "step": "pause",
+      "status": 200,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "PAUSED",
+        "totalBudget": 10000,
+        "spentAmount": 1000,
+        "remainingBudget": 9000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.822Z"
+      }
+    },
+    {
+      "step": "increase budget",
+      "status": 200,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "PAUSED",
+        "totalBudget": 50000,
+        "spentAmount": 1000,
+        "remainingBudget": 49000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.824Z"
+      }
+    },
+    {
+      "step": "resume",
+      "status": 200,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "ACTIVE",
+        "totalBudget": 50000,
+        "spentAmount": 1000,
+        "remainingBudget": 49000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.825Z"
+      }
+    },
+    {
+      "step": "replay rejection",
+      "status": 200,
+      "data": {
+        "campaignId": "1",
+        "requestId": "2",
+        "status": "REJECTED",
+        "requestedAmount": 20000,
+        "approvedAmount": 0,
+        "rejectionReason": "INSUFFICIENT_BUDGET",
+        "createdAt": "2026-10-13T11:13:07.818Z",
+        "processedAt": "2026-10-13T11:13:07.820Z"
+      }
+    },
+    {
+      "step": "verify charged once",
+      "status": 200,
+      "data": {
+        "id": "1",
+        "ownerId": "1",
+        "name": "Presentation smoke",
+        "status": "ACTIVE",
+        "totalBudget": 50000,
+        "spentAmount": 1000,
+        "remainingBudget": 49000,
+        "createdAt": "2026-10-13T11:13:07.804Z",
+        "updatedAt": "2026-10-13T11:13:07.825Z"
+      }
+    }
+  ]
+}

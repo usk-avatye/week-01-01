@@ -1,0 +1,17 @@
+ProductName:		macOS
+ProductVersion:		27.0.1
+BuildVersion:		26A434
+campaign-budget-guard@0.1.0 /Users/usk/dev/mission/week-01-01
+├── @types/express@5.0.6
+├── @types/jsdom@21.1.7
+├── @types/node@20.19.43
+├── @types/pg@8.23.1
+├── cookie@1.1.1
+├── embedded-postgres@18.4.0-beta.17
+├── express@5.3.0
+├── helmet@8.3.0
+├── jsdom@26.1.0
+├── pg@8.23.1
+├── tsx@4.23.15
+└── typescript@5.9.3
+

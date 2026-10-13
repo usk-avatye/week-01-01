@@ -1,0 +1,335 @@
+
+> campaign-budget-guard@0.1.0 test
+> node --import tsx --env-file=.env --test --test-concurrency=1 tests/unit/*.test.ts tests/integration/*.test.ts
+
+TAP version 13
+# Subtest: admin reads both advertisers and histories without receiving credential fields
+ok 1 - admin reads both advertisers and histories without receiving credential fields
+  ---
+  duration_ms: 1261.080542
+  ...
+# Subtest: advertiser cannot use admin API and admin cannot mutate advertiser campaigns
+ok 2 - advertiser cannot use admin API and admin cannot mutate advertiser campaigns
+  ---
+  duration_ms: 816.411292
+  ...
+# Subtest: signup creates only an advertiser and rejects forged role and duplicate email
+ok 3 - signup creates only an advertiser and rejects forged role and duplicate email
+  ---
+  duration_ms: 459.951167
+  ...
+# Subtest: common login authenticates both DB roles and issues private eight-hour sessions
+ok 4 - common login authenticates both DB roles and issues private eight-hour sessions
+  ---
+  duration_ms: 1160.342
+  ...
+# Subtest: login rejects client-supplied role and portal fields before issuing a session
+ok 5 - login rejects client-supplied role and portal fields before issuing a session
+  ---
+  duration_ms: 224.78475
+  ...
+# Subtest: logout requires CSRF protection and invalidates the server session
+ok 6 - logout requires CSRF protection and invalidates the server session
+  ---
+  duration_ms: 414.310625
+  ...
+# Subtest: expired database sessions do not authenticate
+ok 7 - expired database sessions do not authenticate
+  ---
+  duration_ms: 400.202375
+  ...
+# Subtest: invalid multi-byte CSRF token is forbidden rather than a server failure
+ok 8 - invalid multi-byte CSRF token is forbidden rather than a server failure
+  ---
+  duration_ms: 410.362208
+  ...
+# Subtest: stale rendered resend cannot charge a new request prepared by another tab
+ok 9 - stale rendered resend cannot charge a new request prepared by another tab
+  ---
+  duration_ms: 530.398834
+  ...
+# Subtest: new campaigns are paused and only the owner can read or modify them
+ok 10 - new campaigns are paused and only the owner can read or modify them
+  ---
+  duration_ms: 854.014416
+  ...
+# Subtest: budget edits require paused state and cannot erase already spent money
+ok 11 - budget edits require paused state and cannot erase already spent money
+  ---
+  duration_ms: 429.522083
+  ...
+# Subtest: campaign inputs reject forged ownership and unsafe or fractional amounts
+ok 12 - campaign inputs reject forged ownership and unsafe or fractional amounts
+  ---
+  duration_ms: 450.820667
+  ...
+# Subtest: campaign IDs above the JavaScript safe integer limit round-trip exactly
+ok 13 - campaign IDs above the JavaScript safe integer limit round-trip exactly
+  ---
+  duration_ms: 405.241
+  ...
+# Subtest: concurrent preparations issue distinct numbers without spending while paused
+ok 14 - concurrent preparations issue distinct numbers without spending while paused
+  ---
+  duration_ms: 482.653167
+  ...
+# Subtest: twenty distinct thousand-won spends approve exactly ten against ten-thousand budget
+ok 15 - twenty distinct thousand-won spends approve exactly ten against ten-thousand budget
+  ---
+  duration_ms: 488.89975
+  ...
+# Subtest: twenty transmissions of one request debit once and preserve the original result after pause
+ok 16 - twenty transmissions of one request debit once and preserve the original result after pause
+  ---
+  duration_ms: 455.800166
+  ...
+# Subtest: budget rejection remains fixed after increase and only a new number receives a new decision
+ok 17 - budget rejection remains fixed after increase and only a new number receives a new decision
+  ---
+  duration_ms: 547.061375
+  ...
+# Subtest: paused rejection has priority and is not changed by resume
+ok 18 - paused rejection has priority and is not changed by resume
+  ---
+  duration_ms: 421.339542
+  ...
+# Subtest: request sequence above the JavaScript safe integer limit remains exact
+ok 19 - request sequence above the JavaScript safe integer limit remains exact
+  ---
+  duration_ms: 409.647041
+  ...
+# Request failed: error
+# Subtest: database failure after debit rolls back both balance and result
+ok 20 - database failure after debit rolls back both balance and result
+  ---
+  duration_ms: 418.429583
+  ...
+# Subtest: approved and rejected replay results appear beside their triggering rows without changing spend
+ok 21 - approved and rejected replay results appear beside their triggering rows without changing spend
+  ---
+  duration_ms: 523.275083
+  ...
+# Subtest: replay failure appears beside the triggering row and is replaced by a successful retry
+ok 22 - replay failure appears beside the triggering row and is replaced by a successful retry
+  ---
+  duration_ms: 435.962292
+  ...
+# Subtest: a delayed earlier replay response cannot replace the latest selected row result
+ok 23 - a delayed earlier replay response cannot replace the latest selected row result
+  ---
+  duration_ms: 437.76825
+  ...
+# Subtest: pause queued first determines the state used by the concurrent spend
+ok 24 - pause queued first determines the state used by the concurrent spend
+  ---
+  duration_ms: 482.3005
+  ...
+# Subtest: spend queued first determines the state used by the concurrent spend
+ok 25 - spend queued first determines the state used by the concurrent spend
+  ---
+  duration_ms: 432.960083
+  ...
+# Subtest: the common login form routes a DB ADVERTISER account to \#/campaigns
+ok 26 - the common login form routes a DB ADVERTISER account to \#/campaigns
+  ---
+  duration_ms: 467.560416
+  ...
+# Subtest: the common login form routes a DB ADMIN account to \#/admin/campaigns
+ok 27 - the common login form routes a DB ADMIN account to \#/admin/campaigns
+  ---
+  duration_ms: 404.297291
+  ...
+# Subtest: authenticated ADVERTISER auth-page visits replace history with the DB role destination
+ok 28 - authenticated ADVERTISER auth-page visits replace history with the DB role destination
+  ---
+  duration_ms: 509.569416
+  ...
+# Subtest: back to an old login entry keeps authenticated ADVERTISER on its campaign list
+ok 29 - back to an old login entry keeps authenticated ADVERTISER on its campaign list
+  ---
+  duration_ms: 416.532333
+  ...
+# Subtest: authenticated ADMIN auth-page visits replace history with the DB role destination
+ok 30 - authenticated ADMIN auth-page visits replace history with the DB role destination
+  ---
+  duration_ms: 430.145625
+  ...
+# Subtest: back to an old login entry keeps authenticated ADMIN on its campaign list
+ok 31 - back to an old login entry keeps authenticated ADMIN on its campaign list
+  ---
+  duration_ms: 414.477083
+  ...
+# Subtest: anonymous members can navigate login and signup after the legacy login URL replaces its history entry
+ok 32 - anonymous members can navigate login and signup after the legacy login URL replaces its history entry
+  ---
+  duration_ms: 48.732209
+  ...
+# Subtest: unauthenticated protected-route redirects replace history and show the common login form
+ok 33 - unauthenticated protected-route redirects replace history and show the common login form
+  ---
+  duration_ms: 36.362583
+  ...
+# Subtest: logout and back navigation keep a revoked session on login instead of restoring a campaign screen
+ok 34 - logout and back navigation keep a revoked session on login instead of restoring a campaign screen
+  ---
+  duration_ms: 434.133167
+  ...
+# Subtest: database prevents overspending even if application validation is bypassed
+ok 35 - database prevents overspending even if application validation is bypassed
+  ---
+  duration_ms: 34.570875
+  ...
+# Subtest: database rejects duplicate execution identity and inconsistent approved rows
+ok 36 - database rejects duplicate execution identity and inconsistent approved rows
+  ---
+  duration_ms: 30.798875
+  ...
+# Subtest: demo seed is repeatable without resetting roles, spend or request counters
+ok 37 - demo seed is repeatable without resetting roles, spend or request counters
+  ---
+  duration_ms: 729.608125
+  ...
+# Subtest: seed upgrades old display names without creating duplicate campaigns or resetting executions
+ok 38 - seed upgrades old display names without creating duplicate campaigns or resetting executions
+  ---
+  duration_ms: 632.93075
+  ...
+# Subtest: realistic demo spend has matching immutable execution records and survives reseeding
+ok 39 - realistic demo spend has matching immutable execution records and survives reseeding
+  ---
+  duration_ms: 438.519875
+  ...
+# Subtest: database sequence issues distinct IDs across campaigns and sixty concurrent preparations
+ok 40 - database sequence issues distinct IDs across campaigns and sixty concurrent preparations
+  ---
+  duration_ms: 80.676833
+  ...
+# Subtest: preparation completes while a campaign budget writer holds NO KEY UPDATE
+ok 41 - preparation completes while a campaign budget writer holds NO KEY UPDATE
+  ---
+  duration_ms: 33.762833
+  ...
+# Subtest: failed preparation leaves no record or debit and consumes only a sequence gap
+ok 42 - failed preparation leaves no record or debit and consumes only a sequence gap
+  ---
+  duration_ms: 27.51875
+  ...
+# Subtest: sequence migration preserves old results and starts above recorded IDs and legacy counters
+ok 43 - sequence migration preserves old results and starts above recorded IDs and legacy counters
+  ---
+  duration_ms: 30.346583
+  ...
+# Subtest: foreign key insertion waits for UPDATE and coexists with NO KEY UPDATE
+ok 44 - foreign key insertion waits for UPDATE and coexists with NO KEY UPDATE
+  ---
+  duration_ms: 344.085333
+  ...
+# Subtest: lost preparation response creates only an unused zero-cost record
+ok 45 - lost preparation response creates only an unused zero-cost record
+  ---
+  duration_ms: 624.8555
+  ...
+# Subtest: lost committed spend response is recovered by same ID without a second debit
+ok 46 - lost committed spend response is recovered by same ID without a second debit
+  ---
+  duration_ms: 612.963584
+  ...
+# Subtest: prepared GET while original POST is delayed does not allow two debits
+ok 47 - prepared GET while original POST is delayed does not allow two debits
+  ---
+  duration_ms: 605.321375
+  ...
+# Subtest: browser entry is HTML while an unknown API keeps a JSON 404 contract
+ok 48 - browser entry is HTML while an unknown API keeps a JSON 404 contract
+  ---
+  duration_ms: 56.878458
+  ...
+# Subtest: an active campaign approves the full affordable amount
+ok 49 - an active campaign approves the full affordable amount
+  ---
+  duration_ms: 0.665167
+  ...
+# Subtest: paused takes priority over insufficient budget
+ok 50 - paused takes priority over insufficient budget
+  ---
+  duration_ms: 0.132041
+  ...
+# Subtest: insufficient budget rejects without approving a partial amount
+ok 51 - insufficient budget rejects without approving a partial amount
+  ---
+  duration_ms: 0.06225
+  ...
+# Subtest: exactly the remaining budget is affordable
+ok 52 - exactly the remaining budget is affordable
+  ---
+  duration_ms: 0.060042
+  ...
+# Subtest: amount parsing rejects zero, fractions, strings and values beyond the cap
+ok 53 - amount parsing rejects zero, fractions, strings and values beyond the cap
+  ---
+  duration_ms: 0.161125
+  ...
+# Subtest: large database IDs remain precise strings
+ok 54 - large database IDs remain precise strings
+  ---
+  duration_ms: 0.130083
+  ...
+# Subtest: member and campaign text is rendered literally instead of as HTML
+ok 55 - member and campaign text is rendered literally instead of as HTML
+  ---
+  duration_ms: 29.960334
+  ...
+# Subtest: prepared GET does not release the unresolved number or amount
+ok 56 - prepared GET does not release the unresolved number or amount
+  ---
+  duration_ms: 0.656709
+  ...
+# Subtest: valid matching terminal result releases only that pending flow
+ok 57 - valid matching terminal result releases only that pending flow
+  ---
+  duration_ms: 0.109083
+  ...
+# Subtest: wrong number, amount or malformed terminal result cannot unlock another spend
+ok 58 - wrong number, amount or malformed terminal result cannot unlock another spend
+  ---
+  duration_ms: 0.1515
+  ...
+# Subtest: a failed preparation refresh is visible after an empty list and clears after recovery
+ok 59 - a failed preparation refresh is visible after an empty list and clears after recovery
+  ---
+  duration_ms: 39.404209
+  ...
+# Subtest: salted password hashes verify Unicode passwords and reject incorrect input
+ok 60 - salted password hashes verify Unicode passwords and reject incorrect input
+  ---
+  duration_ms: 710.31925
+  ...
+# Subtest: pending identity is durable and isolated by member and campaign
+ok 61 - pending identity is durable and isolated by member and campaign
+  ---
+  duration_ms: 25.400708
+  ...
+# Subtest: an unresolved identity cannot be replaced by a new number or changed amount
+ok 62 - an unresolved identity cannot be replaced by a new number or changed amount
+  ---
+  duration_ms: 3.507625
+  ...
+# Subtest: an old receipt cannot clear a different pending identity
+ok 63 - an old receipt cannot clear a different pending identity
+  ---
+  duration_ms: 3.005125
+  ...
+# Subtest: corrupt or wrong-owner storage is surfaced instead of silently becoming an empty flow
+ok 64 - corrupt or wrong-owner storage is surfaced instead of silently becoming an empty flow
+  ---
+  duration_ms: 4.197375
+  ...
+1..64
+# tests 64
+# suites 0
+# pass 64
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 26799.485583

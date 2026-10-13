@@ -15,7 +15,10 @@
     "db:seed": "node --import tsx --env-file=.env scripts/seed.ts",
     "test:unit": "node --import tsx --test tests/unit/*.test.ts",
     "test:integration": "node --import tsx --env-file=.env --test --test-concurrency=1 tests/integration/*.test.ts",
-    "test": "node --import tsx --env-file=.env --test --test-concurrency=1 tests/unit/*.test.ts tests/integration/*.test.ts"
+    "test": "node --import tsx --env-file=.env --test --test-concurrency=1 tests/unit/*.test.ts tests/integration/*.test.ts",
+    "perf:test": "node --test performance/*.test.mjs",
+    "perf:smoke": "node --env-file=.env performance/smoke.mjs",
+    "perf:run": "node --env-file=.env performance/runner.mjs"
   },
   "dependencies": {
     "cookie": "^1.0.2",

@@ -21,14 +21,8 @@ export function executionDto(row: ExecutionRow): ExecutionDto {
         createdAt: row.created_at.toISOString(), processedAt: row.processed_at?.toISOString() ?? null,
     };
 }
-export async function nextExecutionNumber(db: Queryable, campaignId: string): Promise<string> {
-    const result = await db.query<{
-        last_execution_no: string;
-    }>('UPDATE campaigns SET last_execution_no=last_execution_no+1,updated_at=clock_timestamp() WHERE id=$1 RETURNING last_execution_no', [campaignId]);
-    return result.rows[0]!.last_execution_no;
-}
-export async function insertPreparation(db: Queryable, campaignId: string, number: string): Promise<ExecutionDto> {
-    const result = await db.query<ExecutionRow>('INSERT INTO executions(campaign_id,execution_no) VALUES ($1,$2) RETURNING *', [campaignId, number]);
+export async function insertPreparation(db: Queryable, campaignId: string): Promise<ExecutionDto> {
+    const result = await db.query<ExecutionRow>('INSERT INTO executions(campaign_id) VALUES ($1) RETURNING *', [campaignId]);
     return executionDto(result.rows[0]!);
 }
 export async function lockExecution(db: Queryable, campaignId: string, number: string): Promise<ExecutionRow> {

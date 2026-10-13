@@ -1,0 +1,13 @@
+{
+  "before": "confirm-base-d30",
+  "after": "confirm-sequence-d30",
+  "comparisons": [
+    {
+      "scenario": "D",
+      "concurrency": 30,
+      "rpsChangePercent": 28.332600344949554,
+      "p95ChangePercent": -14.10698750321222,
+      "p99ChangePercent": 39.71965301833671
+    }
+  ]
+}

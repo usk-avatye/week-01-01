@@ -1,7 +1,7 @@
 import type { CampaignStatus } from '../../contracts/campaigns.js';
 import { lockOwnedCampaign, updateStatus } from '../campaigns/repository.js';
 import { decideExecution } from '../executions/decision.js';
-import { debitCampaign, finishExecution, insertPreparation, nextExecutionNumber } from '../executions/repository.js';
+import { debitCampaign, finishExecution, insertPreparation } from '../executions/repository.js';
 import type { Queryable } from './pool.js';
 
 interface DemoCampaign {
@@ -43,9 +43,8 @@ export async function seedCampaigns(db: Queryable, ownerId: string, campaigns: r
 
 async function recordExecution(db: Queryable, ownerId: string, campaignId: string, amount: number): Promise<void> {
     const campaign = await lockOwnedCampaign(db, ownerId, campaignId);
-    const number = await nextExecutionNumber(db, campaignId);
-    await insertPreparation(db, campaignId, number);
+    const preparation = await insertPreparation(db, campaignId);
     const decision = decideExecution({ status: campaign.status, totalBudget: Number(campaign.total_budget), spentAmount: Number(campaign.spent_amount) }, amount);
     if (decision.status === 'APPROVED') await debitCampaign(db, campaignId, amount);
-    await finishExecution(db, campaignId, number, amount, decision);
+    await finishExecution(db, campaignId, preparation.requestId, amount, decision);
 }

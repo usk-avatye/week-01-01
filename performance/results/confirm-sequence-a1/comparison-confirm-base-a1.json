@@ -1,0 +1,13 @@
+{
+  "before": "confirm-base-a1",
+  "after": "confirm-sequence-a1",
+  "comparisons": [
+    {
+      "scenario": "A",
+      "concurrency": 1,
+      "rpsChangePercent": 0.20996563275774704,
+      "p95ChangePercent": 5.618682322478308,
+      "p99ChangePercent": 1.1276665069858804
+    }
+  ]
+}

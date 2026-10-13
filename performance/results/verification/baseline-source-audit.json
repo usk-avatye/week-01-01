@@ -1,0 +1,9 @@
+{
+  "gitHead": "d8664e2b89873ed979acbb32b486c3d00571ef7c",
+  "sourceDigest": "8c3f27776a4b89b809e24fc6b7cabe35b699ec6e8214bebd0c17dabd60115a75",
+  "apiAndMigrationMatchHead": true,
+  "differencesFromHead": [
+    "src/client/auth-page.ts"
+  ],
+  "comment": "Pre-existing signup help text edit; compiled API is the baseline artifact"
+}

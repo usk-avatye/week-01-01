@@ -3,14 +3,13 @@ import { withTransaction } from '../db/transaction.js';
 import { findOwnedCampaign, lockOwnedCampaign } from '../campaigns/repository.js';
 import { ApiError } from '../http/errors.js';
 import { decideExecution } from './decision.js';
-import { debitCampaign, executionDto, findExecution, finishExecution, insertPreparation, listExecutions, lockExecution, nextExecutionNumber } from './repository.js';
+import { debitCampaign, executionDto, findExecution, finishExecution, insertPreparation, listExecutions, lockExecution } from './repository.js';
 export function createExecutionService(pool: Pool) {
     return {
         async prepare(ownerId: string, campaignId: string) {
             return withTransaction(pool, async (client) => {
-                await lockOwnedCampaign(client, ownerId, campaignId);
-                const number = await nextExecutionNumber(client, campaignId);
-                return insertPreparation(client, campaignId, number);
+                await findOwnedCampaign(client, ownerId, campaignId);
+                return insertPreparation(client, campaignId);
             });
         },
         async get(ownerId: string, campaignId: string, number: string) {

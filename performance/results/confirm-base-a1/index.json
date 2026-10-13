@@ -1,0 +1,188 @@
+[
+  {
+    "caseId": "A-c1-r1",
+    "scenario": "A",
+    "concurrency": 1,
+    "repeat": 1,
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 9522.911916000001,
+    "rps": 1260.1187647066333,
+    "successfulRps": 1260.1187647066333,
+    "errorRate": 0,
+    "p50Ms": 0.6972500000001673,
+    "p95Ms": 1.168666999999914,
+    "p99Ms": 2.192207999999937,
+    "workItemsPerSecond": 1260.1187647066333,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 9522.911916000001,
+        "rps": 1260.1187647066333,
+        "successfulRps": 1260.1187647066333,
+        "errorRate": 0,
+        "p50Ms": 0.6972500000001673,
+        "p95Ms": 1.168666999999914,
+        "p99Ms": 2.192207999999937
+      }
+    },
+    "cpuOneCorePercent": 46.20324892195318,
+    "generatorCpuOneCorePercent": 11.27004018798907,
+    "poolMaxUsed": 1,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.008709000001545064,
+    "postgres": {
+      "sampleCount": 97,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 97,
+        "p50Ms": 0.9284580000003189,
+        "p95Ms": 1.4851670000002741,
+        "p99Ms": 4.024499999999989,
+        "maxMs": 4.024499999999989
+      }
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "7b08e2d3ebdc8408adb0cf9cefb239dca8592144fee1b2708f46d6feb54d7296"
+  },
+  {
+    "caseId": "A-c1-r2",
+    "scenario": "A",
+    "concurrency": 1,
+    "repeat": 2,
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 8635.481333,
+    "rps": 1389.6156493492358,
+    "successfulRps": 1389.6156493492358,
+    "errorRate": 0,
+    "p50Ms": 0.6628750000018044,
+    "p95Ms": 0.9581249999973807,
+    "p99Ms": 1.290500000000975,
+    "workItemsPerSecond": 1389.6156493492358,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 8635.481333,
+        "rps": 1389.6156493492358,
+        "successfulRps": 1389.6156493492358,
+        "errorRate": 0,
+        "p50Ms": 0.6628750000018044,
+        "p95Ms": 0.9581249999973807,
+        "p99Ms": 1.290500000000975
+      }
+    },
+    "cpuOneCorePercent": 48.261857146760164,
+    "generatorCpuOneCorePercent": 8.949576406895117,
+    "poolMaxUsed": 1,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.006708000000799075,
+    "postgres": {
+      "sampleCount": 87,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 87,
+        "p50Ms": 0.867792000000918,
+        "p95Ms": 1.0562919999993028,
+        "p99Ms": 2.3902909999997064,
+        "maxMs": 2.3902909999997064
+      }
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "29f86b755ec700b3cb47b6068485012766ff7ea9177f5bce3245f064c9af7009"
+  },
+  {
+    "caseId": "A-c1-r3",
+    "scenario": "A",
+    "concurrency": 1,
+    "repeat": 3,
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 8634.690416999998,
+    "rps": 1389.7429346597503,
+    "successfulRps": 1389.7429346597503,
+    "errorRate": 0,
+    "p50Ms": 0.6617089999999735,
+    "p95Ms": 0.9410840000018652,
+    "p99Ms": 1.304374999999709,
+    "workItemsPerSecond": 1389.7429346597503,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 8634.690416999998,
+        "rps": 1389.7429346597503,
+        "successfulRps": 1389.7429346597503,
+        "errorRate": 0,
+        "p50Ms": 0.6617089999999735,
+        "p95Ms": 0.9410840000018652,
+        "p99Ms": 1.304374999999709
+      }
+    },
+    "cpuOneCorePercent": 45.47426503393947,
+    "generatorCpuOneCorePercent": 8.774570522045854,
+    "poolMaxUsed": 1,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.006417000000510598,
+    "postgres": {
+      "sampleCount": 88,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 88,
+        "p50Ms": 0.8624170000002778,
+        "p95Ms": 1.0762500000018917,
+        "p99Ms": 3.481082999998762,
+        "maxMs": 3.481082999998762
+      }
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "c2fc87b23d6130ffc657493cc8ec8559e79bf35f34aaabe2f936bf73cf9ece6f"
+  }
+]

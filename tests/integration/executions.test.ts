@@ -81,8 +81,8 @@ test('request sequence above the JavaScript safe integer limit remains exact', a
     const f = await createHttpFixture();
     t.after(() => f.close());
     const a = await advertiser(f);
-    const { campaign, path } = await setupCampaign(a);
-    await f.pool.query('UPDATE campaigns SET last_execution_no=9007199254740992 WHERE id=$1', [campaign.id]);
+    const { path } = await setupCampaign(a);
+    await f.pool.query("SELECT setval('execution_no_seq',9007199254740992)");
     const record = await prepare(a, path);
     assert.equal(record.requestId, '9007199254740993');
     const result = await execute(a, path, record.requestId, 1000);

@@ -1,0 +1,68 @@
+{
+  "label": "confirm-sequence-b10",
+  "aggregation": "arithmetic mean trial RPS; median trial quantiles; mean trial sampled lock fractions",
+  "groups": [
+    {
+      "scenario": "B",
+      "concurrency": 10,
+      "repeats": 3,
+      "rps": 3804.5054670114764,
+      "rpsMin": 3752.0118698022175,
+      "rpsMax": 3844.251896367458,
+      "rpsCv": 0.01246490903419509,
+      "workItemsPerSecond": 3804.5054670114764,
+      "p50Ms": 2.4946660000005068,
+      "p95Ms": 3.382292000000234,
+      "p99Ms": 3.94720899999993,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 105.46217468336998,
+      "generatorCpuOneCorePercent": 22.679596655985463,
+      "acquireP95Ms": 0.005166999999801192,
+      "poolMaxUsed": 10,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "B-c10-r1",
+          "rps": 3752.0118698022175,
+          "p95Ms": 3.520499999999629,
+          "p99Ms": 4.143583000000035
+        },
+        {
+          "caseId": "B-c10-r2",
+          "rps": 3844.251896367458,
+          "p95Ms": 3.379583000000821,
+          "p99Ms": 3.9042920000001686
+        },
+        {
+          "caseId": "B-c10-r3",
+          "rps": 3817.252634864753,
+          "p95Ms": 3.382292000000234,
+          "p99Ms": 3.94720899999993
+        }
+      ],
+      "sampleCount": 97,
+      "waitEvents": {
+        "Client:ClientRead": 448,
+        "LWLock:WALWrite": 3,
+        "IO:WalWrite": 13
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.379263,
+      "observerQueryP95Ms": 1.2276249999995343,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 2.4946660000005068,
+          "p95Ms": 3.382292000000234,
+          "p99Ms": 3.94720899999993
+        }
+      }
+    }
+  ]
+}

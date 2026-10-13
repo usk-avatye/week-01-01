@@ -1,0 +1,673 @@
+{
+  "label": "sequence-only",
+  "startedAt": "2026-10-13T11:13:11.886Z",
+  "gitHead": "d8664e2b89873ed979acbb32b486c3d00571ef7c",
+  "source": {
+    "digest": "65f4dffcb1108a385675bf90f338cbd78810c7da779c212987b9a07d72819521",
+    "sources": [
+      {
+        "path": "db/migrations/001_initial.sql",
+        "sha256": "a27bb5f38a716aecd67087eccf0f50b0245a11734c38b74dd194c573035f0c45"
+      },
+      {
+        "path": "db/migrations/002_execution_sequence.sql",
+        "sha256": "a7a9130a903467cd21c7bd9c0acf9fa16328fc0cf1da5339676b2fa27c273983"
+      },
+      {
+        "path": "src/client/api.ts",
+        "sha256": "2921f7a2b2e0d8f270425955bcbb803701eaf79397ce88dd2365c8ad4dff14be"
+      },
+      {
+        "path": "src/client/auth-page.ts",
+        "sha256": "009a9e625acc1900fd1d0ea6919087a6a816cc01eec9c180288cd06383d7f4ee"
+      },
+      {
+        "path": "src/client/budget-usage.ts",
+        "sha256": "4b5aa2bdc9f811e21b04e45824fb783f18ef663887f4d2490d9d4e2bf2a03e8c"
+      },
+      {
+        "path": "src/client/campaign-controls.ts",
+        "sha256": "435555cb892099d72391909ba34e1f20c342794a2f1fc1d93342e8e8620c9de8"
+      },
+      {
+        "path": "src/client/campaign-create.ts",
+        "sha256": "999d1f842149b3b68f2e4fcb7549ee0c78757cdc1cac451896edcd36a70bfe53"
+      },
+      {
+        "path": "src/client/campaign-detail.ts",
+        "sha256": "5a9f3394854a4fac0865007208c71e25ca37313540a031ff203a3bafabf81e67"
+      },
+      {
+        "path": "src/client/campaign-list.ts",
+        "sha256": "6f2bc6beadd4c4d4afced26d2ca09f5bcc8af2ee8f67e226b50f85c982bd6a7c"
+      },
+      {
+        "path": "src/client/campaign-summary.ts",
+        "sha256": "cb7af66ad9912d1c3d05b0028e26b2f87613120fd63f5a166acd2863ee80dbeb"
+      },
+      {
+        "path": "src/client/campaign-table.ts",
+        "sha256": "e97fd5e0dac01751f75bd4c8a0cba07ab887f23e2e7fee258c73473f577f3332"
+      },
+      {
+        "path": "src/client/context.ts",
+        "sha256": "07d0b1ece66c4c9c1b4039c021ef828dab4595cd0ed5ae4414e871a9875afacd"
+      },
+      {
+        "path": "src/client/dom.ts",
+        "sha256": "4bc714e0ed805b1886fd0c3d01a0468388b587fdb7c8173bad299a2940b16ede"
+      },
+      {
+        "path": "src/client/execution-controller.ts",
+        "sha256": "197a651b308f373acfed11a73c337f17b5b82474d8b517dbb032735da4f45740"
+      },
+      {
+        "path": "src/client/execution-flow.ts",
+        "sha256": "6d6793eada53a5aede9e29b8cd77cf03cca80193436c57816f67ef88c54833a2"
+      },
+      {
+        "path": "src/client/execution-history.ts",
+        "sha256": "bc48b8b572ed3f399bb50cf0e3da9a79bff76bf69d0bc061a4f00aba90b7b06f"
+      },
+      {
+        "path": "src/client/execution-panel.ts",
+        "sha256": "d9eb2974fbd1df2020147b0b7f7d6d41627cc72ef66f64cd7e2e494c5578beb6"
+      },
+      {
+        "path": "src/client/execution-receipt.ts",
+        "sha256": "004523afd18fde33e9796d4c59f8de7c3beee93c85d6d6451f8a9f0e259da240"
+      },
+      {
+        "path": "src/client/execution-replay.ts",
+        "sha256": "0ee436e83c73a0fe45da039ae9714709bc550117953b530a768ed463d764def3"
+      },
+      {
+        "path": "src/client/layout.ts",
+        "sha256": "5dfa90e8edc7f49dc471c91525defbe4006be12a1c359a9097bf236cf7e97f27"
+      },
+      {
+        "path": "src/client/main.ts",
+        "sha256": "972f9e9892cdcdb47a00e2e263ee432ee6fd43ab430dab8cc3ac29a9228b306c"
+      },
+      {
+        "path": "src/client/pager.ts",
+        "sha256": "544b37dd62bf97517e6dd9752cf866a041209ecc1aa474cf761c125d5babe6d2"
+      },
+      {
+        "path": "src/client/pending-store.ts",
+        "sha256": "7acbee2776c53b55cec125c99c8039de0af8e88c7457a113fda2a8084b9c62d5"
+      },
+      {
+        "path": "src/contracts/auth.ts",
+        "sha256": "8537f2bde52c89052cb3c1b435b59dcf0fe97f0db4bfeb8ef04caed887b33bab"
+      },
+      {
+        "path": "src/contracts/campaigns.ts",
+        "sha256": "210135d189290016a4b4829d3e2381028bd4f631a613c7d79eeab5dbe1d566e6"
+      },
+      {
+        "path": "src/contracts/executions.ts",
+        "sha256": "ae6eb2b601e41bb7a725fd050dfbc828c060146033a326c5489ce9ed65875c92"
+      },
+      {
+        "path": "src/server/admin/queries.ts",
+        "sha256": "a3e144336f3c03f4fc10a7f164aeaab3eda08b285a04db607235a29842496a62"
+      },
+      {
+        "path": "src/server/admin/routes.ts",
+        "sha256": "08c6f922ee1724c2d9208db77f8e455ca6fa6d80fa57c83596fb414a9c3b457f"
+      },
+      {
+        "path": "src/server/app.ts",
+        "sha256": "53ed797e388a0a71c7a9b572342b9342079abae85938abd4cc58aa6c28b6474f"
+      },
+      {
+        "path": "src/server/auth/actor.ts",
+        "sha256": "47867daeea647c25844058cba493fbb47eab18856949214240fe96f183ae4729"
+      },
+      {
+        "path": "src/server/auth/member-repository.ts",
+        "sha256": "25536eddc194b2620b933725f40e27a09ae4ce02378d64bf3d373887e24045c0"
+      },
+      {
+        "path": "src/server/auth/middleware.ts",
+        "sha256": "8bf19be1876474a050ed9fdba17a1a31ec12ddc14529648ddbfa8092fec025e0"
+      },
+      {
+        "path": "src/server/auth/password.ts",
+        "sha256": "553589f62c466633dd55b4d9809d39fdb2feb123bdff3f36cb6ea661023c7708"
+      },
+      {
+        "path": "src/server/auth/rate-limit.ts",
+        "sha256": "2f4f10fc330ab75e55f90fde17d60d81577412a64c5f151e486e4515d2b8576a"
+      },
+      {
+        "path": "src/server/auth/routes.ts",
+        "sha256": "0397827c3a08c9d44d9d53c610b12e23519b2b03a9e8281fa852f03a62183fdf"
+      },
+      {
+        "path": "src/server/auth/service.ts",
+        "sha256": "74c3e857f4c663453af0cfaf55a95e7e37f806a2ede21f7c1bbb3a6634887300"
+      },
+      {
+        "path": "src/server/auth/session-repository.ts",
+        "sha256": "b84c7d318d0cc89f98bee42bee2f6fa79b6920d7a1dafa60c7f5c7faa523940b"
+      },
+      {
+        "path": "src/server/campaigns/repository.ts",
+        "sha256": "98c7ae4c4cf075e937f1ab835352bd5f46d72cdd92f1f1009741161bb06fcc89"
+      },
+      {
+        "path": "src/server/campaigns/routes.ts",
+        "sha256": "482fcfaecced7861e242f2dea1a0d2ebce6c7352ee22fa4992cd5fe9b64a8754"
+      },
+      {
+        "path": "src/server/campaigns/service.ts",
+        "sha256": "bc147ab91640eef86ec19506598f269251ece7fff685e34ad5ac3a9a71abdd6c"
+      },
+      {
+        "path": "src/server/config.ts",
+        "sha256": "e0265e9ac4d70d1ee3bcd8a161447ae6635898603267125b32cbe2bb94af0339"
+      },
+      {
+        "path": "src/server/db/migrate.ts",
+        "sha256": "40a7fde562e67279b9d034d9ed62a7fb6474d4bd198d2e60e70287d277f43883"
+      },
+      {
+        "path": "src/server/db/normalize-demo-text.ts",
+        "sha256": "fd8bff5715f6b6b5a824c21146b1776eac66f45a1ea2f1b85f0d2225fe7542c4"
+      },
+      {
+        "path": "src/server/db/pagination.ts",
+        "sha256": "38a71c55c4b6aeb32ff947affef6b05007c2d1b653046a93a73d9580993a8607"
+      },
+      {
+        "path": "src/server/db/pool.ts",
+        "sha256": "b9d7c583af95309b4e6079f14b67f45a25bd84a7b412304a4e09ea73ec22f067"
+      },
+      {
+        "path": "src/server/db/seed-campaigns.ts",
+        "sha256": "01bd3bfdd88837a4de5ede0ddce34fb2d08ae8d2258f59cacdc4c70aacddc05d"
+      },
+      {
+        "path": "src/server/db/seed-demo.ts",
+        "sha256": "f761bc2a00e89696efe3d95725e6d33d657c7dbd683938782e1c7b9671e8bf9d"
+      },
+      {
+        "path": "src/server/db/transaction.ts",
+        "sha256": "6465c6ba54923767ee9b9285bf53975d5d7f13cea53e90bf6b5924587c321dda"
+      },
+      {
+        "path": "src/server/executions/decision.ts",
+        "sha256": "b8355a6cd70a39cc5ade5d3297c7d95946a8b392e0a846891795ef0ccde7063f"
+      },
+      {
+        "path": "src/server/executions/repository.ts",
+        "sha256": "65ceaa3119b8beaa7097a5aaae00370953e86a2a41d7d4b17f0941700f62d55a"
+      },
+      {
+        "path": "src/server/executions/routes.ts",
+        "sha256": "a4d1c4401fa024383a38146daf6dd9511e7eb41b8dbc65cc5f7836345e90c5f4"
+      },
+      {
+        "path": "src/server/executions/service.ts",
+        "sha256": "7c00d395c659c67afc76b64725eab845476e2e66c9d40371c28a16bd2b065a08"
+      },
+      {
+        "path": "src/server/http/errors.ts",
+        "sha256": "a6f3b344af51e35fbc747e79dc7ea0857077246cb7ae4241daf91660cd5f5153"
+      },
+      {
+        "path": "src/server/http/input.ts",
+        "sha256": "bfa65d0042d52b9cb632b215277bc9476f04ce9cc53d081150138531e31c4e31"
+      },
+      {
+        "path": "src/server/http/security.ts",
+        "sha256": "cc7bdffd899294b763ecb7b807fcf85e832ced08882ec659cafe524cb592a6ff"
+      },
+      {
+        "path": "src/server/start.ts",
+        "sha256": "6c096d3574fcccad8d574dc3deed0fc5077c1580ad0d1ebf1b49cdd6c0054698"
+      }
+    ]
+  },
+  "compiled": {
+    "digest": "cf1c1174175293c3112fc0d02f51d6ca86fcdedb609276b9ebeeaff9ec4f4979",
+    "sources": [
+      {
+        "path": "dist/src/contracts/auth.js",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      {
+        "path": "dist/src/contracts/campaigns.js",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      {
+        "path": "dist/src/contracts/executions.js",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      {
+        "path": "dist/src/server/admin/queries.js",
+        "sha256": "94e5156d4c81f1eca824d459547cf6aedda7784c744552e32522838783bb9671"
+      },
+      {
+        "path": "dist/src/server/admin/routes.js",
+        "sha256": "3e4d7db851d637472a4b18ae137cbd53e3c1b51372b31eac201c6e5603b1a3f3"
+      },
+      {
+        "path": "dist/src/server/app.js",
+        "sha256": "07c7061427d40ae158d59021eac6046c48584800b7effd3c7736513c2a7559d6"
+      },
+      {
+        "path": "dist/src/server/auth/actor.js",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      {
+        "path": "dist/src/server/auth/member-repository.js",
+        "sha256": "c082106fe52b09beb157cb03d4bb1832d5ec4186c8262f7640f66b2c1adf0e51"
+      },
+      {
+        "path": "dist/src/server/auth/middleware.js",
+        "sha256": "ec12efb95df2953a7877f460f1028f39028032360d7271f1bff5fdd803949df4"
+      },
+      {
+        "path": "dist/src/server/auth/password.js",
+        "sha256": "aff58f67e299b25e6a9c294ff641da6f39b973a37eb24ccad133cf912910f2d0"
+      },
+      {
+        "path": "dist/src/server/auth/rate-limit.js",
+        "sha256": "bbc1f561d1fdd8386e96879f8d661a4c00cc8f0fd5e78a8d8a925cc1b187754b"
+      },
+      {
+        "path": "dist/src/server/auth/routes.js",
+        "sha256": "5a73d40c0fce284b4de72c1af59294b9af6a9c575c897d47db8f6447be9bf18e"
+      },
+      {
+        "path": "dist/src/server/auth/service.js",
+        "sha256": "b13e1dd875efba5c630b4b3188ccc6ddba182168788554add79e3a381142d543"
+      },
+      {
+        "path": "dist/src/server/auth/session-repository.js",
+        "sha256": "4d1c572b5ee54979c8cad3ed186ddd3c9136758d51d234a4f24a1f1932a393c8"
+      },
+      {
+        "path": "dist/src/server/campaigns/repository.js",
+        "sha256": "dbf96c7921d2a41e30e5c7e1788f59bab7325c7997c7145b7c86cda8a01fcfb2"
+      },
+      {
+        "path": "dist/src/server/campaigns/routes.js",
+        "sha256": "66e62e5f4960723e6d90e51a207574bd1f933ad75083eb8635a8b585f4bd3cf4"
+      },
+      {
+        "path": "dist/src/server/campaigns/service.js",
+        "sha256": "4f943a8ab06f1336dceb0218a2fe3acdf333e2396800fa0c9f39705e121b44b2"
+      },
+      {
+        "path": "dist/src/server/config.js",
+        "sha256": "143d8c059edbd20eb55bbe80a79bb8a29b336234c76493fbc301769418b0d83c"
+      },
+      {
+        "path": "dist/src/server/db/migrate.js",
+        "sha256": "639a71c1f2295df49d2338f871fba418140229c13e84a7cde2be7f5be976ef7e"
+      },
+      {
+        "path": "dist/src/server/db/normalize-demo-text.js",
+        "sha256": "fb35a7b07a389de575d39634d62e1c577918f3e5aeb1cf03c092e8ffa20a6281"
+      },
+      {
+        "path": "dist/src/server/db/pagination.js",
+        "sha256": "21e17d4836d44b1a0df0eee0c4c6f87f7aeed2d9dd862dc1a18298fa82ea1af6"
+      },
+      {
+        "path": "dist/src/server/db/pool.js",
+        "sha256": "a8d404eefd55dc08bc0d8ccfd3f5914305c325257672b5b8e7f63930002f1ba6"
+      },
+      {
+        "path": "dist/src/server/db/seed-campaigns.js",
+        "sha256": "3d20e4c4ff857d0cf04716f9b1a56955fccdd43bf926c33afe100da27ea78427"
+      },
+      {
+        "path": "dist/src/server/db/seed-demo.js",
+        "sha256": "4d60bf0ead606ff94334786dfcf888c717af2f2540220812a45bdbd6c56bd0c9"
+      },
+      {
+        "path": "dist/src/server/db/transaction.js",
+        "sha256": "f59be5f304abd45245f1b0355c3da1b7d008dcf51d1b88e50cfc849fb34ddd80"
+      },
+      {
+        "path": "dist/src/server/executions/decision.js",
+        "sha256": "e88e0b6b758351833054ada4a4034fa8e74c65d78e90bafffed4b003ac4a8d13"
+      },
+      {
+        "path": "dist/src/server/executions/repository.js",
+        "sha256": "dbe23669889c86ee776e1a4c7f6439552734997d1d8c6f8b26b1215e9423ea91"
+      },
+      {
+        "path": "dist/src/server/executions/routes.js",
+        "sha256": "76c37808fb3f8b1d50732523cffe5c271b3d7ba343c511a27f6a6635242809d9"
+      },
+      {
+        "path": "dist/src/server/executions/service.js",
+        "sha256": "49fa8ba888afa538363ec0f93fd38316c7d7f88123ec07c292bfcf8eb037a982"
+      },
+      {
+        "path": "dist/src/server/http/errors.js",
+        "sha256": "971bb08344ac7407715be029bacf4e2f8e1c10642c159871410101ed05463f88"
+      },
+      {
+        "path": "dist/src/server/http/input.js",
+        "sha256": "47d418f999dc5f195f01034a382e5e8f21299f0047356c9fbb7c0af746102ae5"
+      },
+      {
+        "path": "dist/src/server/http/security.js",
+        "sha256": "3db3385a4d89aa94c86fca2f299acb0c1751752c3c650cf99ae88684fc97a513"
+      },
+      {
+        "path": "dist/src/server/start.js",
+        "sha256": "6c096d3574fcccad8d574dc3deed0fc5077c1580ad0d1ebf1b49cdd6c0054698"
+      }
+    ]
+  },
+  "harness": {
+    "control": "bb5570e041210a51e9bfaab40d18ce8bff894a07659a22824b91958b2e0ff2c1",
+    "fixture": "2f887db8a2c7341ebaedf6a8707bd02b5fe6282b77434cf6271d9960e854dd78",
+    "http": "797156d17d4c825a06adc14f1b744bd49cf69eeb348244ca7f79fbc950d81387",
+    "runner": "7a77ebe39a48f5da08bf18db924e242943cf9ccf6eae72de06b770a3a675b5a4",
+    "server": "0387727b3e03e20f8e79f81809b7e2700d518ae1228422428ff10e7b78d16c63",
+    "stats": "582536a0e0bc69259c3b0090b367f5055c5d879681135325159309e5a3030c9e",
+    "telemetry": "ef288c12560bfb25dca765879d7714b1384473ef1567c290c50e98e8c7617cfe"
+  },
+  "protocol": {
+    "operations": 12000,
+    "warmup": 2000,
+    "repeats": 3,
+    "scenarios": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "concurrencies": [
+      1,
+      10,
+      30,
+      60
+    ],
+    "seed": 20261013,
+    "schedule": [
+      {
+        "scenario": "D",
+        "concurrency": 1,
+        "repeat": 1
+      },
+      {
+        "scenario": "C",
+        "concurrency": 1,
+        "repeat": 1
+      },
+      {
+        "scenario": "B",
+        "concurrency": 1,
+        "repeat": 1
+      },
+      {
+        "scenario": "D",
+        "concurrency": 60,
+        "repeat": 1
+      },
+      {
+        "scenario": "B",
+        "concurrency": 10,
+        "repeat": 1
+      },
+      {
+        "scenario": "D",
+        "concurrency": 10,
+        "repeat": 1
+      },
+      {
+        "scenario": "A",
+        "concurrency": 10,
+        "repeat": 1
+      },
+      {
+        "scenario": "A",
+        "concurrency": 60,
+        "repeat": 1
+      },
+      {
+        "scenario": "D",
+        "concurrency": 30,
+        "repeat": 1
+      },
+      {
+        "scenario": "C",
+        "concurrency": 60,
+        "repeat": 1
+      },
+      {
+        "scenario": "A",
+        "concurrency": 30,
+        "repeat": 1
+      },
+      {
+        "scenario": "C",
+        "concurrency": 30,
+        "repeat": 1
+      },
+      {
+        "scenario": "C",
+        "concurrency": 10,
+        "repeat": 1
+      },
+      {
+        "scenario": "A",
+        "concurrency": 1,
+        "repeat": 1
+      },
+      {
+        "scenario": "B",
+        "concurrency": 30,
+        "repeat": 1
+      },
+      {
+        "scenario": "B",
+        "concurrency": 60,
+        "repeat": 1
+      },
+      {
+        "scenario": "C",
+        "concurrency": 1,
+        "repeat": 2
+      },
+      {
+        "scenario": "A",
+        "concurrency": 10,
+        "repeat": 2
+      },
+      {
+        "scenario": "B",
+        "concurrency": 1,
+        "repeat": 2
+      },
+      {
+        "scenario": "A",
+        "concurrency": 60,
+        "repeat": 2
+      },
+      {
+        "scenario": "D",
+        "concurrency": 1,
+        "repeat": 2
+      },
+      {
+        "scenario": "D",
+        "concurrency": 60,
+        "repeat": 2
+      },
+      {
+        "scenario": "B",
+        "concurrency": 60,
+        "repeat": 2
+      },
+      {
+        "scenario": "B",
+        "concurrency": 10,
+        "repeat": 2
+      },
+      {
+        "scenario": "C",
+        "concurrency": 60,
+        "repeat": 2
+      },
+      {
+        "scenario": "C",
+        "concurrency": 30,
+        "repeat": 2
+      },
+      {
+        "scenario": "C",
+        "concurrency": 10,
+        "repeat": 2
+      },
+      {
+        "scenario": "B",
+        "concurrency": 30,
+        "repeat": 2
+      },
+      {
+        "scenario": "D",
+        "concurrency": 10,
+        "repeat": 2
+      },
+      {
+        "scenario": "A",
+        "concurrency": 1,
+        "repeat": 2
+      },
+      {
+        "scenario": "A",
+        "concurrency": 30,
+        "repeat": 2
+      },
+      {
+        "scenario": "D",
+        "concurrency": 30,
+        "repeat": 2
+      },
+      {
+        "scenario": "D",
+        "concurrency": 30,
+        "repeat": 3
+      },
+      {
+        "scenario": "B",
+        "concurrency": 60,
+        "repeat": 3
+      },
+      {
+        "scenario": "B",
+        "concurrency": 30,
+        "repeat": 3
+      },
+      {
+        "scenario": "A",
+        "concurrency": 10,
+        "repeat": 3
+      },
+      {
+        "scenario": "D",
+        "concurrency": 60,
+        "repeat": 3
+      },
+      {
+        "scenario": "C",
+        "concurrency": 1,
+        "repeat": 3
+      },
+      {
+        "scenario": "B",
+        "concurrency": 10,
+        "repeat": 3
+      },
+      {
+        "scenario": "C",
+        "concurrency": 30,
+        "repeat": 3
+      },
+      {
+        "scenario": "D",
+        "concurrency": 1,
+        "repeat": 3
+      },
+      {
+        "scenario": "A",
+        "concurrency": 60,
+        "repeat": 3
+      },
+      {
+        "scenario": "A",
+        "concurrency": 1,
+        "repeat": 3
+      },
+      {
+        "scenario": "B",
+        "concurrency": 1,
+        "repeat": 3
+      },
+      {
+        "scenario": "C",
+        "concurrency": 10,
+        "repeat": 3
+      },
+      {
+        "scenario": "C",
+        "concurrency": 60,
+        "repeat": 3
+      },
+      {
+        "scenario": "A",
+        "concurrency": 30,
+        "repeat": 3
+      },
+      {
+        "scenario": "D",
+        "concurrency": 10,
+        "repeat": 3
+      }
+    ],
+    "loadModel": "closed-loop, HTTP/1.1 keep-alive, fixed work count, no retries",
+    "latencyQuantile": "nearest-rank",
+    "amountWon": 1,
+    "campaignBudgetWon": 1000000000,
+    "monitorIntervalMs": 100,
+    "poolSampleIntervalMs": 20
+  },
+  "runtime": {
+    "node": "v20.20.2",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpuModel": "Apple M1 Pro",
+    "logicalCpus": 10,
+    "totalMemoryBytes": 17179869184
+  },
+  "api": {
+    "event": "ready",
+    "url": "http://127.0.0.1:3101",
+    "schema": "perf_97b5bb44ca0e14fb",
+    "applicationName": "guard_perf_97b5bb44ca0e14fb",
+    "pid": 46571,
+    "poolMax": 30,
+    "settings": {
+      "server_version": "18.4",
+      "max_connections": "100",
+      "shared_buffers": "128MB",
+      "synchronous_commit": "on",
+      "fsync": "on",
+      "full_page_writes": "on",
+      "transaction_isolation": "read committed"
+    }
+  },
+  "finishedAt": "2026-10-13T11:19:41.106Z",
+  "completedCases": 48
+}

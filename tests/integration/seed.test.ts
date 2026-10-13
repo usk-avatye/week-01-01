@@ -21,7 +21,7 @@ test('demo seed is repeatable without resetting roles, spend or request counters
     assert.equal((await f.pool.query('SELECT id FROM campaigns')).rowCount, 9);
     const retained = (await f.pool.query('SELECT * FROM campaigns WHERE id=$1', [campaign.id])).rows[0];
     assert.equal(retained.spent_amount, '1000');
-    assert.equal(retained.last_execution_no, '1');
+    assert.equal(retained.last_execution_no, '0');
     assert.equal(retained.status, 'ACTIVE');
 });
 
@@ -38,7 +38,7 @@ test('seed upgrades old display names without creating duplicate campaigns or re
     await seedDemo(f.pool, 'Demo-Campaign-2026!');
     const retained = (await f.pool.query('SELECT * FROM campaigns WHERE id=$1', [campaign.id])).rows[0];
     assert.equal(retained.name, '신제품 런칭');
-    assert.equal(retained.spent_amount, '1000'); assert.equal(retained.last_execution_no, '1'); assert.equal(retained.status, 'ACTIVE');
+    assert.equal(retained.spent_amount, '1000'); assert.equal(retained.last_execution_no, '0'); assert.equal(retained.status, 'ACTIVE');
     assert.equal((await f.pool.query('SELECT id FROM campaigns')).rowCount, 9);
     assert.equal((await f.pool.query('SELECT display_name FROM members WHERE id=$1', [campaign.owner_id])).rows[0].display_name, '모노픽셀');
     const replay = await executions.execute(campaign.owner_id, campaign.id, prepared.requestId, 1000);
@@ -53,9 +53,8 @@ test('realistic demo spend has matching immutable execution records and survives
     assert.equal(campaign.total_budget, '2400000');
     assert.equal(campaign.spent_amount, '1686000');
     const mismatches = await f.pool.query(`SELECT c.id FROM campaigns c LEFT JOIN executions e ON e.campaign_id=c.id
-        GROUP BY c.id HAVING c.spent_amount <> COALESCE(SUM(e.approved_amount),0)
-        OR c.last_execution_no <> COALESCE(MAX(e.execution_no),0)`);
-    assert.equal(mismatches.rowCount, 0, 'Demo balances and counters agree with their execution ledger');
+        GROUP BY c.id HAVING c.spent_amount <> COALESCE(SUM(e.approved_amount),0)`);
+    assert.equal(mismatches.rowCount, 0, 'Demo balances agree with their execution ledger');
     const rejected = (await f.pool.query(`SELECT e.* FROM executions e JOIN campaigns c ON c.id=e.campaign_id
         WHERE c.name='신규 회원 첫 구매' AND e.status='REJECTED'`)).rows[0];
     assert.equal(rejected.rejection_reason, 'INSUFFICIENT_BUDGET');
@@ -64,8 +63,9 @@ test('realistic demo spend has matching immutable execution records and survives
         WHERE c.name='소파 신제품 사전 예약'`)).rows[0];
     assert.equal(paused.rejection_reason, 'CAMPAIGN_PAUSED');
     const service = createExecutionService(f.pool);
-    const original = await service.get(campaign.owner_id, campaign.id, '1');
-    assert.deepEqual(await service.execute(campaign.owner_id, campaign.id, '1', 250000), original);
+    const first = (await f.pool.query('SELECT execution_no FROM executions WHERE campaign_id=$1 ORDER BY execution_no LIMIT 1', [campaign.id])).rows[0];
+    const original = await service.get(campaign.owner_id, campaign.id, first.execution_no);
+    assert.deepEqual(await service.execute(campaign.owner_id, campaign.id, first.execution_no, 250000), original);
     await f.pool.query("UPDATE campaigns SET status='PAUSED',total_budget=3000000 WHERE id=$1", [campaign.id]);
     const before = (await f.pool.query('SELECT * FROM executions ORDER BY campaign_id,execution_no')).rows;
     await seedDemo(f.pool, 'Demo-Campaign-2026!');

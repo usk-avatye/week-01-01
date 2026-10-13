@@ -1,0 +1,83 @@
+{
+  "label": "confirm-sequence-d30",
+  "aggregation": "arithmetic mean trial RPS; median trial quantiles; mean trial sampled lock fractions",
+  "groups": [
+    {
+      "scenario": "D",
+      "concurrency": 30,
+      "repeats": 3,
+      "rps": 2605.153159142761,
+      "rpsMin": 2454.283567846733,
+      "rpsMax": 2714.407221138073,
+      "rpsCv": 0.05180610541333361,
+      "workItemsPerSecond": 1302.5765795713805,
+      "p50Ms": 2.6081669999985024,
+      "p95Ms": 58.52495800000179,
+      "p99Ms": 165.54537499999788,
+      "requests": 72000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 80.28962842593567,
+      "generatorCpuOneCorePercent": 18.254058014533,
+      "acquireP95Ms": 0.007416000000375789,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.9280236456305463,
+      "maxLockWaiting": 29,
+      "runs": [
+        {
+          "caseId": "D-c30-r1",
+          "rps": 2454.283567846733,
+          "p95Ms": 58.29829100000006,
+          "p99Ms": 187.0529170000009
+        },
+        {
+          "caseId": "D-c30-r2",
+          "rps": 2646.768688443476,
+          "p95Ms": 61.48395800000071,
+          "p99Ms": 164.76287500000035
+        },
+        {
+          "caseId": "D-c30-r3",
+          "rps": 2714.407221138073,
+          "p95Ms": 58.52495800000179,
+          "p99Ms": 165.54537499999788
+        }
+      ],
+      "sampleCount": 284,
+      "waitEvents": {
+        "Client:ClientRead": 230,
+        "Lock:transactionid": 441,
+        "Lock:tuple": 7030,
+        "LWLock:BufferContent": 2,
+        "LWLock:LockManager": 1,
+        "IO:WalWrite": 77
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 7129,
+        "INSERT INTO executions(campaign_id) VALUES ($1) RETURNING *": 342
+      },
+      "lockModes": {
+        "tuple:AccessExclusiveLock:campaigns": 6752,
+        "tuple:AccessShareLock:campaigns": 294,
+        "transactionid:ShareLock:": 380
+      },
+      "waitingQueryAgeP95Ms": 188.696,
+      "eventLoopP99Ms": 10.428415,
+      "observerQueryP95Ms": 1.612249999998312,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 1.5696250000000873,
+          "p95Ms": 4.032917000000452,
+          "p99Ms": 7.688167000000249
+        },
+        "execute": {
+          "p50Ms": 5.270249999997759,
+          "p95Ms": 109.9161669999994,
+          "p99Ms": 201.92399999999907
+        }
+      }
+    }
+  ]
+}

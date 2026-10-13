@@ -1,0 +1,5 @@
+
+> campaign-budget-guard@0.1.0 db:migrate
+> node --import tsx --env-file=.env scripts/migrate.ts
+
+Database migrations applied.

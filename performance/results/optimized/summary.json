@@ -1,0 +1,1084 @@
+{
+  "label": "optimized",
+  "aggregation": "arithmetic mean trial RPS; median trial quantiles; mean trial sampled lock fractions",
+  "groups": [
+    {
+      "scenario": "A",
+      "concurrency": 1,
+      "repeats": 3,
+      "rps": 1347.981967707464,
+      "rpsMin": 1203.054505221389,
+      "rpsMax": 1471.1667184205749,
+      "rpsCv": 0.10042573183175574,
+      "workItemsPerSecond": 1347.981967707464,
+      "p50Ms": 0.6609170000010636,
+      "p95Ms": 1.024582999991253,
+      "p99Ms": 1.3806669999903534,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 45.34468737222704,
+      "generatorCpuOneCorePercent": 8.706072106593133,
+      "acquireP95Ms": 0.006292000005487353,
+      "poolMaxUsed": 1,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "A-c1-r1",
+          "rps": 1369.7246794804284,
+          "p95Ms": 1.024582999991253,
+          "p99Ms": 1.3806669999903534
+        },
+        {
+          "caseId": "A-c1-r2",
+          "rps": 1471.1667184205749,
+          "p95Ms": 0.829874999995809,
+          "p99Ms": 1.2728340000030585
+        },
+        {
+          "caseId": "A-c1-r3",
+          "rps": 1203.054505221389,
+          "p95Ms": 1.2544999999809079,
+          "p99Ms": 2.1853330000303686
+        }
+      ],
+      "sampleCount": 273,
+      "waitEvents": {
+        "Client:ClientRead": 140
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.231807,
+      "observerQueryP95Ms": 1.0405840000021271,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 0.6609170000010636,
+          "p95Ms": 1.024582999991253,
+          "p99Ms": 1.3806669999903534
+        }
+      }
+    },
+    {
+      "scenario": "A",
+      "concurrency": 10,
+      "repeats": 3,
+      "rps": 1874.5454807619099,
+      "rpsMin": 1709.3166901322754,
+      "rpsMax": 1980.0711612824512,
+      "rpsCv": 0.07730671179392742,
+      "workItemsPerSecond": 1874.5454807619099,
+      "p50Ms": 1.494416999979876,
+      "p95Ms": 13.441832999989856,
+      "p99Ms": 86.58991700000479,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 62.33710316316336,
+      "generatorCpuOneCorePercent": 12.693037638106512,
+      "acquireP95Ms": 0.006709000008413568,
+      "poolMaxUsed": 10,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.8753779111186385,
+      "maxLockWaiting": 9,
+      "runs": [
+        {
+          "caseId": "A-c10-r1",
+          "rps": 1709.3166901322754,
+          "p95Ms": 14.48641700000735,
+          "p99Ms": 99.96645799999533
+        },
+        {
+          "caseId": "A-c10-r2",
+          "rps": 1980.0711612824512,
+          "p95Ms": 13.210250000003725,
+          "p99Ms": 86.58991700000479
+        },
+        {
+          "caseId": "A-c10-r3",
+          "rps": 1934.248590871003,
+          "p95Ms": 13.441832999989856,
+          "p99Ms": 80.92833299998892
+        }
+      ],
+      "sampleCount": 197,
+      "waitEvents": {
+        "Client:ClientRead": 61,
+        "Lock:tuple": 1315,
+        "Lock:transactionid": 356,
+        "IO:WalWrite": 88,
+        "IO:DataFileExtend": 1,
+        "LWLock:BufferContent": 1,
+        "LWLock:LockManager": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 1671
+      },
+      "lockModes": {
+        "tuple:ExclusiveLock:campaigns": 1185,
+        "transactionid:ShareLock:": 311
+      },
+      "waitingQueryAgeP95Ms": 262.936,
+      "eventLoopP99Ms": 10.239999,
+      "observerQueryP95Ms": 1.2125840000226162,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 1.494416999979876,
+          "p95Ms": 13.441832999989856,
+          "p99Ms": 86.58991700000479
+        }
+      }
+    },
+    {
+      "scenario": "A",
+      "concurrency": 30,
+      "repeats": 3,
+      "rps": 1582.5548564808614,
+      "rpsMin": 1426.0186146953647,
+      "rpsMax": 1708.9077510768652,
+      "rpsCv": 0.09089077592940752,
+      "workItemsPerSecond": 1582.5548564808614,
+      "p50Ms": 1.8240000000223517,
+      "p95Ms": 25.625958999968134,
+      "p99Ms": 320.49725000000035,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 56.6507577342353,
+      "generatorCpuOneCorePercent": 12.266798479269182,
+      "acquireP95Ms": 0.007416000007651746,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.94446281407516,
+      "maxLockWaiting": 29,
+      "runs": [
+        {
+          "caseId": "A-c30-r1",
+          "rps": 1426.0186146953647,
+          "p95Ms": 26.005208000002312,
+          "p99Ms": 320.49725000000035
+        },
+        {
+          "caseId": "A-c30-r2",
+          "rps": 1708.9077510768652,
+          "p95Ms": 16.559667000023182,
+          "p99Ms": 245.9860420000041
+        },
+        {
+          "caseId": "A-c30-r3",
+          "rps": 1612.738203670354,
+          "p95Ms": 25.625958999968134,
+          "p99Ms": 429.5930830000434
+        }
+      ],
+      "sampleCount": 234,
+      "waitEvents": {
+        "Lock:tuple": 6029,
+        "Client:ClientRead": 72,
+        "Lock:transactionid": 442,
+        "IO:WalWrite": 17,
+        "IO:DataFileExtend": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 6471
+      },
+      "lockModes": {
+        "tuple:ExclusiveLock:campaigns": 5940,
+        "transactionid:ShareLock:": 406
+      },
+      "waitingQueryAgeP95Ms": 3561.661,
+      "eventLoopP99Ms": 10.477567,
+      "observerQueryP95Ms": 1.7668330000014976,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 1.8240000000223517,
+          "p95Ms": 25.625958999968134,
+          "p99Ms": 320.49725000000035
+        }
+      }
+    },
+    {
+      "scenario": "A",
+      "concurrency": 60,
+      "repeats": 3,
+      "rps": 1782.6023769558858,
+      "rpsMin": 1667.2145995234926,
+      "rpsMax": 1880.8056034391143,
+      "rpsCv": 0.060488788757064225,
+      "workItemsPerSecond": 1782.6023769558858,
+      "p50Ms": 33.13962500001071,
+      "p95Ms": 48.24883300001966,
+      "p99Ms": 54.8643339999835,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 63.76203345300377,
+      "generatorCpuOneCorePercent": 14.238570865575724,
+      "acquireP95Ms": 12.546708000008948,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 30,
+      "poolWaitingSampleRate": 0.9901540502950117,
+      "lockWaitingBackendFraction": 0.9594304493867631,
+      "maxLockWaiting": 29,
+      "runs": [
+        {
+          "caseId": "A-c60-r1",
+          "rps": 1667.2145995234926,
+          "p95Ms": 51.7250839999906,
+          "p99Ms": 63.48537500000384
+        },
+        {
+          "caseId": "A-c60-r2",
+          "rps": 1880.8056034391143,
+          "p95Ms": 45.96004199999152,
+          "p99Ms": 51.112417000025744
+        },
+        {
+          "caseId": "A-c60-r3",
+          "rps": 1799.7869279050497,
+          "p95Ms": 48.24883300001966,
+          "p99Ms": 54.8643339999835
+        }
+      ],
+      "sampleCount": 206,
+      "waitEvents": {
+        "Lock:tuple": 5604,
+        "Lock:transactionid": 224,
+        "IO:WalWrite": 96,
+        "Client:ClientRead": 66,
+        "LWLock:BufferContent": 1,
+        "IO:DataFileExtend": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 5828
+      },
+      "lockModes": {
+        "tuple:ExclusiveLock:campaigns": 5389,
+        "transactionid:ShareLock:": 219
+      },
+      "waitingQueryAgeP95Ms": 24.758,
+      "eventLoopP99Ms": 10.305535,
+      "observerQueryP95Ms": 1.5827920000301674,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 33.13962500001071,
+          "p95Ms": 48.24883300001966,
+          "p99Ms": 54.8643339999835
+        }
+      }
+    },
+    {
+      "scenario": "B",
+      "concurrency": 1,
+      "repeats": 3,
+      "rps": 1426.2821691103936,
+      "rpsMin": 1304.9377548295804,
+      "rpsMax": 1489.911483427574,
+      "rpsCv": 0.07370837636670857,
+      "workItemsPerSecond": 1426.2821691103936,
+      "p50Ms": 0.6375000000007276,
+      "p95Ms": 0.8111250000074506,
+      "p99Ms": 1.2193329999863636,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 45.41421553394682,
+      "generatorCpuOneCorePercent": 8.592517342596455,
+      "acquireP95Ms": 0.004832999999052845,
+      "poolMaxUsed": 1,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "B-c1-r1",
+          "rps": 1489.911483427574,
+          "p95Ms": 0.804708000003302,
+          "p99Ms": 1.127290999997058
+        },
+        {
+          "caseId": "B-c1-r2",
+          "rps": 1483.9972690740267,
+          "p95Ms": 0.8111250000074506,
+          "p99Ms": 1.2193329999863636
+        },
+        {
+          "caseId": "B-c1-r3",
+          "rps": 1304.9377548295804,
+          "p95Ms": 1.0358329999726266,
+          "p99Ms": 1.3874579999828711
+        }
+      ],
+      "sampleCount": 257,
+      "waitEvents": {
+        "Client:ClientRead": 125
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.199039,
+      "observerQueryP95Ms": 0.9591249999939464,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 0.6375000000007276,
+          "p95Ms": 0.8111250000074506,
+          "p99Ms": 1.2193329999863636
+        }
+      }
+    },
+    {
+      "scenario": "B",
+      "concurrency": 10,
+      "repeats": 3,
+      "rps": 3798.6689757098866,
+      "rpsMin": 3663.4483146019634,
+      "rpsMax": 3945.0785884311686,
+      "rpsCv": 0.037157262274450056,
+      "workItemsPerSecond": 3798.6689757098866,
+      "p50Ms": 2.4994169999990845,
+      "p95Ms": 3.534125000005588,
+      "p99Ms": 4.28729100000055,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 103.67237433123286,
+      "generatorCpuOneCorePercent": 22.240767924738154,
+      "acquireP95Ms": 0.004207999998470768,
+      "poolMaxUsed": 10,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "B-c10-r1",
+          "rps": 3787.4800240965283,
+          "p95Ms": 3.534125000005588,
+          "p99Ms": 4.28729100000055
+        },
+        {
+          "caseId": "B-c10-r2",
+          "rps": 3945.0785884311686,
+          "p95Ms": 3.305791999999201,
+          "p99Ms": 3.7806670000136364
+        },
+        {
+          "caseId": "B-c10-r3",
+          "rps": 3663.4483146019634,
+          "p95Ms": 3.715375000028871,
+          "p99Ms": 4.62829199997941
+        }
+      ],
+      "sampleCount": 98,
+      "waitEvents": {
+        "Client:ClientRead": 453,
+        "IO:WalWrite": 12,
+        "LWLock:WALWrite": 2
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.625023,
+      "observerQueryP95Ms": 1.212082999998529,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 2.4994169999990845,
+          "p95Ms": 3.534125000005588,
+          "p99Ms": 4.28729100000055
+        }
+      }
+    },
+    {
+      "scenario": "B",
+      "concurrency": 30,
+      "repeats": 3,
+      "rps": 3783.663544769664,
+      "rpsMin": 3682.992648037414,
+      "rpsMax": 3860.895061527632,
+      "rpsCv": 0.024113663283773592,
+      "workItemsPerSecond": 3783.663544769664,
+      "p50Ms": 5.184333000011975,
+      "p95Ms": 17.54595800000243,
+      "p99Ms": 28.359874999994645,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 104.13364165018231,
+      "generatorCpuOneCorePercent": 22.370397155895272,
+      "acquireP95Ms": 0.004458000010345131,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.5098536498312712,
+      "maxLockWaiting": 14,
+      "runs": [
+        {
+          "caseId": "B-c30-r1",
+          "rps": 3807.1029247439456,
+          "p95Ms": 16.329750000004424,
+          "p99Ms": 22.562125000025844
+        },
+        {
+          "caseId": "B-c30-r2",
+          "rps": 3860.895061527632,
+          "p95Ms": 17.54595800000243,
+          "p99Ms": 28.359874999994645
+        },
+        {
+          "caseId": "B-c30-r3",
+          "rps": 3682.992648037414,
+          "p95Ms": 18.735541000030935,
+          "p99Ms": 30.60091600002488
+        }
+      ],
+      "sampleCount": 99,
+      "waitEvents": {
+        "Lock:transactionid": 458,
+        "Client:ClientRead": 936,
+        "Lock:tuple": 646,
+        "LWLock:WALWrite": 7,
+        "IO:WalWrite": 14,
+        "LWLock:WALInsert": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 1104
+      },
+      "lockModes": {
+        "transactionid:ShareLock:": 462,
+        "tuple:ExclusiveLock:campaigns": 640
+      },
+      "waitingQueryAgeP95Ms": 18.155,
+      "eventLoopP99Ms": 10.641407,
+      "observerQueryP95Ms": 1.4025409999885596,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 5.184333000011975,
+          "p95Ms": 17.54595800000243,
+          "p99Ms": 28.359874999994645
+        }
+      }
+    },
+    {
+      "scenario": "B",
+      "concurrency": 60,
+      "repeats": 3,
+      "rps": 3721.9372295186545,
+      "rpsMin": 3664.1627889132174,
+      "rpsMax": 3774.230213572609,
+      "rpsCv": 0.014841214560357656,
+      "workItemsPerSecond": 3721.9372295186545,
+      "p50Ms": 11.839874999976018,
+      "p95Ms": 32.40341699999408,
+      "p99Ms": 70.85483299999032,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 105.02303375402334,
+      "generatorCpuOneCorePercent": 22.535350500603773,
+      "acquireP95Ms": 4.560333000030369,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 30,
+      "poolWaitingSampleRate": 0.9816297541650809,
+      "lockWaitingBackendFraction": 0.6080221055317597,
+      "maxLockWaiting": 19,
+      "runs": [
+        {
+          "caseId": "B-c60-r1",
+          "rps": 3664.1627889132174,
+          "p95Ms": 39.18766699999105,
+          "p99Ms": 63.77150000000256
+        },
+        {
+          "caseId": "B-c60-r2",
+          "rps": 3774.230213572609,
+          "p95Ms": 32.40341699999408,
+          "p99Ms": 74.21304100000998
+        },
+        {
+          "caseId": "B-c60-r3",
+          "rps": 3727.4186860701366,
+          "p95Ms": 31.33149999997113,
+          "p99Ms": 70.85483299999032
+        }
+      ],
+      "sampleCount": 100,
+      "waitEvents": {
+        "Client:ClientRead": 860,
+        "Lock:tuple": 1071,
+        "Lock:transactionid": 500,
+        "LWLock:WALWrite": 5,
+        "IO:WalWrite": 19,
+        "IO:DataFileExtend": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 1571
+      },
+      "lockModes": {
+        "transactionid:ShareLock:": 490,
+        "tuple:ExclusiveLock:campaigns": 1064
+      },
+      "waitingQueryAgeP95Ms": 59.507,
+      "eventLoopP99Ms": 10.706943,
+      "observerQueryP95Ms": 1.5223329999716952,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 11.839874999976018,
+          "p95Ms": 32.40341699999408,
+          "p99Ms": 70.85483299999032
+        }
+      }
+    },
+    {
+      "scenario": "C",
+      "concurrency": 1,
+      "repeats": 3,
+      "rps": 1853.5230096581924,
+      "rpsMin": 1772.9391423999325,
+      "rpsMax": 1894.3940192030846,
+      "rpsCv": 0.03765266374877428,
+      "workItemsPerSecond": 1853.5230096581924,
+      "p50Ms": 0.48875000001862645,
+      "p95Ms": 0.7007919999996375,
+      "p99Ms": 1.1421250000130385,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 50.02044071330673,
+      "generatorCpuOneCorePercent": 11.010057263359508,
+      "acquireP95Ms": 0.005415999999968335,
+      "poolMaxUsed": 1,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "C-c1-r1",
+          "rps": 1894.3940192030846,
+          "p95Ms": 0.7007919999996375,
+          "p99Ms": 1.158625000000029
+        },
+        {
+          "caseId": "C-c1-r2",
+          "rps": 1772.9391423999325,
+          "p95Ms": 0.8506250000209548,
+          "p99Ms": 1.1421250000130385
+        },
+        {
+          "caseId": "C-c1-r3",
+          "rps": 1893.23586737156,
+          "p95Ms": 0.6752500000293367,
+          "p99Ms": 1.0927500000107102
+        }
+      ],
+      "sampleCount": 198,
+      "waitEvents": {
+        "Client:ClientRead": 104,
+        "IO:WalWrite": 12
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.313727,
+      "observerQueryP95Ms": 1.0848339999793097,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 0.48875000001862645,
+          "p95Ms": 0.7007919999996375,
+          "p99Ms": 1.1421250000130385
+        }
+      }
+    },
+    {
+      "scenario": "C",
+      "concurrency": 10,
+      "repeats": 3,
+      "rps": 4637.28299741957,
+      "rpsMin": 4540.352023897389,
+      "rpsMax": 4754.814207483258,
+      "rpsCv": 0.023441535438201305,
+      "workItemsPerSecond": 4637.28299741957,
+      "p50Ms": 2.0057079999824055,
+      "p95Ms": 2.9768330000224523,
+      "p99Ms": 3.591499999994994,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 104.90363377750168,
+      "generatorCpuOneCorePercent": 24.67634234422808,
+      "acquireP95Ms": 0.004249999998137355,
+      "poolMaxUsed": 10,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "C-c10-r1",
+          "rps": 4540.352023897389,
+          "p95Ms": 3.031916000007186,
+          "p99Ms": 3.591499999994994
+        },
+        {
+          "caseId": "C-c10-r2",
+          "rps": 4754.814207483258,
+          "p95Ms": 2.817749999987427,
+          "p99Ms": 3.236583999998402
+        },
+        {
+          "caseId": "C-c10-r3",
+          "rps": 4616.682760878064,
+          "p95Ms": 2.9768330000224523,
+          "p99Ms": 3.647083999996539
+        }
+      ],
+      "sampleCount": 80,
+      "waitEvents": {
+        "Client:ClientRead": 292,
+        "IO:WalWrite": 11
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.526719,
+      "observerQueryP95Ms": 1.0584999999846332,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 2.0057079999824055,
+          "p95Ms": 2.9768330000224523,
+          "p99Ms": 3.591499999994994
+        }
+      }
+    },
+    {
+      "scenario": "C",
+      "concurrency": 30,
+      "repeats": 3,
+      "rps": 4621.051883342095,
+      "rpsMin": 4499.297054574335,
+      "rpsMax": 4733.681751087182,
+      "rpsCv": 0.025418126811219858,
+      "workItemsPerSecond": 4621.051883342095,
+      "p50Ms": 6.416916000001947,
+      "p95Ms": 7.84070800000336,
+      "p99Ms": 8.872624999989057,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 104.7656658533188,
+      "generatorCpuOneCorePercent": 23.964421321764046,
+      "acquireP95Ms": 0.004042000000481494,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "C-c30-r1",
+          "rps": 4630.176844364768,
+          "p95Ms": 7.84070800000336,
+          "p99Ms": 8.872624999989057
+        },
+        {
+          "caseId": "C-c30-r2",
+          "rps": 4733.681751087182,
+          "p95Ms": 7.566625000006752,
+          "p99Ms": 8.49962499999674
+        },
+        {
+          "caseId": "C-c30-r3",
+          "rps": 4499.297054574335,
+          "p95Ms": 8.041124999988824,
+          "p99Ms": 11.326208000013139
+        }
+      ],
+      "sampleCount": 81,
+      "waitEvents": {
+        "Client:ClientRead": 1043,
+        "IO:WalWrite": 12,
+        "LWLock:WALWrite": 4
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 11.108351,
+      "observerQueryP95Ms": 1.1625419999909354,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 6.416916000001947,
+          "p95Ms": 7.84070800000336,
+          "p99Ms": 8.872624999989057
+        }
+      }
+    },
+    {
+      "scenario": "C",
+      "concurrency": 60,
+      "repeats": 3,
+      "rps": 4502.926859635915,
+      "rpsMin": 4457.001426936859,
+      "rpsMax": 4544.847632699181,
+      "rpsCv": 0.009784704997840732,
+      "workItemsPerSecond": 4502.926859635915,
+      "p50Ms": 13.175583999953233,
+      "p95Ms": 14.72791600000346,
+      "p99Ms": 17.499500000005355,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 106.0286184666607,
+      "generatorCpuOneCorePercent": 24.89371039793009,
+      "acquireP95Ms": 3.1707919999898877,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 30,
+      "poolWaitingSampleRate": 0.9776111090329472,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "C-c60-r1",
+          "rps": 4457.001426936859,
+          "p95Ms": 14.793167000010726,
+          "p99Ms": 17.499500000005355
+        },
+        {
+          "caseId": "C-c60-r2",
+          "rps": 4544.847632699181,
+          "p95Ms": 14.72791600000346,
+          "p99Ms": 18.039500000013504
+        },
+        {
+          "caseId": "C-c60-r3",
+          "rps": 4506.931519271704,
+          "p95Ms": 14.620875000022352,
+          "p99Ms": 17.46595799998613
+        }
+      ],
+      "sampleCount": 83,
+      "waitEvents": {
+        "Client:ClientRead": 1395,
+        "IO:WalWrite": 10,
+        "LWLock:WALWrite": 34,
+        "LWLock:BufferContent": 4
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 11.419647,
+      "observerQueryP95Ms": 1.2615829999995185,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 13.175583999953233,
+          "p95Ms": 14.72791600000346,
+          "p99Ms": 17.499500000005355
+        }
+      }
+    },
+    {
+      "scenario": "D",
+      "concurrency": 1,
+      "repeats": 3,
+      "rps": 1488.7235550152247,
+      "rpsMin": 1436.438437138878,
+      "rpsMax": 1515.5959201199817,
+      "rpsCv": 0.03041942953546683,
+      "workItemsPerSecond": 744.3617775076124,
+      "p50Ms": 0.6352090000000317,
+      "p95Ms": 0.965541999998095,
+      "p99Ms": 1.3877500000003238,
+      "requests": 72000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 46.610563215542264,
+      "generatorCpuOneCorePercent": 10.120552110921642,
+      "acquireP95Ms": 0.006957999999940512,
+      "poolMaxUsed": 1,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0,
+      "maxLockWaiting": 0,
+      "runs": [
+        {
+          "caseId": "D-c1-r1",
+          "rps": 1514.1363077868152,
+          "p95Ms": 0.965541999998095,
+          "p99Ms": 1.3877500000003238
+        },
+        {
+          "caseId": "D-c1-r2",
+          "rps": 1515.5959201199817,
+          "p95Ms": 0.954541999992216,
+          "p99Ms": 1.301166999997804
+        },
+        {
+          "caseId": "D-c1-r3",
+          "rps": 1436.438437138878,
+          "p95Ms": 1.0420830000075512,
+          "p99Ms": 1.527750000008382
+        }
+      ],
+      "sampleCount": 489,
+      "waitEvents": {
+        "IO:WalWrite": 4,
+        "Client:ClientRead": 148
+      },
+      "lockQueries": {},
+      "lockModes": {},
+      "waitingQueryAgeP95Ms": 0,
+      "eventLoopP99Ms": 10.231807,
+      "observerQueryP95Ms": 1.1204999999608845,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 0.5137919999833684,
+          "p95Ms": 0.8249999999825377,
+          "p99Ms": 1.214749999999185
+        },
+        "execute": {
+          "p50Ms": 0.6742499999818392,
+          "p95Ms": 1.0412499999983993,
+          "p99Ms": 1.4624999999978172
+        }
+      }
+    },
+    {
+      "scenario": "D",
+      "concurrency": 10,
+      "repeats": 3,
+      "rps": 2904.2298421988476,
+      "rpsMin": 2701.290989171397,
+      "rpsMax": 3053.15637492227,
+      "rpsCv": 0.06268264338226279,
+      "workItemsPerSecond": 1452.1149210994238,
+      "p50Ms": 1.0684580000233836,
+      "p95Ms": 12.212333000032231,
+      "p99Ms": 17.398125000006985,
+      "requests": 72000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 87.11940462229124,
+      "generatorCpuOneCorePercent": 19.08300501428425,
+      "acquireP95Ms": 0.00620800000615418,
+      "poolMaxUsed": 10,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.7224285211782093,
+      "maxLockWaiting": 8,
+      "runs": [
+        {
+          "caseId": "D-c10-r1",
+          "rps": 2701.290989171397,
+          "p95Ms": 12.632291000001715,
+          "p99Ms": 18.240791999996873
+        },
+        {
+          "caseId": "D-c10-r2",
+          "rps": 3053.15637492227,
+          "p95Ms": 11.426416000002064,
+          "p99Ms": 16.53079200000502
+        },
+        {
+          "caseId": "D-c10-r3",
+          "rps": 2958.2421625028774,
+          "p95Ms": 12.212333000032231,
+          "p99Ms": 17.398125000006985
+        }
+      ],
+      "sampleCount": 255,
+      "waitEvents": {
+        "Lock:tuple": 1338,
+        "Client:ClientRead": 195,
+        "IO:WalWrite": 25,
+        "Lock:transactionid": 350,
+        "LWLock:BufferContent": 19,
+        "LWLock:MultiXactMemberSLRU": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 1688
+      },
+      "lockModes": {
+        "tuple:ExclusiveLock:campaigns": 1361,
+        "transactionid:ShareLock:": 355
+      },
+      "waitingQueryAgeP95Ms": 12.423,
+      "eventLoopP99Ms": 10.256383,
+      "observerQueryP95Ms": 1.2026669999759179,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 0.8518340000300668,
+          "p95Ms": 1.078624999994645,
+          "p99Ms": 1.6094169999996666
+        },
+        "execute": {
+          "p50Ms": 4.559874999977183,
+          "p95Ms": 14.489750000007916,
+          "p99Ms": 19.593541999987792
+        }
+      }
+    },
+    {
+      "scenario": "D",
+      "concurrency": 30,
+      "repeats": 3,
+      "rps": 1459.753227415176,
+      "rpsMin": 1321.652749892666,
+      "rpsMax": 1550.6546708211736,
+      "rpsCv": 0.0832868814272516,
+      "workItemsPerSecond": 729.876613707588,
+      "p50Ms": 2.4561249999678694,
+      "p95Ms": 83.8748329999944,
+      "p99Ms": 150.5018340000097,
+      "requests": 72000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 51.37691919837069,
+      "generatorCpuOneCorePercent": 11.72649140743925,
+      "acquireP95Ms": 0.006583000009413809,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.902824692598618,
+      "maxLockWaiting": 28,
+      "runs": [
+        {
+          "caseId": "D-c30-r1",
+          "rps": 1506.9522615316885,
+          "p95Ms": 83.8748329999944,
+          "p99Ms": 150.5018340000097
+        },
+        {
+          "caseId": "D-c30-r2",
+          "rps": 1550.6546708211736,
+          "p95Ms": 78.48829099995783,
+          "p99Ms": 137.02041699999245
+        },
+        {
+          "caseId": "D-c30-r3",
+          "rps": 1321.652749892666,
+          "p95Ms": 85.22395800001686,
+          "p99Ms": 151.73212499998044
+        }
+      ],
+      "sampleCount": 503,
+      "waitEvents": {
+        "Lock:tuple": 12641,
+        "Lock:transactionid": 668,
+        "LWLock:MultiXactOffsetSLRU": 71,
+        "IO:WalWrite": 34,
+        "Client:ClientRead": 204,
+        "LWLock:MultiXactMemberSLRU": 17,
+        "LWLock:BufferContent": 8,
+        "LWLock:MultiXactGen": 4,
+        "LWLock:XactSLRU": 3,
+        "IO:SlruWrite": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 13309
+      },
+      "lockModes": {
+        "tuple:ExclusiveLock:campaigns": 12586,
+        "transactionid:ShareLock:": 683
+      },
+      "waitingQueryAgeP95Ms": 112.67,
+      "eventLoopP99Ms": 10.551295,
+      "observerQueryP95Ms": 1.392541999986861,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 1.8895829999819398,
+          "p95Ms": 2.538249999997788,
+          "p99Ms": 3.2745839999988675
+        },
+        "execute": {
+          "p50Ms": 30.47137499996461,
+          "p95Ms": 111.31212499999674,
+          "p99Ms": 180.73270900000352
+        }
+      }
+    },
+    {
+      "scenario": "D",
+      "concurrency": 60,
+      "repeats": 3,
+      "rps": 1393.6467302200174,
+      "rpsMin": 1373.8724844976189,
+      "rpsMax": 1407.8878038290609,
+      "rpsCv": 0.012678836052008091,
+      "workItemsPerSecond": 696.8233651100087,
+      "p50Ms": 26.26941700000316,
+      "p95Ms": 113.6552920000031,
+      "p99Ms": 174.9820830000026,
+      "requests": 72000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 50.02772720996117,
+      "generatorCpuOneCorePercent": 11.592297218622198,
+      "acquireP95Ms": 14.19404200000281,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 30,
+      "poolWaitingSampleRate": 0.9942010223008794,
+      "lockWaitingBackendFraction": 0.9095990406251137,
+      "maxLockWaiting": 29,
+      "runs": [
+        {
+          "caseId": "D-c60-r1",
+          "rps": 1399.1799023333724,
+          "p95Ms": 113.6552920000031,
+          "p99Ms": 174.9820830000026
+        },
+        {
+          "caseId": "D-c60-r2",
+          "rps": 1407.8878038290609,
+          "p95Ms": 110.16574999998556,
+          "p99Ms": 170.24062500000582
+        },
+        {
+          "caseId": "D-c60-r3",
+          "rps": 1373.8724844976189,
+          "p95Ms": 117.08995799999684,
+          "p99Ms": 180.30254200001946
+        }
+      ],
+      "sampleCount": 524,
+      "waitEvents": {
+        "Client:ClientRead": 296,
+        "Lock:tuple": 13249,
+        "Lock:transactionid": 739,
+        "LWLock:MultiXactOffsetSLRU": 23,
+        "IO:WalWrite": 33,
+        "LWLock:BufferContent": 13,
+        "LWLock:MultiXactMemberSLRU": 11,
+        "LWLock:MultiXactGen": 3,
+        "LWLock:LockManager": 10,
+        "LWLock:WALWrite": 1
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR NO KEY UPDATE": 13988
+      },
+      "lockModes": {
+        "tuple:ExclusiveLock:campaigns": 13348,
+        "transactionid:ShareLock:": 747
+      },
+      "waitingQueryAgeP95Ms": 113.887,
+      "eventLoopP99Ms": 10.682367,
+      "observerQueryP95Ms": 1.6075409999975818,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 22.79649999999674,
+          "p95Ms": 29.083958000002895,
+          "p99Ms": 38.88666600000579
+        },
+        "execute": {
+          "p50Ms": 53.164333000000624,
+          "p95Ms": 136.4758340000044,
+          "p99Ms": 205.85208299999795
+        }
+      }
+    }
+  ]
+}

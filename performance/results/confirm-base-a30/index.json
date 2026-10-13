@@ -1,0 +1,203 @@
+[
+  {
+    "caseId": "A-c30-r1",
+    "scenario": "A",
+    "concurrency": 30,
+    "repeat": 1,
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 7369.127166,
+    "rps": 1628.4153780607996,
+    "successfulRps": 1628.4153780607996,
+    "errorRate": 0,
+    "p50Ms": 1.8557499999997162,
+    "p95Ms": 17.08208299999933,
+    "p99Ms": 207.2351249999997,
+    "workItemsPerSecond": 1628.4153780607996,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 7369.127166,
+        "rps": 1628.4153780607996,
+        "successfulRps": 1628.4153780607996,
+        "errorRate": 0,
+        "p50Ms": 1.8557499999997162,
+        "p95Ms": 17.08208299999933,
+        "p99Ms": 207.2351249999997
+      }
+    },
+    "cpuOneCorePercent": 58.498374438167964,
+    "generatorCpuOneCorePercent": 14.302697948583617,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.005874999999832653,
+    "postgres": {
+      "sampleCount": 75,
+      "lockWaitingBackendFraction": 0.9457749661093539,
+      "lockWaitingSampleRate": 0.9866666666666667,
+      "maxLockWaiting": 29,
+      "events": {
+        "tuple": 1954,
+        "transactionid": 139
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 2093
+      },
+      "observerQueryMs": {
+        "count": 75,
+        "p50Ms": 1.2940419999995356,
+        "p95Ms": 1.8968340000001263,
+        "p99Ms": 5.272375000000011,
+        "maxMs": 5.272375000000011
+      }
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "9992dbe1d745ba1582fa1b7440534b9933f8eb2881211b2169ea8279ea031f45"
+  },
+  {
+    "caseId": "A-c30-r2",
+    "scenario": "A",
+    "concurrency": 30,
+    "repeat": 2,
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 7310.845917000001,
+    "rps": 1641.3969239997593,
+    "successfulRps": 1641.3969239997593,
+    "errorRate": 0,
+    "p50Ms": 1.7543340000011085,
+    "p95Ms": 21.229624999999942,
+    "p99Ms": 368.31995899999856,
+    "workItemsPerSecond": 1641.3969239997593,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 7310.845917000001,
+        "rps": 1641.3969239997593,
+        "successfulRps": 1641.3969239997593,
+        "errorRate": 0,
+        "p50Ms": 1.7543340000011085,
+        "p95Ms": 21.229624999999942,
+        "p99Ms": 368.31995899999856
+      }
+    },
+    "cpuOneCorePercent": 58.83807310189894,
+    "generatorCpuOneCorePercent": 13.733636454644486,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.006957999999940512,
+    "postgres": {
+      "sampleCount": 75,
+      "lockWaitingBackendFraction": 0.9532967032967034,
+      "lockWaitingSampleRate": 0.9733333333333334,
+      "maxLockWaiting": 29,
+      "events": {
+        "tuple": 1938,
+        "transactionid": 144
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 2082
+      },
+      "observerQueryMs": {
+        "count": 75,
+        "p50Ms": 1.3674579999969865,
+        "p95Ms": 1.8211670000000595,
+        "p99Ms": 2.771499999998923,
+        "maxMs": 2.771499999998923
+      }
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "97f8a6af6b5998f6d5220b933daba863e40bd693e7f3cf71c342153be3fa3a55"
+  },
+  {
+    "caseId": "A-c30-r3",
+    "scenario": "A",
+    "concurrency": 30,
+    "repeat": 3,
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 7336.820291,
+    "rps": 1635.5859246982338,
+    "successfulRps": 1635.5859246982338,
+    "errorRate": 0,
+    "p50Ms": 1.8750829999989946,
+    "p95Ms": 17.209915999999794,
+    "p99Ms": 233.471375000001,
+    "workItemsPerSecond": 1635.5859246982338,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 7336.820291,
+        "rps": 1635.5859246982338,
+        "successfulRps": 1635.5859246982338,
+        "errorRate": 0,
+        "p50Ms": 1.8750829999989946,
+        "p95Ms": 17.209915999999794,
+        "p99Ms": 233.471375000001
+      }
+    },
+    "cpuOneCorePercent": 56.12603596908604,
+    "generatorCpuOneCorePercent": 10.897759087554569,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.006291999998211395,
+    "postgres": {
+      "sampleCount": 75,
+      "lockWaitingBackendFraction": 0.9454545454545454,
+      "lockWaitingSampleRate": 0.9866666666666667,
+      "maxLockWaiting": 29,
+      "events": {
+        "tuple": 1935,
+        "transactionid": 145
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 2080
+      },
+      "observerQueryMs": {
+        "count": 75,
+        "p50Ms": 1.2582919999986188,
+        "p95Ms": 1.4859580000011192,
+        "p99Ms": 1.5685000000012224,
+        "maxMs": 1.5685000000012224
+      }
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 1,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      }
+    },
+    "rawSha256": "8c7b164dfd3d2153f1bdab5346c9ed365d153f74ad1c093064193238960bdc3b"
+  }
+]

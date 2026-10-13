@@ -1,0 +1,76 @@
+{
+  "label": "confirm-sequence-a30",
+  "aggregation": "arithmetic mean trial RPS; median trial quantiles; mean trial sampled lock fractions",
+  "groups": [
+    {
+      "scenario": "A",
+      "concurrency": 30,
+      "repeats": 3,
+      "rps": 1612.9931499905397,
+      "rpsMin": 1451.645696897179,
+      "rpsMax": 1736.8654301089416,
+      "rpsCv": 0.09067376631950047,
+      "workItemsPerSecond": 1612.9931499905397,
+      "p50Ms": 1.8245420000002923,
+      "p95Ms": 18.330540999999357,
+      "p99Ms": 269.194125,
+      "requests": 36000,
+      "errors": 0,
+      "errorRate": 0,
+      "cpuOneCorePercent": 57.63757851430777,
+      "generatorCpuOneCorePercent": 12.373223394271113,
+      "acquireP95Ms": 0.0070410000007541385,
+      "poolMaxUsed": 30,
+      "poolMaxWaiting": 0,
+      "poolWaitingSampleRate": 0,
+      "lockWaitingBackendFraction": 0.9452686845913666,
+      "maxLockWaiting": 29,
+      "runs": [
+        {
+          "caseId": "A-c30-r1",
+          "rps": 1451.645696897179,
+          "p95Ms": 21.662666000000172,
+          "p99Ms": 236.86979199999996
+        },
+        {
+          "caseId": "A-c30-r2",
+          "rps": 1650.468322965498,
+          "p95Ms": 18.330540999999357,
+          "p99Ms": 269.194125
+        },
+        {
+          "caseId": "A-c30-r3",
+          "rps": 1736.8654301089416,
+          "p95Ms": 16.61187500000233,
+          "p99Ms": 336.00237500000003
+        }
+      ],
+      "sampleCount": 229,
+      "waitEvents": {
+        "Client:ClientRead": 65,
+        "Lock:transactionid": 431,
+        "Lock:tuple": 5942,
+        "IO:WalWrite": 30,
+        "LWLock:BufferContent": 3,
+        "IO:DataFileExtend": 2
+      },
+      "lockQueries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 6373
+      },
+      "lockModes": {
+        "tuple:AccessExclusiveLock:campaigns": 5835,
+        "transactionid:ShareLock:": 398
+      },
+      "waitingQueryAgeP95Ms": 4309.274,
+      "eventLoopP99Ms": 10.272767,
+      "observerQueryP95Ms": 1.6638330000005226,
+      "endpoints": {
+        "execute": {
+          "p50Ms": 1.8245420000002923,
+          "p95Ms": 18.330540999999357,
+          "p99Ms": 269.194125
+        }
+      }
+    }
+  ]
+}

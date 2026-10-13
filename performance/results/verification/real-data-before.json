@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-13T10:49:38.704Z",
+  "readOnly": true,
+  "tables": {
+    "members": {
+      "rows": 4,
+      "fingerprint": "a33b3490ab17c4cfef512f18551bce07"
+    },
+    "sessions": {
+      "rows": 1,
+      "fingerprint": "735c1b60623095fe20c2c95224a4029d"
+    },
+    "campaigns": {
+      "rows": 11,
+      "fingerprint": "a7c424dc38c6d15ea57834f946d16580"
+    },
+    "executions": {
+      "rows": 37,
+      "fingerprint": "2f4ef49e65befc35782f88fdadb6dba0"
+    },
+    "schema_migrations": {
+      "rows": 1,
+      "fingerprint": "cf713aececfea3f1edc5069fe60b7d3b"
+    }
+  }
+}

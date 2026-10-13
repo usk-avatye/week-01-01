@@ -1,0 +1,118 @@
+{
+  "before": "baseline",
+  "after": "sequence-only",
+  "comparisons": [
+    {
+      "scenario": "A",
+      "concurrency": 1,
+      "rpsChangePercent": -12.869477452980938,
+      "p95ChangePercent": 0.7389299256112869,
+      "p99ChangePercent": 3.563941635204193
+    },
+    {
+      "scenario": "A",
+      "concurrency": 10,
+      "rpsChangePercent": 3.553942712028846,
+      "p95ChangePercent": 2.4900821889408675,
+      "p99ChangePercent": 1.3972660944423732
+    },
+    {
+      "scenario": "A",
+      "concurrency": 30,
+      "rpsChangePercent": -7.569464400167048,
+      "p95ChangePercent": 18.398010511851393,
+      "p99ChangePercent": 48.508877340168645
+    },
+    {
+      "scenario": "A",
+      "concurrency": 60,
+      "rpsChangePercent": 1.4991858703951477,
+      "p95ChangePercent": -5.54749512466155,
+      "p99ChangePercent": -14.849067658774661
+    },
+    {
+      "scenario": "B",
+      "concurrency": 1,
+      "rpsChangePercent": 5.149800564966167,
+      "p95ChangePercent": -16.57556882922696,
+      "p99ChangePercent": -10.294358930106961
+    },
+    {
+      "scenario": "B",
+      "concurrency": 10,
+      "rpsChangePercent": -7.400771158042807,
+      "p95ChangePercent": 8.996753332201134,
+      "p99ChangePercent": 160.40186166780762
+    },
+    {
+      "scenario": "B",
+      "concurrency": 30,
+      "rpsChangePercent": -2.8818399249655458,
+      "p95ChangePercent": 16.631163188470687,
+      "p99ChangePercent": 8.067382731320327
+    },
+    {
+      "scenario": "B",
+      "concurrency": 60,
+      "rpsChangePercent": -4.68030658136861,
+      "p95ChangePercent": 21.38449023277309,
+      "p99ChangePercent": 24.600824098380247
+    },
+    {
+      "scenario": "C",
+      "concurrency": 1,
+      "rpsChangePercent": 19.435766568381464,
+      "p95ChangePercent": -22.009068634572138,
+      "p99ChangePercent": -20.959809887206326
+    },
+    {
+      "scenario": "C",
+      "concurrency": 10,
+      "rpsChangePercent": 72.58625227052413,
+      "p95ChangePercent": -66.17962290559143,
+      "p99ChangePercent": -95.5928062236645
+    },
+    {
+      "scenario": "C",
+      "concurrency": 30,
+      "rpsChangePercent": 93.92923091540158,
+      "p95ChangePercent": -85.60065558585383,
+      "p99ChangePercent": -90.15947148181995
+    },
+    {
+      "scenario": "C",
+      "concurrency": 60,
+      "rpsChangePercent": 103.40293919110168,
+      "p95ChangePercent": -76.98554658186238,
+      "p99ChangePercent": -81.01071585941783
+    },
+    {
+      "scenario": "D",
+      "concurrency": 1,
+      "rpsChangePercent": 11.912798765554488,
+      "p95ChangePercent": -22.92811229785572,
+      "p99ChangePercent": -42.573470773858645
+    },
+    {
+      "scenario": "D",
+      "concurrency": 10,
+      "rpsChangePercent": 17.035988462689943,
+      "p95ChangePercent": 9.014384116095187,
+      "p99ChangePercent": -79.95606658864823
+    },
+    {
+      "scenario": "D",
+      "concurrency": 30,
+      "rpsChangePercent": 22.167994569000584,
+      "p95ChangePercent": -9.504058853354923,
+      "p99ChangePercent": 45.82115108234277
+    },
+    {
+      "scenario": "D",
+      "concurrency": 60,
+      "rpsChangePercent": 21.945389802816106,
+      "p95ChangePercent": -39.29837280081233,
+      "p99ChangePercent": -57.23098571558387
+    }
+  ]
+}
