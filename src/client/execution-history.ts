@@ -2,7 +2,8 @@ import type { ExecutionDto } from '../contracts/executions.js';
 import type { Page } from '../contracts/campaigns.js';
 import type { PageContext } from './context.js';
 import { button, el, errorText, message, money, time } from './dom.js';
-import { executionReceipt, reasonText, statusText } from './execution-receipt.js';
+import { reasonText, statusText } from './execution-receipt.js';
+import { executionReplay } from './execution-replay.js';
 import { pager } from './pager.js';
 export function executionHistory(host: HTMLElement, context: PageContext, campaignId: string, admin = false, adopt?: (id: string) => Promise<void>) {
     const prefix = `${admin ? '/admin' : ''}/campaigns/${campaignId}`, history = el('section', '', 'data-section'), preparations = el('section', '', 'data-section');
@@ -33,6 +34,7 @@ export function executionHistory(host: HTMLElement, context: PageContext, campai
             thead.append(head);
             table.append(thead);
             const body = el('tbody'), notice = el('p');
+            const replay = executionReplay(context, prefix, head.children.length);
             for (const result of data.items) {
                 const row = el('tr');
                 row.append(el('td', '#' + result.requestId));
@@ -43,24 +45,19 @@ export function executionHistory(host: HTMLElement, context: PageContext, campai
                     row.append(status, el('td', money(result.requestedAmount!), 'numeric'), el('td', money(result.approvedAmount), 'numeric'), el('td', reasonText(result)), el('td', time(result.processedAt), 'numeric'));
                 }
                 if (!admin) {
-                    const action = el('td'), replay = button(prepared ? '번호 선택' : '동일 요청 재전송', async () => {
-                        replay.disabled = true;
+                    const action = el('td'), select = button('번호 선택', async () => {
+                        select.disabled = true;
                         try {
-                            if (prepared)
-                                await adopt?.(result.requestId);
-                            else {
-                                const receipt = await context.api.request<ExecutionDto>('POST', `${prefix}/executions/${result.requestId}`, { amount: result.requestedAmount });
-                                notice.replaceChildren(executionReceipt(receipt));
-                            }
+                            await adopt?.(result.requestId);
                         }
                         catch (error) {
                             message(notice, errorText(error), true);
                         }
                         finally {
-                            replay.disabled = false;
+                            select.disabled = false;
                         }
                     }, 'button subtle small');
-                    action.append(replay);
+                    action.append(prepared ? select : replay(row, result));
                     row.append(action);
                 }
                 body.append(row);

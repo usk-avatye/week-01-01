@@ -103,6 +103,9 @@ tfoot th, tfoot td { border-top: 1px solid var(--line); border-bottom: 0; backgr
 .receipt { margin: 16px 0 0; border-left: 2px solid #3c8260; background: #f1f7f3; padding: 10px 14px; font-size: 12px; }
 .receipt p { margin: 5px 0; }
 .receipt.rejected { border-color: #b98230; background: #fff8ed; }
+.replay-feedback-row td { padding: 12px 16px; white-space: normal; }
+.row-feedback { max-width: min(560px, calc(100vw - 72px)); }
+.row-feedback .receipt, .row-feedback .message { margin: 0; }
 .data-section > p:not(:empty) { margin: 14px 18px; }
 .empty-state { padding: 22px 18px; margin: 0; font-size: 13px; color: var(--muted); }
 .checkbox-label { display: flex; align-items: start; gap: 7px; font-size: 12px; margin: 16px 0; }
