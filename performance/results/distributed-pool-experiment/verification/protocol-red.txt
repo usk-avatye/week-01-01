@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: pool schedule has three repeats per condition and balances every pool across positions
+ok 1 - pool schedule has three repeats per condition and balances every pool across positions
+  ---
+  duration_ms: 1.24125
+  ...
+# Subtest: selected pool schedule measures only preparation with ten connections
+ok 2 - selected pool schedule measures only preparation with ten connections
+  ---
+  duration_ms: 5.493334
+  ...
+# Subtest: preparation comparison runs both implementations in each counterbalanced round
+ok 3 - preparation comparison runs both implementations in each counterbalanced round
+  ---
+  duration_ms: 0.163792
+  ...
+# Subtest: distributed pool comparison covers four conditions three times without mixing concurrency
+not ok 4 - distributed pool comparison covers four conditions three times without mixing concurrency
+  ---
+  duration_ms: 0.190792
+  location: '/Users/usk/dev/mission/week-01-01/performance/pool-protocol.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(scenarios.length > 0 && scenarios.every(value => ['C', 'D'].includes(value)))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    poolSchedule (file:///Users/usk/dev/mission/week-01-01/performance/pool-protocol.mjs:5:12)
+    TestContext.<anonymous> (file:///Users/usk/dev/mission/week-01-01/performance/pool-protocol.test.mjs:36:18)
+    Test.runInAsyncScope (node:async_hooks:206:9)
+    Test.run (node:internal/test_runner/test:796:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:526:18)
+    Test.postRun (node:internal/test_runner/test:889:19)
+    Test.run (node:internal/test_runner/test:835:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+# Subtest: pool comparison rejects invalid or repeated concurrency conditions
+not ok 5 - pool comparison rejects invalid or repeated concurrency conditions
+  ---
+  duration_ms: 0.11925
+  location: '/Users/usk/dev/mission/week-01-01/performance/pool-protocol.test.mjs:48:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/usk/dev/mission/week-01-01/performance/pool-protocol.test.mjs:49:12)
+    Test.runInAsyncScope (node:async_hooks:206:9)
+    Test.run (node:internal/test_runner/test:796:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:526:18)
+    Test.postRun (node:internal/test_runner/test:889:19)
+    Test.run (node:internal/test_runner/test:835:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 3
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 57.587167

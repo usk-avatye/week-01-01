@@ -13,7 +13,8 @@ const directory = `performance/results/${label}`;
 const manifest = JSON.parse(await readFile(`${directory}/manifest.json`));
 const index = JSON.parse(await readFile(`${directory}/index.json`));
 const protocol = manifest.protocol;
-assert.deepEqual(protocol.schedule, poolSchedule(protocol.repeats, protocol.scenarios, protocol.poolSizes));
+const concurrencies = protocol.concurrencies ?? [protocol.concurrency];
+assert.deepEqual(protocol.schedule, poolSchedule(protocol.repeats, protocol.scenarios, protocol.poolSizes, concurrencies));
 assert.equal(index.length, protocol.schedule.length);
 assert.equal(manifest.completedCases, index.length);
 assert.ok(manifest.finishedAt);
@@ -57,15 +58,26 @@ for (const [position, row] of index.entries()) {
         assert.equal(stats.requests, protocol.operations);
     }
     assert.equal(raw.invariant.consistent, true);
-    assert.equal(raw.invariant.campaigns, 1);
+    assert.equal(raw.invariant.campaigns, row.scenario === 'B' ? 10 : 1);
     const total = protocol.operations + protocol.warmup;
-    assert.deepEqual(raw.invariant.totals, { spent: row.scenario === 'D' ? total : 0, records: total,
-        approved: row.scenario === 'D' ? total : 0, prepared: row.scenario === 'C' ? total : 0, rejected: 0 });
+    assert.deepEqual(raw.invariant.totals, { spent: row.scenario === 'C' ? 0 : total, records: total,
+        approved: row.scenario === 'C' ? 0 : total, prepared: row.scenario === 'C' ? total : 0, rejected: 0 });
+    if (row.scenario === 'B') {
+        assert.equal(raw.fixture.campaigns.length, 10);
+        assert.equal(raw.fixture.sqlPreparedRows, total);
+        assert.equal(raw.invariant.perCampaign.length, 10);
+        for (const [at, campaign] of raw.invariant.perCampaign.entries()) {
+            const expected = Math.ceil((total - at) / 10);
+            assert.equal(campaign.spent_amount, String(expected));
+            assert.equal(campaign.ledger, String(expected));
+            assert.equal(campaign.approved, expected);
+        }
+    }
     originals.set(row.caseId, raw);
 }
 const groups = [];
-for (const scenario of protocol.scenarios) for (const poolMax of protocol.poolSizes) {
-    const rows = index.filter(row => row.scenario === scenario && row.poolMax === poolMax);
+for (const scenario of protocol.scenarios) for (const poolMax of protocol.poolSizes) for (const concurrency of concurrencies) {
+    const rows = index.filter(row => row.scenario === scenario && row.poolMax === poolMax && row.concurrency === concurrency);
     assert.equal(rows.length, protocol.repeats);
     assert.deepEqual(rows.map(row => row.repeat).sort(), Array.from({ length: protocol.repeats }, (_, at) => at + 1));
     const originalsInGroup = rows.map(row => originals.get(row.caseId));
@@ -93,18 +105,18 @@ for (const scenario of protocol.scenarios) for (const poolMax of protocol.poolSi
         trials: rows.map(row => ({ ...row, resourceWindowToHttpElapsedRatio: row.resources.elapsedMs / row.elapsedMs })) });
 }
 const comparisons = groups.filter(group => group.poolMax !== 30 && protocol.poolSizes.includes(30)).map(group => {
-    const baseline = groups.find(row => row.scenario === group.scenario && row.poolMax === 30);
+    const baseline = groups.find(row => row.scenario === group.scenario && row.poolMax === 30 && row.concurrency === group.concurrency);
     const paired = group.trials.map(row => {
         const before = baseline.trials.find(candidate => candidate.repeat === row.repeat);
         return { repeat: row.repeat, rpsChangePercent: change(before.rps, row.rps),
-            executeP95ChangePercent: group.scenario === 'D' ? change(before.operations.execute.p95Ms, row.operations.execute.p95Ms) : null,
-            executeP99ChangePercent: group.scenario === 'D' ? change(before.operations.execute.p99Ms, row.operations.execute.p99Ms) : null };
+            executeP95ChangePercent: row.operations.execute ? change(before.operations.execute.p95Ms, row.operations.execute.p95Ms) : null,
+            executeP99ChangePercent: row.operations.execute ? change(before.operations.execute.p99Ms, row.operations.execute.p99Ms) : null };
     });
     return { ...compare(baseline, group), baselinePoolMax: 30, poolMax: group.poolMax,
-        executeP95ChangePercent: group.scenario === 'D' ? change(baseline.endpoints.execute.p95Ms, group.endpoints.execute.p95Ms) : null,
-        executeP99ChangePercent: group.scenario === 'D' ? change(baseline.endpoints.execute.p99Ms, group.endpoints.execute.p99Ms) : null,
-        prepareP95ChangePercent: change(baseline.endpoints.prepare.p95Ms, group.endpoints.prepare.p95Ms),
-        prepareP99ChangePercent: change(baseline.endpoints.prepare.p99Ms, group.endpoints.prepare.p99Ms),
+        executeP95ChangePercent: group.endpoints.execute ? change(baseline.endpoints.execute.p95Ms, group.endpoints.execute.p95Ms) : null,
+        executeP99ChangePercent: group.endpoints.execute ? change(baseline.endpoints.execute.p99Ms, group.endpoints.execute.p99Ms) : null,
+        prepareP95ChangePercent: group.endpoints.prepare ? change(baseline.endpoints.prepare.p95Ms, group.endpoints.prepare.p95Ms) : null,
+        prepareP99ChangePercent: group.endpoints.prepare ? change(baseline.endpoints.prepare.p99Ms, group.endpoints.prepare.p99Ms) : null,
         dbCpuChangePercent: change(baseline.dbCpuOneCorePercent, group.dbCpuOneCorePercent),
         dbAggregateRssPeakChangePercent: change(baseline.dbAggregateRssPeakMiB, group.dbAggregateRssPeakMiB),
         rpsRangesOverlap: group.rpsMin <= baseline.rpsMax && baseline.rpsMin <= group.rpsMax, paired };
@@ -118,7 +130,7 @@ const columns = ['scenario', 'poolMax', 'concurrency', 'rps', 'rpsMin', 'rpsMax'
     'p50Ms', 'p95Ms', 'p99Ms', 'errorRate', 'acquireP95Ms', 'acquireP99Ms', 'poolMaxUsed', 'poolMaxWaiting',
     'poolWaitingSampleRate', 'lockWaitingBackendFraction', 'cpuOneCorePercent', 'dbCpuOneCorePercent', 'apiRssEndMiB', 'dbAggregateRssPeakMiB'];
 await writeFile(`${directory}/summary.csv`, [columns.join(','), ...groups.map(row => columns.map(key => row[key]).join(','))].join('\n') + '\n');
-console.table(groups.map(row => ({ scenario: row.scenario, pool: row.poolMax, rps: row.rps.toFixed(1),
+console.table(groups.map(row => ({ scenario: row.scenario, concurrency: row.concurrency, pool: row.poolMax, rps: row.rps.toFixed(1),
     p95: row.p95Ms.toFixed(2), p99: row.p99Ms.toFixed(2), executeP99: row.endpoints.execute?.p99Ms.toFixed(2),
     acquireP95: row.acquireP95Ms.toFixed(3), dbCpu: row.dbCpuOneCorePercent.toFixed(1), errors: row.errors })));
 console.log(`Verified ${report.verifiedCases} cases, ${report.measuredHttpRequests} HTTP requests`);

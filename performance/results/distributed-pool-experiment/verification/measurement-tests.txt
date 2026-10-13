@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: aggregate uses trial mean throughput and median trial percentiles
+ok 1 - aggregate uses trial mean throughput and median trial percentiles
+  ---
+  duration_ms: 0.901417
+  ...
+# Subtest: comparison distinguishes throughput gains from latency reductions
+ok 2 - comparison distinguishes throughput gains from latency reductions
+  ---
+  duration_ms: 0.1005
+  ...
+# Subtest: confirmation reproduction uses fresh labels and preserves existing result evidence
+ok 3 - confirmation reproduction uses fresh labels and preserves existing result evidence
+  ---
+  duration_ms: 293.218541
+  ...
+# Subtest: destructive performance fixtures reject service databases and missing configuration
+ok 4 - destructive performance fixtures reject service databases and missing configuration
+  ---
+  duration_ms: 0.783958
+  ...
+# Subtest: pool schedule has three repeats per condition and balances every pool across positions
+ok 5 - pool schedule has three repeats per condition and balances every pool across positions
+  ---
+  duration_ms: 1.248333
+  ...
+# Subtest: selected pool schedule measures only preparation with ten connections
+ok 6 - selected pool schedule measures only preparation with ten connections
+  ---
+  duration_ms: 5.715792
+  ...
+# Subtest: preparation comparison runs both implementations in each counterbalanced round
+ok 7 - preparation comparison runs both implementations in each counterbalanced round
+  ---
+  duration_ms: 0.164542
+  ...
+# Subtest: distributed pool comparison covers four conditions three times without mixing concurrency
+ok 8 - distributed pool comparison covers four conditions three times without mixing concurrency
+  ---
+  duration_ms: 0.28175
+  ...
+# Subtest: pool comparison rejects invalid or repeated concurrency conditions
+ok 9 - pool comparison rejects invalid or repeated concurrency conditions
+  ---
+  duration_ms: 1.010875
+  ...
+# Subtest: ps cumulative CPU time parses hundredths, hours and days
+ok 10 - ps cumulative CPU time parses hundredths, hours and days
+  ---
+  duration_ms: 1.201
+  ...
+# Subtest: DB CPU is the sum of observed per-PID deltas and RSS is explicitly an aggregate
+ok 11 - DB CPU is the sum of observed per-PID deltas and RSS is explicitly an aggregate
+  ---
+  duration_ms: 0.430709
+  ...
+# Subtest: nearest-rank percentiles preserve the measured tail and throughput uses elapsed wall time
+ok 12 - nearest-rank percentiles preserve the measured tail and throughput uses elapsed wall time
+  ---
+  duration_ms: 0.888
+  ...
+# Subtest: empty samples and invalid elapsed time cannot produce a successful measurement
+ok 13 - empty samples and invalid elapsed time cannot produce a successful measurement
+  ---
+  duration_ms: 0.137667
+  ...
+# Subtest: pool wait summaries distinguish zero waiting from actual acquire latency
+ok 14 - pool wait summaries distinguish zero waiting from actual acquire latency
+  ---
+  duration_ms: 0.37175
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 337.406583

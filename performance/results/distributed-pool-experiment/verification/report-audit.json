@@ -1,0 +1,36 @@
+{
+  "reportBeforeCommit": "4610547",
+  "reportSha256": "0233142f9ae39ca3f4f6e547130c74663fd3c0e3ae01584bfc7effe3c2721518",
+  "summarySha256": "fb4f643a26d30a3f07cb93e546cf7b42b4a3db4f3ade99e04bfa86d785111f00",
+  "harnessArchiveSha256": "c87725a4d73f369429ed1356ff3aaf244fe28e225459298b843b38f65cbeb9f9",
+  "completedCases": 12,
+  "measuredRequests": 144000,
+  "warmupRequests": 24000,
+  "productionSourceChanged": false,
+  "serviceVerificationReused": {
+    "tests": "performance/results/pool-size-experiment/verification/final-tests.txt",
+    "build": "performance/results/pool-size-experiment/verification/final-build.txt"
+  },
+  "remainingPool10": {
+    "A": [
+      1,
+      10,
+      30,
+      60
+    ],
+    "B": [
+      1,
+      10
+    ],
+    "C": [
+      1,
+      10,
+      30
+    ],
+    "D": [
+      1,
+      10,
+      30
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{"event":"start","label":"distributed-pool-smoke","scenario":"B","poolMax":10,"concurrency":30,"repeat":1,"position":1,"caseId":"B-p10-c30-r1","at":"2026-10-13T15:33:34.502Z"}
+file:///Users/usk/dev/mission/week-01-01/performance/control.mjs:20
+            const error = new Error(`API process ended (${code ?? signal}): ${logs.join('')}`);
+                          ^
+
+Error: API process ended (1): /Users/usk/dev/mission/week-01-01/node_modules/pg-pool/index.js:45
+    Error.captureStackTrace(err)
+          ^
+
+Error: connect ECONNREFUSED 127.0.0.1:55432
+    at /Users/usk/dev/mission/week-01-01/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createPerformanceFixture (file:///Users/usk/dev/mission/week-01-01/performance/fixture.mjs:16:5)
+    at async file:///Users/usk/dev/mission/week-01-01/performance/server.mjs:8:17 {
+  errno: -61,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 55432
+}
+
+Node.js v20.20.2
+
+    at ChildProcess.<anonymous> (file:///Users/usk/dev/mission/week-01-01/performance/control.mjs:20:27)
+    at ChildProcess.emit (node:events:524:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+
+Node.js v20.20.2

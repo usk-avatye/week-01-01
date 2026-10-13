@@ -1,0 +1,77 @@
+{
+  "baselinePoolMax": 30,
+  "comparisons": [
+    {
+      "scenario": "B",
+      "concurrency": 30,
+      "rpsChangePercent": -0.5987368328468246,
+      "p95ChangePercent": -47.967967467404925,
+      "p99ChangePercent": -62.453714178805555,
+      "baselinePoolMax": 30,
+      "poolMax": 10,
+      "executeP95ChangePercent": -47.967967467404925,
+      "executeP99ChangePercent": -62.453714178805555,
+      "prepareP95ChangePercent": null,
+      "prepareP99ChangePercent": null,
+      "dbCpuChangePercent": -13.448546688052154,
+      "dbAggregateRssPeakChangePercent": -58.684868123475276,
+      "rpsRangesOverlap": true,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 1.0755239361282642,
+          "executeP95ChangePercent": -58.054991563445526,
+          "executeP99ChangePercent": -66.36950566921442
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": -0.01551904746249777,
+          "executeP95ChangePercent": -48.53673863318048,
+          "executeP99ChangePercent": -60.16399838230022
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": -2.875410448298088,
+          "executeP95ChangePercent": -46.50050442406572,
+          "executeP99ChangePercent": -6.011262959643071
+        }
+      ]
+    },
+    {
+      "scenario": "B",
+      "concurrency": 60,
+      "rpsChangePercent": 2.4543267644795863,
+      "p95ChangePercent": -49.07274450987775,
+      "p99ChangePercent": -64.16357161806742,
+      "baselinePoolMax": 30,
+      "poolMax": 10,
+      "executeP95ChangePercent": -49.07274450987775,
+      "executeP99ChangePercent": -64.16357161806742,
+      "prepareP95ChangePercent": null,
+      "prepareP99ChangePercent": null,
+      "dbCpuChangePercent": -11.139479330534918,
+      "dbAggregateRssPeakChangePercent": -59.07837702356029,
+      "rpsRangesOverlap": false,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 2.0692435353676375,
+          "executeP95ChangePercent": -46.72002297132519,
+          "executeP99ChangePercent": -64.16357161806742
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": 4.120645242227949,
+          "executeP95ChangePercent": -55.886238016769816,
+          "executeP99ChangePercent": -67.77000040186414
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": 1.1948484204087118,
+          "executeP95ChangePercent": -49.07274450987775,
+          "executeP99ChangePercent": -60.23368253524444
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "completedCases": 12,
+  "measuredRequests": 144000,
+  "warmupRequests": 24000,
+  "uniqueApiPids": 12,
+  "uniqueSchemas": 12,
+  "resourceSamples": 180,
+  "resourceWindowToHttpElapsedRatio": {
+    "min": 1.0167545520852772,
+    "max": 1.0451994510376956
+  },
+  "externalActiveObservations": 0,
+  "allCampaignTotalsMatch": true,
+  "reportLinksVerified": 27,
+  "productionTrackedDiff": "",
+  "reportSha256": "0233142f9ae39ca3f4f6e547130c74663fd3c0e3ae01584bfc7effe3c2721518"
+}

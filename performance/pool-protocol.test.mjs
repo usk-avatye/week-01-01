@@ -31,3 +31,22 @@ test('preparation comparison runs both implementations in each counterbalanced r
     for (const variant of ['counter', 'sequence']) assert.deepEqual(rows.filter(row => row.variant === variant).map(row => row.repeat), [1, 2, 3]);
     assert.equal(rows.length, 6);
 });
+
+test('distributed pool comparison covers four conditions three times without mixing concurrency', () => {
+    const rows = poolSchedule(3, ['B'], [10, 30], [30, 60]);
+    assert.equal(rows.length, 12);
+    assert.equal(new Set(rows.map(row => row.caseId)).size, 12);
+    for (const poolMax of [10, 30]) for (const concurrency of [30, 60]) {
+        const cases = rows.filter(row => row.poolMax === poolMax && row.concurrency === concurrency);
+        assert.deepEqual(cases.map(row => row.repeat), [1, 2, 3]);
+        assert.equal(new Set(cases.map(row => row.position)).size, 3);
+        assert.ok(cases.every(row => row.scenario === 'B' && row.caseId === `B-p${poolMax}-c${concurrency}-r${row.repeat}`));
+    }
+    assert.deepEqual(rows.slice(0, 4).map(row => [row.poolMax, row.concurrency]), [[10, 30], [30, 60], [10, 60], [30, 30]]);
+});
+
+test('pool comparison rejects invalid or repeated concurrency conditions', () => {
+    assert.throws(() => poolSchedule(3, ['C'], [10, 30], [0]));
+    assert.throws(() => poolSchedule(3, ['C'], [10, 30], [30, 30]));
+    assert.throws(() => poolSchedule(3, ['C'], [10, 30], []));
+});

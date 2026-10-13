@@ -1,0 +1,53 @@
+{
+  "baselinePoolMax": 30,
+  "comparisons": [
+    {
+      "scenario": "B",
+      "concurrency": 30,
+      "rpsChangePercent": 7.290020338661152,
+      "p95ChangePercent": -22.40512206695807,
+      "p99ChangePercent": -11.30106892921946,
+      "baselinePoolMax": 30,
+      "poolMax": 10,
+      "executeP95ChangePercent": -22.40512206695807,
+      "executeP99ChangePercent": -11.30106892921946,
+      "prepareP95ChangePercent": null,
+      "prepareP99ChangePercent": null,
+      "dbCpuChangePercent": -92.25166840059181,
+      "dbAggregateRssPeakChangePercent": -55.85132283720176,
+      "rpsRangesOverlap": false,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 7.290020338661152,
+          "executeP95ChangePercent": -22.40512206695807,
+          "executeP99ChangePercent": -11.30106892921946
+        }
+      ]
+    },
+    {
+      "scenario": "B",
+      "concurrency": 60,
+      "rpsChangePercent": 4.244139562315485,
+      "p95ChangePercent": -14.852316648899755,
+      "p99ChangePercent": -11.400496454304221,
+      "baselinePoolMax": 30,
+      "poolMax": 10,
+      "executeP95ChangePercent": -14.852316648899755,
+      "executeP99ChangePercent": -11.400496454304221,
+      "prepareP95ChangePercent": null,
+      "prepareP99ChangePercent": null,
+      "dbCpuChangePercent": -89.4884469326527,
+      "dbAggregateRssPeakChangePercent": -55.52695040083427,
+      "rpsRangesOverlap": false,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 4.244139562315485,
+          "executeP95ChangePercent": -14.852316648899755,
+          "executeP99ChangePercent": -11.400496454304221
+        }
+      ]
+    }
+  ]
+}

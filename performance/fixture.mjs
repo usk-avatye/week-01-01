@@ -70,5 +70,5 @@ export async function validateWorkload(fixture, scenario, count) {
         { spent: 0, records: 0, approved: 0, prepared: 0, rejected: 0 });
     assert.deepEqual(totals, scenario === 'C' ? { spent: 0, records: count, approved: 0, prepared: count, rejected: 0 }
         : { spent: count, records: count, approved: count, prepared: 0, rejected: 0 });
-    return { consistent: true, campaigns: rows.length, totals };
+    return { consistent: true, campaigns: rows.length, totals, perCampaign: rows };
 }

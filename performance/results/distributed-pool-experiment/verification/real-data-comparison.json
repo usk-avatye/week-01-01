@@ -1,0 +1,27 @@
+{
+  "unchanged": true,
+  "before": "2026-10-13T15:34:21.305Z",
+  "after": "2026-10-13T15:36:22.080Z",
+  "tables": {
+    "members": {
+      "rows": 4,
+      "fingerprint": "a33b3490ab17c4cfef512f18551bce07"
+    },
+    "sessions": {
+      "rows": 3,
+      "fingerprint": "5c2a524d36d2103ae120020ddd41c9ab"
+    },
+    "campaigns": {
+      "rows": 15,
+      "fingerprint": "19a45b96b861f6a8801e2e395b8e78f0"
+    },
+    "executions": {
+      "rows": 65,
+      "fingerprint": "f987005818f996dc469211c989de3633"
+    },
+    "schema_migrations": {
+      "rows": 2,
+      "fingerprint": "955f333f13094cad9497006b16101f70"
+    }
+  }
+}

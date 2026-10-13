@@ -12,7 +12,9 @@
 
 풀 10을 적용한 전체 테스트 75/75와 빌드, 번호 비교 도구 테스트 12/12, 이전 코드의 풀 10 회귀 테스트 9/9가 통과했다. 번호 비교 72,000요청과 풀 비교 324,000요청의 오류 및 비용 불일치는 0건이다. 원격 Push는 실행하지 않았다.
 
-본문의 최종 성능은 풀 10에서 확인한 C와 D를 사용한다. 이전 풀 30의 A~D 실험과 후보 선택 과정은 부록에 보존했다.
+본문의 최종 성능은 풀 10의 C/D 동시성60과 B 동시성30/60을 사용한다. B를 풀30과 추가 비교했고 기본값10을 유지한다. 이전 풀30의 A~D 실험과 후보 선택 과정은 부록에 보존했다.
+
+B 추가 비교는 동시성30/60 각각에서 풀10/30을3회 측정했다. 풀10의 처리량 변화는 풀30 대비 -0.6%/+2.5%, 집행 p99는62.5%/64.2%, DB CPU는13.4%/11.1% 감소했다. 측정144,000요청의 오류와 비용 불일치는0건이었다.
 
 ## 2. 검증 결과
 
@@ -24,6 +26,7 @@
 | 이전 코드 회귀 | max10 적용 뒤 집행/잠금9/9, TypeScript 빌드 통과 | [counter-tests.txt](performance/results/preparations-pool10/verification/counter-tests.txt), [counter-build.txt](performance/results/preparations-pool10/verification/counter-build.txt) |
 | 번호 발급 비교 | 6조건, 측정72,000건 오류0 | N 원본과 summary |
 | 풀 크기 비교 | 18조건, 측정324,000건 오류0 | P 원본과 summary |
+| B 추가 비교 | 12조건, 측정144,000건 오류0, 도구14/14 통과 | [E summary](performance/results/distributed-pool-experiment/summary.json), [도구 테스트](performance/results/distributed-pool-experiment/verification/measurement-tests.txt) |
 | 실제 데이터 | 각 실험의 전후 READ ONLY 감사에서 모든 테이블의 행 수와 내용 해시 일치 | [N 감사](performance/results/preparations-pool10/verification/real-data-comparison.json), [P 감사](performance/results/pool-size-experiment/verification/real-data-comparison.json) |
 | 시연 API | GET / 200, 비로그인 GET /api/auth/me 401 | [api-available.json](performance/results/preparations-pool10/verification/api-available.json) |
 
@@ -33,12 +36,15 @@
 
 독립 리뷰에서 N과 P의 원본 SHA-256, 요청별 지연, 풀 획득/대기와 DB CPU를 재계산했고 보고서 수치와 일치했다. 기록: [N 리뷰](performance/results/preparations-pool10/verification/final-review.md), [P 리뷰](performance/results/pool-size-experiment/verification/final-review.md).
 
+B 추가 비교에서도 운영 API, 계약과 DB 소스를 바꾸지 않았다. 서비스75개 테스트와 빌드 증거를 재사용했고, 확장한 측정 도구14개와 B smoke4조건을 검증했다. 새 분석기로 기존 P18조건과 N의 SEQUENCE1조건을 다시 계산해 저장 결과가 동일함을 확인했다. [호환성 기록](performance/results/distributed-pool-experiment/verification/previous-result-compatibility.json).
+
 ## 3. Baseline과 최종 설정 성능 (Pool10)
 
 실험 출처:
 
 - **N: 번호 발급 방식 비교.** 2026-10-13 23:34:06~23:34:39 KST. counter와 SEQUENCE를 둘 다 Pool10, 동시성60으로 비교했다. [summary.json](performance/results/preparations-pool10/summary.json).
 - **P: Connection Pool Size Experiment.** 같은 날 21:55:05~21:57:39 KST. SEQUENCE에서 max10/30/60을 비교했다. [summary.json](performance/results/pool-size-experiment/summary.json).
+- **E: B 분산 집행 Pool 추가 비교.** 2026-10-14 00:35:00~00:35:58 KST. 10캠페인의 집행만 풀10/30, 동시성30/60으로 비교했다. [summary.json](performance/results/distributed-pool-experiment/summary.json).
 
 두 실험의 비교율은 각각 같은 실행 안의 조건끼리 계산한다. RPS와 작업/초는3회 산술평균, p50/p95/p99는 반복별 백분위수의 중앙값이다. 요청 지연은 nearest-rank로 계산했다. 오류는 HTTP/통신/파싱 실패와 예상 상태 및 금액 불일치를 포함한다.
 
@@ -135,7 +141,44 @@ D 평균 처리량 +8.5%는 반복 범위가 겹쳤다. 풀30의3회차는1,999.
 
 풀10의 혼합 부하 준비 p95/p99는 풀30 대비30.8%/26.7% 증가했다. 번호 준비의 추가 대기와 집행 꼬리 지연 감소를 함께 검토했다. 풀60은 C 처리량 +2.1%에 비해 D 집행 p99 +355.2%, DB CPU +44.2%여서 기본값으로 선택하지 않았다.
 
-### 자원 수치
+### B 분산 집행: Pool10과30의 추가 비교
+
+E는 캠페인10개에 집행을 균등 배분했다. 조건마다 워밍업2,000작업 뒤12,000작업을3회 측정했다. 캠페인별 ACTIVE, 예산10억 원, 요청1원이며 캠페인 수 외의 설정은 기존 실험과 같다. 번호 준비는 측정 전에 SQL로 만들고 집행 API만 측정했다. B의 HTTP RPS는 집행/초와 같다.
+
+| 동시성 | Pool max | 집행 RPS (최소~최대) | CV | p95 ms | p99 ms | 오류율 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 30 | 10 | 3,631.0 (3,514.2~3,713.1) | 2.9% | 9.47 | 10.84 | 0% |
+| 30 | 30 | 3,652.8 (3,618.3~3,713.7) | 1.4% | 18.20 | 28.87 | 0% |
+| 60 | 10 | 3,675.1 (3,654.6~3,709.2) | 0.8% | 17.87 | 20.11 | 0% |
+| 60 | 30 | 3,587.1 (3,562.4~3,618.4) | 0.8% | 35.09 | 56.11 | 0% |
+
+| 동시성 | Pool max | 획득 p95/p99 ms | 풀 사용/대기 최대 | DB 락 관찰 비율 | API CPU % | DB CPU % |
+| --- | --- | --- | --- | --- | --- | --- |
+| 30 | 10 | 3.207/3.697 | 10/20 | 0.1% | 106.2 | 135.8 |
+| 30 | 30 | 0.005/0.010 | 30/0 | 51.1% | 106.7 | 156.8 |
+| 60 | 10 | 7.720/9.315 | 10/50 | 0.0% | 107.5 | 136.0 |
+| 60 | 30 | 4.742/5.428 | 30/30 | 60.8% | 107.5 | 153.1 |
+
+풀30 대비 풀10의 변화율:
+
+| 동시성 | RPS | p95 | p99 | DB CPU | RPS 반복 범위 겹침 |
+| --- | --- | --- | --- | --- | --- |
+| 30 | -0.6% | -48.0% | -62.5% | -13.4% | 있음 |
+| 60 | +2.5% | -49.1% | -64.2% | -11.1% | 없음 |
+
+동시성30의 처리량은 풀10이0.6% 낮고 반복 범위가 겹쳤다. 세 반복의 p95는46.5~58.1%, p99는6.0~66.4% 감소했다. 풀10의3회차 p99는27.14ms로1~2회차10.59~10.84ms보다 높았고, 같은 회차 풀30의28.87ms보다6.0% 낮았다. 모든 반복을 포함했다. 표의 p99는 세 반복의 중앙값이다.
+
+동시성60에서는 풀10의 처리량이2.5% 높고 이번3회 반복 범위가 겹치지 않았다. 세 반복의 p95는46.7~55.9%, p99는60.2~67.8% 감소했다. 짧은3회 측정의 차이로 기록하며 장기 처리량 향상률로 확대하지 않는다.
+
+풀30의 Lock 대기 쿼리는 `SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE`였다. 10캠페인에 나눠도 각 캠페인에는 예산 잠금이 남는다. 풀30은 더 많은 트랜잭션을 DB 안에 두고, 풀10은 일부 요청을 API 풀에서 기다리게 한다. 풀10에서 DB 락 관찰 비율과 DB CPU가 낮고 전체 집행 지연도 낮은 결과는 이 해석과 맞는다. 획득 대기는 집행 HTTP 지연에 포함된다.
+
+API CPU는 두 풀 모두 약106~108%로 한 코어 수준이었다. API 처리 비용이 처리량의 다음 병목 후보라는 추론이며 함수별 프로파일은 수집하지 않았다. 샘플에서 락 대기가0%인 경우도 짧은 모든 대기가0이라는 뜻으로 해석하지 않는다.
+
+**B 동시성30/60 결과도 기본 Pool max10 유지를 지지한다.** 처리량은 비슷하거나 소폭 높았고 각 반복에서 집행 p95/p99가 낮았다. DB CPU도13.4%/11.1% 감소했다. 10캠페인 균등 분산과 이번 데이터 조건을 권고 범위에 포함한다.
+
+E의 반복별 값과 비교율은 [summary](performance/results/distributed-pool-experiment/summary.json), [comparison](performance/results/distributed-pool-experiment/comparison.json)에 있다. 원본에는 요청별 지연, 연결 획득, 풀/DB/CPU 샘플과 캠페인별 승인 합계를 보존했다.
+
+### 자원 수치 (P)
 
 | 시나리오 | Pool max | API CPU % | DB CPU % | API 종료 RSS MiB | DB 합산 RSS 피크 MiB |
 | --- | --- | --- | --- | --- | --- |
@@ -172,7 +215,9 @@ API RSS는 측정 종료 값이다. DB RSS는 프로세스별 합계의 반복�
 
 N은 매 조건에서 PREPARED14,000행과 사용액0을 확인했다. P의 C도 동일하며 D는 승인14,000행과 사용액14,000원을 확인했다. 워밍업을 포함한 건수다. 모든 조건에서 기록 건수, 상태와 승인 합계가 예상값과 일치했다.
 
-실제 DB 감사는 READ ONLY 트랜잭션으로 모든 행 내용의 해시를 비교했다. N은 members4, sessions3, campaigns13, executions39, schema_migrations2행이 전후 동일했다. P도 해당 실험의 시작/종료 스냅샷이 모두 일치했다.
+E는 매 조건에서10캠페인, 승인14,000행, 사용액14,000원을 확인했다. 캠페인마다 워밍업200건과 측정1,200건, 최종 승인/비용1,400건/원을 확인했고 `spent_amount`와 승인 합계가 일치했다.
+
+실제 DB 감사는 READ ONLY 트랜잭션으로 모든 행 내용의 해시를 비교했다. N은 members4, sessions3, campaigns13, executions39, schema_migrations2행이 전후 동일했다. P도 해당 실험의 시작/종료 스냅샷이 모두 일치했다. E는 members4, sessions3, campaigns15, executions65, schema_migrations2행의 전후 내용이 같았다. [E 감사](performance/results/distributed-pool-experiment/verification/real-data-comparison.json).
 
 ## 7. 재현 방법과 측정 환경
 
@@ -183,11 +228,13 @@ N은 매 조건에서 PREPARED14,000행과 사용액0을 확인했다. P의 C도
 | 최종 서비스 풀 | max10, 연결 획득 제한3초, idle10초 |
 | DB | PostgreSQL18.4, 별도 _test DB와 조건별 임시 스키마 |
 | DB 설정 | max_connections100, shared_buffers128MB, fsync/on, synchronous_commit/on, full_page_writes/on, READ COMMITTED |
-| 부하 | 동시성60, 워밍업2,000 뒤 측정12,000작업, 조건별3회 |
-| 데이터 | 캠페인1개, ACTIVE, 예산10억 원, D 요청1원 |
+| 부하 | N/P 동시성60, E 동시성30/60. 워밍업2,000 뒤 측정12,000작업, 조건별3회 |
+| 데이터 | N/P 캠페인1개, E10개. ACTIVE, 캠페인당 예산10억 원, 집행 요청1원 |
 | 연결/관찰 | HTTP/1.1 keep-alive, 풀20ms, DB100ms, 자원250ms |
 
 조건마다 새 API 프로세스와 풀을 시작하고 새 스키마를 만들었다. 워밍업 뒤 ANALYZE를 실행했다. API/생성기/DB는 같은 컴퓨터에서 실행하고 관찰 비용을 포함했다. N에서 포트3000의 기존 시연 API는 유지됐고 부하는3101 측정 API에만 보냈다. N/P 모두 관찰된 외부 클라이언트의 active DB 상태는0건이었다.
+
+E 시작 시 DB가 종료 상태여서 기존 `.local/postgres` 데이터로 PostgreSQL18.4를 다시 시작했다. 각 조건의 워밍업은 동일하게2,000작업이었다. 실제 데이터 감사는 DB 시작 뒤부터 실험 종료까지 비교했다. E에서도 관찰된 외부 클라이언트의 active DB 상태는0건이었다.
 
 ### 최종 Pool10의 C/D 측정
 
@@ -214,6 +261,13 @@ node --env-file=.env performance/pool-runner.mjs --label pool-choice-repro
 node performance/pool-analyze.mjs pool-choice-repro
 ```
 
+### B 동시성30/60의 Pool10/30 비교
+
+```sh
+node --env-file=.env performance/pool-runner.mjs --label distributed-pool-repro --scenarios B --pool-max 10,30 --concurrency 30,60 --operations 12000 --warmup 2000 --repeats 3
+node performance/pool-analyze.mjs distributed-pool-repro
+```
+
 결과 레이블과 비교 접두사는 실행마다 새 이름을 사용한다. 분석기는 원본 SHA-256, 요청 지연, 풀 획득/대기, PID별 CPU, 고정 조건과 승인 합계를 검증한다. 실제 측정 소스/컴파일/도구 해시는 각 manifest에 있다.
 
 보존 파일:
@@ -221,14 +275,15 @@ node performance/pool-analyze.mjs pool-choice-repro
 - [N summary](performance/results/preparations-pool10/summary.json)와 counter-r1~r3/sequence-r1~r3 여섯 폴더: 번호 비교의 요청별 지연, 풀/DB/CPU 원본 gzip.
 - [P summary](performance/results/pool-size-experiment/summary.json)와 같은 폴더의18개 gzip: 풀 크기별 원본 및 comparison.json.
 - [측정 도구 사본](performance/results/preparations-pool10/measurement-harness.tar.gz): N의 실제 계측 파일과 해시.
+- [E 결과](performance/results/distributed-pool-experiment/summary.json)와 같은 폴더의12개 gzip: B의 Pool/동시성 비교, manifest와 교차 순서. [실제 측정 도구 사본](performance/results/distributed-pool-experiment/measurement-harness.tar.gz).
 - 각 실험 verification/: 테스트/빌드, 실제 DB 감사, 독립 리뷰와 API 응답 기록.
 
 ## 8. 남은 한계와 리스크
 
-- 풀10의 성능 측정 범위는 C/D 동시성60이다. A/B와 다른 동시성의 기존 결과는 풀30 실험 이력에 있다.
+- 풀10의 성능 측정 범위는 C/D 동시성60과 B 동시성30/60이다. A 전체, B 동시성1/10, C/D 동시성1/10/30은 추가 측정 대상이며 풀30의 과거 결과는 보존했다.
 - 조건별3회 단기 closed-loop 부하다. 장기 부하, 대규모 데이터, 별도 생성기 장비, 외부 네트워크/TLS와 고정 도착률 부하는 추가 측정 대상이다.
 - 락 샘플링은 짧은 대기를 놓칠 수 있다. 계측 제거 대조군, 함수별 CPU 프로파일과 GC/스케줄러 원인 분석은 수집하지 않았다.
-- 집행에는 캠페인 예산 잠금이 남는다. 서로 다른 캠페인 분산 부하에서 풀10의 최적값은 추가 비교가 필요하다.
+- 집행에는 캠페인 예산 잠금이 남는다. B는10캠페인 균등 분산을 확인했다. 캠페인 수와 요청 쏠림이 다른 경우의 Pool 선택은 추가 비교 대상이다.
 - 단일 DB 중단, DB 재시작 중 요청, 커밋 여부가 불명확한 DB 연결 단절 및 재해 복구는 추가 검증 대상이다. HTTP 응답 유실과 트랜잭션 쓰기 실패는 확인했다.
 - 이전 카운터 서버와 SEQUENCE 서버가 동시에 쓰는 배포는 별도 검증 대상이다. 실제 전환은 API 중지, 마이그레이션, 새 빌드 시작 순서로 수행했다.
 
@@ -240,7 +295,7 @@ node performance/pool-analyze.mjs pool-choice-repro
 | 1:00~3:00 | 설계: 비용 없는 준비, DB 순번, 고정 결과, 비용/결과의 원자적 커밋. | 회원/세션/캠페인/집행 관계와 트랜잭션 |
 | 3:00~5:00 | 검증: 승인/거절, 중복 차감, 롤백과 응답 유실 복구. | Pool10 회귀75개와 재전송/복구 사례 |
 | 5:00~7:00 | 성능: 같은 Pool10에서도 번호 발급의 캠페인 잠금을 제거한 효과가 남았다. | C 처리량+82.8%, p99-60.3% |
-| 7:00~9:00 | 판단: 연결을 늘리면 같은 예산의 경합도 늘었다. 준비 지연 비용을 포함해 풀10을 선택했다. | D 집행 p99 51.99→33.39ms, 준비 p95 19.83→25.94ms |
+| 7:00~9:00 | 판단: 준비 지연 비용을 검토해 풀10을 선택했고10캠페인 분산 집행에서도 확인했다. | D 집행 p99 51.99→33.39ms, B/60 p99 56.11→20.11ms |
 | 9:00~10:00 | 결론: SEQUENCE와 Pool10을 유지하고 예산 정합성을 지키는 집행 잠금은 유지한다. | 동작 규칙, 반복 결과와 미측정 범위 |
 
 발표의 중심 문장: **“같은 예산을 지킬 규칙은 유지하고, 번호 발급의 직렬화와 DB에 들어가는 요청 수를 각각 측정해 조정했습니다.”**

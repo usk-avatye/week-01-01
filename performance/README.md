@@ -143,3 +143,14 @@ node performance/analyze-preparations.mjs preparations-pool10-repro
 C, Pool10, 동시성60, 워밍업2,000, 측정12,000을3회씩 실행한다. 순서는 기존/SEQUENCE, SEQUENCE/기존, 기존/SEQUENCE다. 매 조건은 새 API/테스트 스키마로 실행하며 실제 풀 크기와 번호 발급 방식을 확인한다. 측정 대상 포트는3101이고 모든 부하를 이 API에 보낸다.
 
 `results/preparations-pool10/`의 manifest에 교차 순서와 조건별 폴더 경로가 있다. 여섯 `preparations-pool10-counter-r*`, `preparations-pool10-sequence-r*` 폴더에 요청, 풀, 잠금 및 자원의 원본을 보존했다. 분석기는 기존 pool-analyze를 실행해 원본을 검증하고 두 구현의 평균 RPS, 반복 범위, 지연 중앙값과 변화율을 비교한다. 실제 측정 도구 사본은 measurement-harness.tar.gz에 있다.
+
+## B 분산 집행 Pool 추가 비교
+
+10캠페인에 균등 배분한 집행을 Pool10/30, 동시성30/60으로3회씩 교차 측정한다. 요청 번호는 fixture SQL로 준비하고 HTTP 집행 시간만 측정한다. 각 조건은 워밍업2,000작업과 측정12,000작업이며 새 API와 테스트 스키마를 사용한다.
+
+```sh
+node --env-file=.env performance/pool-runner.mjs --label distributed-pool-repro --scenarios B --pool-max 10,30 --concurrency 30,60 --operations 12000 --warmup 2000 --repeats 3
+node performance/pool-analyze.mjs distributed-pool-repro
+```
+
+실측 결과는 `results/distributed-pool-experiment/`에 보존한다. `manifest.json`의 protocol.schedule은12조건의 순서다. `summary.json`은 시나리오, Pool, 동시성별로 집계하며 `comparison.json`은 같은 동시성의 Pool30 대비 변화율이다. B의 HTTP RPS와 집행/초는 같다.

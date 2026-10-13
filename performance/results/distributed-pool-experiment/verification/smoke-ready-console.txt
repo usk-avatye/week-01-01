@@ -1,0 +1,8 @@
+{"event":"start","label":"distributed-pool-smoke-ready","scenario":"B","poolMax":10,"concurrency":30,"repeat":1,"position":1,"caseId":"B-p10-c30-r1","at":"2026-10-13T15:34:24.695Z"}
+{"event":"done","caseId":"B-p10-c30-r1","rps":2019.260106750203,"p95Ms":18.721542,"p99Ms":21.988833999999997,"errors":0,"poolWaiting":19,"acquireP95Ms":6.799333000000047,"lockFraction":0,"dbCpu":18.448943623173836}
+{"event":"start","label":"distributed-pool-smoke-ready","scenario":"B","poolMax":30,"concurrency":60,"repeat":1,"position":2,"caseId":"B-p30-c60-r1","at":"2026-10-13T15:34:25.499Z"}
+{"event":"done","caseId":"B-p30-c60-r1","rps":1965.514748903278,"p95Ms":41.793709000000035,"p99Ms":44.10516699999994,"errors":0,"poolWaiting":30,"acquireP95Ms":11.96754199999998,"lockFraction":0,"dbCpu":176.13175381960946}
+{"event":"start","label":"distributed-pool-smoke-ready","scenario":"B","poolMax":10,"concurrency":60,"repeat":1,"position":3,"caseId":"B-p10-c60-r1","at":"2026-10-13T15:34:26.249Z"}
+{"event":"done","caseId":"B-p10-c60-r1","rps":2048.9339379646276,"p95Ms":35.58637500000032,"p99Ms":39.07695899999999,"errors":0,"poolWaiting":49,"acquireP95Ms":18.86166700000001,"lockFraction":0,"dbCpu":18.514182771197728}
+{"event":"start","label":"distributed-pool-smoke-ready","scenario":"B","poolMax":30,"concurrency":30,"repeat":1,"position":4,"caseId":"B-p30-c30-r1","at":"2026-10-13T15:34:26.987Z"}
+{"event":"done","caseId":"B-p30-c30-r1","rps":1882.057716436631,"p95Ms":24.12729100000024,"p99Ms":24.790416000000278,"errors":0,"poolWaiting":0,"acquireP95Ms":0.02045799999996234,"lockFraction":0,"dbCpu":238.10214349348396}

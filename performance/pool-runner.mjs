@@ -22,7 +22,8 @@ assert.ok(Number.isInteger(operations) && operations >= 60);
 assert.ok(Number.isInteger(warmup) && warmup >= 60);
 const scenarios = (args.get('--scenarios') ?? 'C,D').split(',');
 const poolSizes = (args.get('--pool-max') ?? '10,30,60').split(',').map(Number);
-const schedule = poolSchedule(repeats, scenarios, poolSizes), output = `performance/results/${label}`;
+const concurrencies = (args.get('--concurrency') ?? '60').split(',').map(Number);
+const schedule = poolSchedule(repeats, scenarios, poolSizes, concurrencies), output = `performance/results/${label}`;
 await mkdir(output, { recursive: true });
 try { await readFile(`${output}/manifest.json`); throw new Error(`Output ${label} already exists; use a fresh label`); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
@@ -30,7 +31,8 @@ const source = await fingerprint(['src/server', 'src/contracts', 'db']);
 const compiled = await fingerprint(['dist/src/server', 'dist/src/contracts']);
 const harnessSources = (await fingerprint(['performance'], '.mjs')).sources;
 const manifest = { label, startedAt: new Date().toISOString(), gitHead: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
-    source, compiled, harness: harnessSources, protocol: { operations, warmup, repeats, concurrency: 60, scenarios,
+    source, compiled, harness: harnessSources, protocol: { operations, warmup, repeats,
+        concurrency: concurrencies.length === 1 ? concurrencies[0] : undefined, concurrencies, scenarios,
         poolSizes, schedule, loadModel: 'closed-loop HTTP/1.1 keep-alive; no retry; new API process and schema for each case',
         amountWon: 1, campaignBudgetWon: 1000000000, monitorIntervalMs: 100, poolSampleIntervalMs: 20, resourceIntervalMs: 250 },
     runtime: { node: process.version, platform: process.platform, architecture: process.arch, cpuModel: os.cpus()[0]?.model,
@@ -52,7 +54,7 @@ for (const config of schedule) {
         const login = await bootstrap.request('POST', '/api/auth/login', { email: 'pool@example.test', password: 'Performance-Local-2026!' });
         bootstrap.close(); assert.equal(login.status, 200);
         const fixture = await api.call('fixture', { scenario: config.scenario, ownerId: signup.data.id, count: warmup + operations });
-        requester = createRequester(api.info.url, 60, { cookie: login.cookie, csrfToken: login.data.csrfToken });
+        requester = createRequester(api.info.url, config.concurrency, { cookie: login.cookie, csrfToken: login.data.csrfToken });
         const warm = await load(requester, { ...config, count: warmup, offset: 0, ...fixture });
         assert.equal(warm.summary.errors, 0);
         await api.call('stabilize');
@@ -66,7 +68,8 @@ for (const config of schedule) {
         requester.close(); requester = undefined;
         const invariant = await api.call('validate', { scenario: config.scenario, count: warmup + operations });
         const result = { label, ...config, at: new Date().toISOString(), api: api.info,
-            fixture: { fixtureMs: fixture.fixtureMs }, warmup: { workItems: warmup, ...warm.summary }, measurement: measured,
+            fixture: { fixtureMs: fixture.fixtureMs, campaigns: fixture.campaigns, sqlPreparedRows: fixture.sqlPreparedRows },
+            warmup: { workItems: warmup, ...warm.summary }, measurement: measured,
             telemetry, postgres, resources, invariant };
         const raw = gzipSync(Buffer.from(JSON.stringify(result)));
         await writeFile(`${output}/${config.caseId}.json.gz`, raw);

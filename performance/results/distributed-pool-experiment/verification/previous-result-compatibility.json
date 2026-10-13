@@ -1,0 +1,38 @@
+[
+  {
+    "label": "pool-size-experiment",
+    "identical": true,
+    "paths": [
+      {
+        "path": "performance/results/pool-size-experiment/summary.json",
+        "sha256": "d9b5f434dbf2406eae09466047ece8c5920c6bcc0c7046679b58b3ab19325fcb"
+      },
+      {
+        "path": "performance/results/pool-size-experiment/summary.csv",
+        "sha256": "ae541ffcf98aa184cefbc4be7fd25db11b21b89e81e65bbc35941280dd71695e"
+      },
+      {
+        "path": "performance/results/pool-size-experiment/comparison.json",
+        "sha256": "3b0eeb96c47547caf496c938cfe1388735b5b6ae168b76438ea42ad247b68eba"
+      }
+    ]
+  },
+  {
+    "label": "preparations-pool10-sequence-r1",
+    "identical": true,
+    "paths": [
+      {
+        "path": "performance/results/preparations-pool10-sequence-r1/summary.json",
+        "sha256": "121f0f61d5a5ac94dc5af9f7ff8cafe0b70d0c8fe13bde3119ba8250410b3633"
+      },
+      {
+        "path": "performance/results/preparations-pool10-sequence-r1/summary.csv",
+        "sha256": "3a3eed42a4c9fac27183a2f474f3c8e222d07029774235f4cb47bc66fac1deb9"
+      },
+      {
+        "path": "performance/results/preparations-pool10-sequence-r1/comparison.json",
+        "sha256": "a0b3e2f5510f0892f96410f3d3e44465f8dbb450f256e4536959313170535d2d"
+      }
+    ]
+  }
+]

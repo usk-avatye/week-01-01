@@ -1,0 +1,2028 @@
+[
+  {
+    "scenario": "B",
+    "poolMax": 10,
+    "concurrency": 30,
+    "repeat": 1,
+    "position": 1,
+    "caseId": "B-p10-c30-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3273.737833,
+    "rps": 3665.5348143755896,
+    "successfulRps": 3665.5348143755896,
+    "errorRate": 0,
+    "p50Ms": 8.065292000000227,
+    "p95Ms": 9.46833400000014,
+    "p99Ms": 10.840958,
+    "workItemsPerSecond": 3665.5348143755896,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3273.737833,
+        "rps": 3665.5348143755896,
+        "successfulRps": 3665.5348143755896,
+        "errorRate": 0,
+        "p50Ms": 8.065292000000227,
+        "p95Ms": 9.46833400000014,
+        "p99Ms": 10.840958
+      }
+    },
+    "cpuOneCorePercent": 106.74583330911523,
+    "generatorCpuOneCorePercent": 28.414859327558133,
+    "apiRssBytes": 131153920,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 20,
+    "poolWaitingSampleRate": 0.9819277108433735,
+    "acquireP95Ms": 3.206542000000809,
+    "acquireP99Ms": 3.6967079999994894,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.0899999999996908,
+        "p95Ms": 1.681833000000097,
+        "p99Ms": 2.7640839999999116,
+        "maxMs": 2.7640839999999116
+      }
+    },
+    "resources": {
+      "cpuMs": 4560,
+      "elapsedMs": 3380.041,
+      "cpuOneCorePercent": 134.90960612607955,
+      "maxAggregateRssBytes": 303415296,
+      "maxProcesses": 21,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "c9f2833ccb5b7969713fa54bc43634a6b0254e614148f7cf6768784ea0887a75"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 30,
+    "concurrency": 60,
+    "repeat": 1,
+    "position": 2,
+    "caseId": "B-p30-c60-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3351.5141250000006,
+    "rps": 3580.4712593893655,
+    "successfulRps": 3580.4712593893655,
+    "errorRate": 0,
+    "p50Ms": 12.57929200000035,
+    "p95Ms": 33.95537500000137,
+    "p99Ms": 56.111666000000696,
+    "workItemsPerSecond": 3580.4712593893655,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3351.5141250000006,
+        "rps": 3580.4712593893655,
+        "successfulRps": 3580.4712593893655,
+        "errorRate": 0,
+        "p50Ms": 12.57929200000035,
+        "p95Ms": 33.95537500000137,
+        "p99Ms": 56.111666000000696
+      }
+    },
+    "cpuOneCorePercent": 107.42008645850755,
+    "generatorCpuOneCorePercent": 23.970121265712994,
+    "apiRssBytes": 139264000,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 30,
+    "poolWaitingSampleRate": 0.9823529411764705,
+    "acquireP95Ms": 4.739667000000281,
+    "acquireP99Ms": 5.4284160000001975,
+    "postgres": {
+      "sampleCount": 35,
+      "lockWaitingBackendFraction": 0.6036240090600227,
+      "lockWaitingSampleRate": 0.9428571428571428,
+      "maxLockWaiting": 18,
+      "events": {
+        "transactionid": 184,
+        "tuple": 349
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 533
+      },
+      "observerQueryMs": {
+        "count": 35,
+        "p50Ms": 1.308458999999857,
+        "p95Ms": 1.706333000000086,
+        "p99Ms": 2.264916999999514,
+        "maxMs": 2.264916999999514
+      }
+    },
+    "resources": {
+      "cpuMs": 5160,
+      "elapsedMs": 3478.1188330000004,
+      "cpuOneCorePercent": 148.35605819566888,
+      "maxAggregateRssBytes": 736395264,
+      "maxProcesses": 41,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "a7cda7b6de0b2bd3d10360a9d0e84d8b2fb13722e1dff72099beb92f10d93ef5"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 1,
+    "position": 3,
+    "caseId": "B-p10-c60-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3283.5690840000007,
+    "rps": 3654.559929459976,
+    "successfulRps": 3654.559929459976,
+    "errorRate": 0,
+    "p50Ms": 16.31195800000023,
+    "p95Ms": 18.091416000001118,
+    "p99Ms": 20.108416999999463,
+    "workItemsPerSecond": 3654.559929459976,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3283.5690840000007,
+        "rps": 3654.559929459976,
+        "successfulRps": 3654.559929459976,
+        "errorRate": 0,
+        "p50Ms": 16.31195800000023,
+        "p95Ms": 18.091416000001118,
+        "p99Ms": 20.108416999999463
+      }
+    },
+    "cpuOneCorePercent": 107.5177770605609,
+    "generatorCpuOneCorePercent": 26.586832122823086,
+    "apiRssBytes": 130859008,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9879518072289156,
+    "acquireP95Ms": 7.735874999999851,
+    "acquireP99Ms": 9.314750000000004,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.0333340000015596,
+        "p95Ms": 1.3145000000004075,
+        "p99Ms": 2.552917000000889,
+        "maxMs": 2.552917000000889
+      }
+    },
+    "resources": {
+      "cpuMs": 4580,
+      "elapsedMs": 3383.147041,
+      "cpuOneCorePercent": 135.37691222094296,
+      "maxAggregateRssBytes": 302530560,
+      "maxProcesses": 21,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "442df0b503851d29a8115a62f0ae7ced2e24d9f5d110a6d4b8d8cfe86cf0feb3"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 30,
+    "concurrency": 30,
+    "repeat": 1,
+    "position": 4,
+    "caseId": "B-p30-c30-r1",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3308.947667000002,
+    "rps": 3626.530609618128,
+    "successfulRps": 3626.530609618128,
+    "errorRate": 0,
+    "p50Ms": 5.2259999999987485,
+    "p95Ms": 22.573207999997976,
+    "p99Ms": 32.235499999998865,
+    "workItemsPerSecond": 3626.530609618128,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3308.947667000002,
+        "rps": 3626.530609618128,
+        "successfulRps": 3626.530609618128,
+        "errorRate": 0,
+        "p50Ms": 5.2259999999987485,
+        "p95Ms": 22.573207999997976,
+        "p99Ms": 32.235499999998865
+      }
+    },
+    "cpuOneCorePercent": 106.49510337413301,
+    "generatorCpuOneCorePercent": 23.53953819723555,
+    "apiRssBytes": 131989504,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.005458000000544416,
+    "acquireP99Ms": 0.010125000000016371,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0.5138339920948617,
+      "lockWaitingSampleRate": 0.9705882352941176,
+      "maxLockWaiting": 14,
+      "events": {
+        "transactionid": 145,
+        "tuple": 245
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 390
+      },
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.2404999999998836,
+        "p95Ms": 1.6886670000021695,
+        "p99Ms": 2.1100420000002487,
+        "maxMs": 2.1100420000002487
+      }
+    },
+    "resources": {
+      "cpuMs": 5210,
+      "elapsedMs": 3377.374750000001,
+      "cpuOneCorePercent": 154.26182717804707,
+      "maxAggregateRssBytes": 733593600,
+      "maxProcesses": 41,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "8621e2b276507793d97399f539d5a967bf4de28037023a9cb45c3db713e9a8ac"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 30,
+    "concurrency": 60,
+    "repeat": 2,
+    "position": 1,
+    "caseId": "B-p30-c60-r2",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3368.5503339999996,
+    "rps": 3562.363275050294,
+    "successfulRps": 3562.363275050294,
+    "errorRate": 0,
+    "p50Ms": 12.41008299999885,
+    "p95Ms": 40.10520800000086,
+    "p99Ms": 61.7623339999991,
+    "workItemsPerSecond": 3562.363275050294,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3368.5503339999996,
+        "rps": 3562.363275050294,
+        "successfulRps": 3562.363275050294,
+        "errorRate": 0,
+        "p50Ms": 12.41008299999885,
+        "p95Ms": 40.10520800000086,
+        "p99Ms": 61.7623339999991
+      }
+    },
+    "cpuOneCorePercent": 107.4255394828913,
+    "generatorCpuOneCorePercent": 23.903843498275602,
+    "apiRssBytes": 135544832,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 30,
+    "poolWaitingSampleRate": 0.9824561403508771,
+    "acquireP95Ms": 4.795999999999822,
+    "acquireP99Ms": 5.5355829999998605,
+    "postgres": {
+      "sampleCount": 35,
+      "lockWaitingBackendFraction": 0.6178489702517163,
+      "lockWaitingSampleRate": 0.9714285714285714,
+      "maxLockWaiting": 18,
+      "events": {
+        "tuple": 389,
+        "transactionid": 151
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 540
+      },
+      "observerQueryMs": {
+        "count": 35,
+        "p50Ms": 1.246792000001733,
+        "p95Ms": 1.4140000000006694,
+        "p99Ms": 2.3049169999976584,
+        "maxMs": 2.3049169999976584
+      }
+    },
+    "resources": {
+      "cpuMs": 5150,
+      "elapsedMs": 3477.451374999997,
+      "cpuOneCorePercent": 148.09696656074752,
+      "maxAggregateRssBytes": 733839360,
+      "maxProcesses": 41,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "beb40001214135c0e6df5fa935fe74ad22146bd01b5e28d3797171d55cd0ffbd"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 2,
+    "position": 2,
+    "caseId": "B-p10-c60-r2",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3235.2376669999976,
+    "rps": 3709.1556278545295,
+    "successfulRps": 3709.1556278545295,
+    "errorRate": 0,
+    "p50Ms": 16.084624999999505,
+    "p95Ms": 17.691915999999765,
+    "p99Ms": 19.90599999999904,
+    "workItemsPerSecond": 3709.1556278545295,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3235.2376669999976,
+        "rps": 3709.1556278545295,
+        "successfulRps": 3709.1556278545295,
+        "errorRate": 0,
+        "p50Ms": 16.084624999999505,
+        "p95Ms": 17.691915999999765,
+        "p99Ms": 19.90599999999904
+      }
+    },
+    "cpuOneCorePercent": 107.50556323166708,
+    "generatorCpuOneCorePercent": 23.35989122866504,
+    "apiRssBytes": 133251072,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9817073170731707,
+    "acquireP95Ms": 7.5328340000000935,
+    "acquireP99Ms": 9.28691700000013,
+    "postgres": {
+      "sampleCount": 33,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 33,
+        "p50Ms": 1.008417000000918,
+        "p95Ms": 1.333958999999595,
+        "p99Ms": 2.2548749999987194,
+        "maxMs": 2.2548749999987194
+      }
+    },
+    "resources": {
+      "cpuMs": 4600,
+      "elapsedMs": 3289.4426249999997,
+      "cpuOneCorePercent": 139.84132038174707,
+      "maxAggregateRssBytes": 304594944,
+      "maxProcesses": 21,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "81d8e03691406385c3c07c5550cdc2522694c8395eec64d9d9083c0ce76816c0"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 30,
+    "concurrency": 30,
+    "repeat": 2,
+    "position": 3,
+    "caseId": "B-p30-c30-r2",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3231.2754170000007,
+    "rps": 3713.7038634549785,
+    "successfulRps": 3713.7038634549785,
+    "errorRate": 0,
+    "p50Ms": 5.0917499999995925,
+    "p95Ms": 18.197125000006054,
+    "p99Ms": 26.58074999999735,
+    "workItemsPerSecond": 3713.7038634549785,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3231.2754170000007,
+        "rps": 3713.7038634549785,
+        "successfulRps": 3713.7038634549785,
+        "errorRate": 0,
+        "p50Ms": 5.0917499999995925,
+        "p95Ms": 18.197125000006054,
+        "p99Ms": 26.58074999999735
+      }
+    },
+    "cpuOneCorePercent": 106.93027482853225,
+    "generatorCpuOneCorePercent": 23.52058868153113,
+    "apiRssBytes": 132366336,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.004707999999936874,
+    "acquireP99Ms": 0.009792000000288681,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0.5147058823529411,
+      "lockWaitingSampleRate": 0.9411764705882353,
+      "maxLockWaiting": 13,
+      "events": {
+        "transactionid": 141,
+        "tuple": 244
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 385
+      },
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.2339160000010452,
+        "p95Ms": 2.0753330000006827,
+        "p99Ms": 3.650416000004043,
+        "maxMs": 3.650416000004043
+      }
+    },
+    "resources": {
+      "cpuMs": 5340,
+      "elapsedMs": 3377.3272920000018,
+      "cpuOneCorePercent": 158.11319242434848,
+      "maxAggregateRssBytes": 738361344,
+      "maxProcesses": 41,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "8336d417195fa0c9146004be723eb79ed70fe298d66c92822291edb06355c375"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 10,
+    "concurrency": 30,
+    "repeat": 2,
+    "position": 4,
+    "caseId": "B-p10-c30-r2",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3231.776957999995,
+    "rps": 3713.1275319897923,
+    "successfulRps": 3713.1275319897923,
+    "errorRate": 0,
+    "p50Ms": 7.974000000001979,
+    "p95Ms": 9.364833999999973,
+    "p99Ms": 10.588707999995677,
+    "workItemsPerSecond": 3713.1275319897923,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3231.776957999995,
+        "rps": 3713.1275319897923,
+        "successfulRps": 3713.1275319897923,
+        "errorRate": 0,
+        "p50Ms": 7.974000000001979,
+        "p95Ms": 9.364833999999973,
+        "p99Ms": 10.588707999995677
+      }
+    },
+    "cpuOneCorePercent": 106.78168450849147,
+    "generatorCpuOneCorePercent": 22.93363711766402,
+    "apiRssBytes": 164331520,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 20,
+    "poolWaitingSampleRate": 0.9817073170731707,
+    "acquireP95Ms": 3.153124999999818,
+    "acquireP99Ms": 3.6792499999996835,
+    "postgres": {
+      "sampleCount": 33,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 33,
+        "p50Ms": 1.0117089999985183,
+        "p95Ms": 1.5569170000017039,
+        "p99Ms": 2.0417920000036247,
+        "maxMs": 2.0417920000036247
+      }
+    },
+    "resources": {
+      "cpuMs": 4560,
+      "elapsedMs": 3289.719625000005,
+      "cpuOneCorePercent": 138.61363641285973,
+      "maxAggregateRssBytes": 303874048,
+      "maxProcesses": 21,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "50d6332851ac2e1f69fc9cbfc3b4fceac2fd33e2c6177f1e44c9e6b4e479afc7"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 10,
+    "concurrency": 60,
+    "repeat": 3,
+    "position": 1,
+    "caseId": "B-p10-c60-r3",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3277.256791,
+    "rps": 3661.598942430874,
+    "successfulRps": 3661.598942430874,
+    "errorRate": 0,
+    "p50Ms": 16.264791999994486,
+    "p95Ms": 17.870458999997936,
+    "p99Ms": 20.463332999999693,
+    "workItemsPerSecond": 3661.598942430874,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3277.256791,
+        "rps": 3661.598942430874,
+        "successfulRps": 3661.598942430874,
+        "errorRate": 0,
+        "p50Ms": 16.264791999994486,
+        "p95Ms": 17.870458999997936,
+        "p99Ms": 20.463332999999693
+      }
+    },
+    "cpuOneCorePercent": 107.46159660278104,
+    "generatorCpuOneCorePercent": 22.91855804716525,
+    "apiRssBytes": 132169728,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 50,
+    "poolWaitingSampleRate": 0.9819277108433735,
+    "acquireP95Ms": 7.719875000000229,
+    "acquireP99Ms": 9.494874999999865,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0,
+      "lockWaitingSampleRate": 0,
+      "maxLockWaiting": 0,
+      "events": {},
+      "queries": {},
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.0005000000019209,
+        "p95Ms": 1.2102499999964493,
+        "p99Ms": 2.213167000001704,
+        "maxMs": 2.213167000001704
+      }
+    },
+    "resources": {
+      "cpuMs": 4520,
+      "elapsedMs": 3401.8855840000033,
+      "cpuOneCorePercent": 132.86749034884636,
+      "maxAggregateRssBytes": 302366720,
+      "maxProcesses": 21,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "e77f7c555bcbcc0d34b28c811e33998cc59cfafc2471ce293ea3ea08718e7424"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 30,
+    "concurrency": 30,
+    "repeat": 3,
+    "position": 2,
+    "caseId": "B-p30-c30-r3",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3316.487500000003,
+    "rps": 3618.28591242994,
+    "successfulRps": 3618.28591242994,
+    "errorRate": 0,
+    "p50Ms": 5.4337500000037835,
+    "p95Ms": 18.139500000004773,
+    "p99Ms": 28.873583000000508,
+    "workItemsPerSecond": 3618.28591242994,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3316.487500000003,
+        "rps": 3618.28591242994,
+        "successfulRps": 3618.28591242994,
+        "errorRate": 0,
+        "p50Ms": 5.4337500000037835,
+        "p95Ms": 18.139500000004773,
+        "p99Ms": 28.873583000000508
+      }
+    },
+    "cpuOneCorePercent": 106.69649180887896,
+    "generatorCpuOneCorePercent": 23.02134411783549,
+    "apiRssBytes": 131547136,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 0,
+    "poolWaitingSampleRate": 0,
+    "acquireP95Ms": 0.005625000000236469,
+    "acquireP99Ms": 0.0104159999998501,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0.5059132720105125,
+      "lockWaitingSampleRate": 0.9705882352941176,
+      "maxLockWaiting": 13,
+      "events": {
+        "transactionid": 167,
+        "tuple": 218
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 385
+      },
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.2000830000033602,
+        "p95Ms": 1.6596669999998994,
+        "p99Ms": 2.196250000000873,
+        "maxMs": 2.196250000000873
+      }
+    },
+    "resources": {
+      "cpuMs": 5340,
+      "elapsedMs": 3376.331707999998,
+      "cpuOneCorePercent": 158.15981549879172,
+      "maxAggregateRssBytes": 737607680,
+      "maxProcesses": 41,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "24a426b399da1e9e40d48d18082399e13b6a1aedd9dc83cc5e2837cebeaa73cf"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 10,
+    "concurrency": 30,
+    "repeat": 3,
+    "position": 3,
+    "caseId": "B-p10-c30-r3",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3414.6733750000058,
+    "rps": 3514.2453412546315,
+    "successfulRps": 3514.2453412546315,
+    "errorRate": 0,
+    "p50Ms": 8.07941700000083,
+    "p95Ms": 9.704540999999153,
+    "p99Ms": 27.137915999999677,
+    "workItemsPerSecond": 3514.2453412546315,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3414.6733750000058,
+        "rps": 3514.2453412546315,
+        "successfulRps": 3514.2453412546315,
+        "errorRate": 0,
+        "p50Ms": 8.07941700000083,
+        "p95Ms": 9.704540999999153,
+        "p99Ms": 27.137915999999677
+      }
+    },
+    "cpuOneCorePercent": 105.07030118805655,
+    "generatorCpuOneCorePercent": 22.569859994295904,
+    "apiRssBytes": 130875392,
+    "poolMaxUsed": 10,
+    "poolMaxWaiting": 20,
+    "poolWaitingSampleRate": 0.9826589595375722,
+    "acquireP95Ms": 3.3440410000002885,
+    "acquireP99Ms": 7.6915829999998095,
+    "postgres": {
+      "sampleCount": 35,
+      "lockWaitingBackendFraction": 0.004032258064516129,
+      "lockWaitingSampleRate": 0.02857142857142857,
+      "maxLockWaiting": 1,
+      "events": {
+        "transactionid": 1
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 1
+      },
+      "observerQueryMs": {
+        "count": 35,
+        "p50Ms": 0.9931659999929252,
+        "p95Ms": 1.964958000004117,
+        "p99Ms": 3.9940409999981057,
+        "maxMs": 3.9940409999981057
+      }
+    },
+    "resources": {
+      "cpuMs": 4670,
+      "elapsedMs": 3492.071916000001,
+      "cpuOneCorePercent": 133.73149558011562,
+      "maxAggregateRssBytes": 305594368,
+      "maxProcesses": 21,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "8a21f0c1a616a421d90575644791acbf8397add8a3c2e556c2da093958643214"
+  },
+  {
+    "scenario": "B",
+    "poolMax": 30,
+    "concurrency": 60,
+    "repeat": 3,
+    "position": 4,
+    "caseId": "B-p30-c60-r3",
+    "requests": 12000,
+    "errors": 0,
+    "elapsedMs": 3316.4150420000005,
+    "rps": 3618.3649657924807,
+    "successfulRps": 3618.3649657924807,
+    "errorRate": 0,
+    "p50Ms": 12.377459000003,
+    "p95Ms": 35.090166999994835,
+    "p99Ms": 51.45895900000323,
+    "workItemsPerSecond": 3618.3649657924807,
+    "operations": {
+      "execute": {
+        "requests": 12000,
+        "errors": 0,
+        "elapsedMs": 3316.4150420000005,
+        "rps": 3618.3649657924807,
+        "successfulRps": 3618.3649657924807,
+        "errorRate": 0,
+        "p50Ms": 12.377459000003,
+        "p95Ms": 35.090166999994835,
+        "p99Ms": 51.45895900000323
+      }
+    },
+    "cpuOneCorePercent": 107.7053105320415,
+    "generatorCpuOneCorePercent": 24.220430489773417,
+    "apiRssBytes": 133365760,
+    "poolMaxUsed": 30,
+    "poolMaxWaiting": 30,
+    "poolWaitingSampleRate": 0.9821428571428571,
+    "acquireP95Ms": 4.742124999999987,
+    "acquireP99Ms": 5.317416999999978,
+    "postgres": {
+      "sampleCount": 34,
+      "lockWaitingBackendFraction": 0.6022598870056497,
+      "lockWaitingSampleRate": 0.9705882352941176,
+      "maxLockWaiting": 18,
+      "events": {
+        "transactionid": 172,
+        "tuple": 361
+      },
+      "queries": {
+        "SELECT * FROM campaigns WHERE id=$1 AND owner_id=$2 FOR UPDATE": 533
+      },
+      "observerQueryMs": {
+        "count": 34,
+        "p50Ms": 1.2557080000042333,
+        "p95Ms": 1.5658329999932903,
+        "p99Ms": 2.213207999993756,
+        "maxMs": 2.213207999993756
+      }
+    },
+    "resources": {
+      "cpuMs": 5500,
+      "elapsedMs": 3378.586374999999,
+      "cpuOneCorePercent": 162.78997750945473,
+      "maxAggregateRssBytes": 752287744,
+      "maxProcesses": 42,
+      "externalActiveObservations": 0
+    },
+    "invariant": {
+      "consistent": true,
+      "campaigns": 10,
+      "totals": {
+        "spent": 14000,
+        "records": 14000,
+        "approved": 14000,
+        "prepared": 0,
+        "rejected": 0
+      },
+      "perCampaign": [
+        {
+          "id": "1",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "2",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "3",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "4",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "5",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "6",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "7",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "8",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "9",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        },
+        {
+          "id": "10",
+          "spent_amount": "1400",
+          "ledger": "1400",
+          "records": 1400,
+          "approved": 1400,
+          "prepared": 0,
+          "rejected": 0
+        }
+      ]
+    },
+    "rawSha256": "ce296cacc9643ddf0fd6c82557007fdf94d65ac5c241dbfae790a88b2803a5f5"
+  }
+]
