@@ -12,9 +12,13 @@ async function navigate(): Promise<void> {
     const controller = new AbortController();
     current = controller;
     const route = location.hash.slice(1) || '/campaigns', api = createApi('', controller.signal);
-    if (['/login', '/signup', '/admin/login'].includes(route)) {
+    if (route === '/admin/login') {
+        location.hash = '#/login';
+        return;
+    }
+    if (['/login', '/signup'].includes(route)) {
         const host = layout(root, '');
-        authPage(host, api, route === '/signup' ? 'signup' : route === '/admin/login' ? 'admin' : 'advertiser');
+        authPage(host, api, route === '/signup' ? 'signup' : 'login');
         return;
     }
     root.replaceChildren(el('p', '불러오는 중', 'loading'));
@@ -38,7 +42,7 @@ async function navigate(): Promise<void> {
         if (controller.signal.aborted)
             return;
         if (error instanceof ClientError && error.status === 401) {
-            location.hash = route.startsWith('/admin/') ? '#/admin/login' : '#/login';
+            location.hash = '#/login';
             return;
         }
         const host = layout(root, '화면을 불러오지 못했습니다.');

@@ -1,6 +1,6 @@
 import { createHash, randomBytes } from 'node:crypto';
 import type { Pool } from 'pg';
-import type { AuthDto, Role } from '../../contracts/auth.js';
+import type { AuthDto } from '../../contracts/auth.js';
 import { ApiError } from '../http/errors.js';
 import { bodyFields, parseName } from '../http/input.js';
 import { findMember, insertMember, memberDto } from './member-repository.js';
@@ -42,17 +42,12 @@ export function createAuthService(pool: Pool) {
             token: string;
             auth: AuthDto;
         }> {
-            const fields = bodyFields(input, ['email', 'password', 'portal']);
+            const fields = bodyFields(input, ['email', 'password']);
             const address = email(fields.email), secret = password(fields.password);
-            if (fields.portal !== 'advertiser' && fields.portal !== 'admin')
-                throw new ApiError(400, 'INVALID_PORTAL', '로그인 경로를 확인해 주세요.');
-            const expectedRole: Role = fields.portal === 'admin' ? 'ADMIN' : 'ADVERTISER';
             const member = await findMember(pool, address);
             const verified = await verifyPassword(secret, member?.password_hash ?? dummyHash);
             if (!member || !verified)
                 throw new ApiError(401, 'INVALID_CREDENTIALS', '이메일 또는 비밀번호가 올바르지 않습니다.');
-            if (member.role !== expectedRole)
-                throw new ApiError(403, 'WRONG_PORTAL', '계정 역할에 맞는 로그인 화면을 이용해 주세요.');
             const createdAt = new Date(), expiresAt = new Date(createdAt.getTime() + SESSION_MS);
             for (let attempt = 0; attempt < 3; attempt++) {
                 const token = randomBytes(32).toString('base64url'), csrfToken = randomBytes(32).toString('base64url');

@@ -1,7 +1,7 @@
 import type { AuthDto } from '../contracts/auth.js';
 import type { Api } from './api.js';
 import { button, el, errorText, field, input, link, message } from './dom.js';
-export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'advertiser' | 'admin'): void {
+export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'login'): void {
     const signup = mode === 'signup', form = el('form', '', 'card auth-card');
     const email = input('email', 'email');
     email.autocomplete = 'username';
@@ -12,7 +12,7 @@ export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'advertis
     const name = input('text', 'displayName');
     name.maxLength = 100;
     name.autocomplete = 'name';
-    form.append(el('h1', signup ? '회원가입' : mode === 'admin' ? '관리자 로그인' : '광고주 로그인'));
+    form.append(el('h1', signup ? '회원가입' : '로그인'));
     if (signup)
         form.append(field('이름', name));
     form.append(field('이메일', email), field('비밀번호', password));
@@ -31,7 +31,7 @@ export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'advertis
                 location.hash = '#/login';
             }
             else {
-                const auth = await api.request<AuthDto>('POST', '/auth/login', { email: email.value, password: password.value, portal: mode });
+                const auth = await api.request<AuthDto>('POST', '/auth/login', { email: email.value, password: password.value });
                 location.hash = auth.member.role === 'ADMIN' ? '#/admin/campaigns' : '#/campaigns';
             }
         }
@@ -43,7 +43,6 @@ export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'advertis
         }
     });
     const links = el('nav', '', 'auth-links');
-    if (mode !== 'advertiser') links.append(link('광고주 로그인', '#/login'));
-    if (mode === 'advertiser') links.append(link('회원가입', '#/signup'), link('관리자 로그인', '#/admin/login'));
+    links.append(signup ? link('로그인', '#/login') : link('회원가입', '#/signup'));
     host.append(form, links);
 }

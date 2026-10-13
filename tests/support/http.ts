@@ -30,8 +30,8 @@ export async function createHttpFixture() {
     async function signup(email = 'a@example.test', name = 'Advertiser A') {
         return request('POST', '/api/auth/signup', { email, password: TEST_PASSWORD, displayName: name });
     }
-    async function login(email = 'a@example.test', portal = 'advertiser') {
-        return request<AuthDto>('POST', '/api/auth/login', { email, password: TEST_PASSWORD, portal });
+    async function login(email = 'a@example.test') {
+        return request<AuthDto>('POST', '/api/auth/login', { email, password: TEST_PASSWORD });
     }
     return { ...fixture, server, url, request, signup, login, async close() {
             server.closeAllConnections();

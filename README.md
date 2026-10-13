@@ -29,13 +29,13 @@ npm start
 
 ## 시연 계정
 
-기본 `DEMO_PASSWORD`는 `Demo-Campaign-2026!`입니다. 가상 광고주와 캠페인으로 시연합니다.
+기본 `DEMO_PASSWORD`는 `Demo-Campaign-2026!`입니다. 가상 광고주와 캠페인으로 시연합니다. 모든 계정은 [로그인](http://localhost:3000/#/login) 화면을 사용하며 DB의 역할에 따라 캠페인 또는 관리자 목록으로 이동합니다.
 
-| 진입 화면 | 이메일 | 역할 |
+| 이메일 | 계정 | 역할 |
 | --- | --- | --- |
-| 광고주 로그인 | advertiser-a@example.test | 모노픽셀 |
-| 광고주 로그인 | advertiser-b@example.test | 누크리빙 |
-| 관리자 로그인 | admin@example.test | 관리자 (조회 전용) |
+| advertiser-a@example.test | 모노픽셀 | 광고주 |
+| advertiser-b@example.test | 누크리빙 | 광고주 |
+| admin@example.test | 관리자 | 관리자 (조회 전용) |
 
 회원가입으로 광고주 계정을 만들 수 있으며 비밀번호는 15~128자입니다. 관리자 계정은 시드로 준비합니다. `db:seed`는 기존 계정과 캠페인을 유지하면서 시연 데이터를 추가하고 이름을 갱신합니다.
 
