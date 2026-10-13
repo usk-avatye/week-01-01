@@ -12,13 +12,9 @@ async function navigate(): Promise<void> {
     const controller = new AbortController();
     current = controller;
     const route = location.hash.slice(1) || '/campaigns', api = createApi('', controller.signal);
+    const authRoute = route === '/login' || route === '/signup';
     if (route === '/admin/login') {
-        location.hash = '#/login';
-        return;
-    }
-    if (['/login', '/signup'].includes(route)) {
-        const host = layout(root, '');
-        authPage(host, api, route === '/signup' ? 'signup' : 'login');
+        location.replace('#/login');
         return;
     }
     root.replaceChildren(el('p', '불러오는 중', 'loading'));
@@ -27,8 +23,8 @@ async function navigate(): Promise<void> {
         if (controller.signal.aborted)
             return;
         const admin = auth.member.role === 'ADMIN', base = admin ? '/admin/campaigns' : '/campaigns';
-        if (!route.startsWith(base) || (route !== base && !new RegExp(`^${base}/[1-9]\\d{0,18}$`).test(route))) {
-            location.hash = '#' + base;
+        if (authRoute || !route.startsWith(base) || (route !== base && !new RegExp(`^${base}/[1-9]\\d{0,18}$`).test(route))) {
+            location.replace('#' + base);
             return;
         }
         const context = { member: auth.member, api: createApi(auth.csrfToken, controller.signal), signal: controller.signal };
@@ -42,7 +38,11 @@ async function navigate(): Promise<void> {
         if (controller.signal.aborted)
             return;
         if (error instanceof ClientError && error.status === 401) {
-            location.hash = '#/login';
+            if (authRoute) {
+                const host = layout(root, '');
+                authPage(host, api, route === '/signup' ? 'signup' : 'login');
+            }
+            else location.replace('#/login');
             return;
         }
         const host = layout(root, '화면을 불러오지 못했습니다.');

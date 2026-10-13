@@ -28,11 +28,11 @@ export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'login'):
             if (signup) {
                 await api.request('POST', '/auth/signup', { email: email.value, password: password.value, displayName: name.value });
                 message(notice, '가입되었습니다. 로그인 화면으로 이동합니다.');
-                location.hash = '#/login';
+                location.replace('#/login');
             }
             else {
                 const auth = await api.request<AuthDto>('POST', '/auth/login', { email: email.value, password: password.value });
-                location.hash = auth.member.role === 'ADMIN' ? '#/admin/campaigns' : '#/campaigns';
+                location.replace(auth.member.role === 'ADMIN' ? '#/admin/campaigns' : '#/campaigns');
             }
         }
         catch (error) {

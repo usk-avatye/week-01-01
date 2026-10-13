@@ -38,6 +38,7 @@ for (const [role, destination] of [['ADVERTISER', '#/campaigns'], ['ADMIN', '#/a
             await new Promise(resolve => setTimeout(resolve, 5));
         }
         assert.equal(dom.window.location.hash, destination);
+        assert.equal(dom.window.history.length, 1, 'successful login replaces the login history entry');
         assert.equal((await f.pool.query('SELECT * FROM sessions')).rowCount, 1);
     });
 }

@@ -16,7 +16,7 @@ export function layout(root: HTMLElement, title: string, context?: PageContext):
             logout.disabled = true;
             try {
                 await context.api.request('POST', '/auth/logout', {});
-                location.hash = '#/login';
+                location.replace('#/login');
             }
             catch {
                 message(feedback, '로그아웃을 확인하지 못했습니다. 다시 시도해 주세요.', true);
