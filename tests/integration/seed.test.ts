@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { seedDemo } from '../../src/server/db/seed-demo.js';
+import { createFixture } from '../support/database.js';
+import { createExecutionService } from '../../src/server/executions/service.js';
+import { verifyPassword } from '../../src/server/auth/password.js';
+test('demo seed is repeatable without resetting roles, spend or request counters', async (t) => {
+    const f = await createFixture();
+    t.after(() => f.close());
+    await seedDemo(f.pool, 'Demo-Campaign-2026!');
+    const members = await f.pool.query('SELECT * FROM members ORDER BY email');
+    assert.equal(members.rowCount, 3);
+    assert.equal(members.rows.filter(m => m.role === 'ADMIN').length, 1);
+    assert.equal(await verifyPassword('Demo-Campaign-2026!', members.rows[0].password_hash), true);
+    const campaign = (await f.pool.query('SELECT * FROM campaigns ORDER BY id LIMIT 1')).rows[0];
+    await f.pool.query("UPDATE campaigns SET status='ACTIVE' WHERE id=$1", [campaign.id]);
+    const executions = createExecutionService(f.pool), prepared = await executions.prepare(campaign.owner_id, campaign.id);
+    await executions.execute(campaign.owner_id, campaign.id, prepared.requestId, 1000);
+    await seedDemo(f.pool, 'Demo-Campaign-2026!');
+    assert.equal((await f.pool.query('SELECT id FROM members')).rowCount, 3);
+    assert.equal((await f.pool.query('SELECT id FROM campaigns')).rowCount, 2);
+    const retained = (await f.pool.query('SELECT * FROM campaigns WHERE id=$1', [campaign.id])).rows[0];
+    assert.equal(retained.spent_amount, '1000');
+    assert.equal(retained.last_execution_no, '1');
+    assert.equal(retained.status, 'ACTIVE');
+});
+
+test('seed upgrades old display names without creating duplicate campaigns or resetting executions', async t => {
+    const f = await createFixture(); t.after(() => f.close());
+    await seedDemo(f.pool, 'Demo-Campaign-2026!');
+    const campaign = (await f.pool.query(`SELECT c.* FROM campaigns c JOIN members m ON m.id=c.owner_id WHERE m.email='advertiser-a@example.test'`)).rows[0];
+    const oldName = `신제품 런칭 ${String.fromCodePoint(0x00B7)} 예산 보호`;
+    await f.pool.query("UPDATE campaigns SET name=$2,status='ACTIVE' WHERE id=$1", [campaign.id, oldName]);
+    await f.pool.query('UPDATE members SET display_name=$2 WHERE id=$1', [campaign.owner_id, `광고주 ${String.fromCodePoint(0x00B7)} A`]);
+    const executions = createExecutionService(f.pool), prepared = await executions.prepare(campaign.owner_id, campaign.id);
+    const approved = await executions.execute(campaign.owner_id, campaign.id, prepared.requestId, 1000);
+    await seedDemo(f.pool, 'Demo-Campaign-2026!');
+    await seedDemo(f.pool, 'Demo-Campaign-2026!');
+    const retained = (await f.pool.query('SELECT * FROM campaigns WHERE id=$1', [campaign.id])).rows[0];
+    assert.equal(retained.name, '신제품 런칭');
+    assert.equal(retained.spent_amount, '1000'); assert.equal(retained.last_execution_no, '1'); assert.equal(retained.status, 'ACTIVE');
+    assert.equal((await f.pool.query('SELECT id FROM campaigns')).rowCount, 2);
+    assert.equal((await f.pool.query('SELECT display_name FROM members WHERE id=$1', [campaign.owner_id])).rows[0].display_name, '광고주 A');
+    const replay = await executions.execute(campaign.owner_id, campaign.id, prepared.requestId, 1000);
+    assert.deepEqual(replay, approved);
+});

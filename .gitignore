@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/assets/
+.env
+.local/
+.superpowers/
+docs/
+*.log

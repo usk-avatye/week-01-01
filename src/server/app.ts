@@ -1,0 +1,31 @@
+import express from 'express';
+import { resolve } from 'node:path';
+import helmet from 'helmet';
+import type { Pool } from 'pg';
+import type { AppConfig } from './config.js';
+import { errorHandler, notFound } from './http/errors.js';
+import { protectApi } from './http/security.js';
+import { createAuthService } from './auth/service.js';
+import { createAuthRoutes } from './auth/routes.js';
+import { authenticateRequest, requireRole, requireCsrf } from './auth/middleware.js';
+import { createCampaignService } from './campaigns/service.js';
+import { createCampaignRoutes } from './campaigns/routes.js';
+import { createExecutionService } from './executions/service.js';
+import { createExecutionRoutes } from './executions/routes.js';
+import { createAdminQueries } from './admin/queries.js';
+import { createAdminRoutes } from './admin/routes.js';
+export function createApp(pool: Pool, config: AppConfig) {
+    const app = express();
+    app.disable('x-powered-by');
+    app.use(helmet({ contentSecurityPolicy: { directives: { upgradeInsecureRequests: config.secureCookies ? [] : null } } }));
+    app.use(express.json({ limit: '16kb' }));
+    app.use('/api', protectApi(config.origin));
+    const auth = createAuthService(pool);
+    app.use('/api/auth', createAuthRoutes(auth, config));
+    app.use('/api/campaigns', authenticateRequest(auth), requireRole('ADVERTISER'), requireCsrf, createCampaignRoutes(createCampaignService(pool)), createExecutionRoutes(createExecutionService(pool)));
+    app.use('/api/admin', authenticateRequest(auth), requireRole('ADMIN'), createAdminRoutes(createAdminQueries(pool)));
+    app.use(express.static(resolve('public')));
+    app.use((_req, _res, next) => next(notFound()));
+    app.use(errorHandler);
+    return app;
+}

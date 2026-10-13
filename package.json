@@ -1,0 +1,36 @@
+{
+  "name": "campaign-budget-guard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.20.2 <21" },
+  "scripts": {
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:client": "tsc -p tsconfig.client.json",
+    "build": "npm run build:server && npm run build:client",
+    "start": "node --env-file=.env dist/src/server/start.js",
+    "dev": "npm run build && npm start",
+    "db:start": "node --import tsx --env-file=.env scripts/database.ts",
+    "db:migrate": "node --import tsx --env-file=.env scripts/migrate.ts",
+    "db:seed": "node --import tsx --env-file=.env scripts/seed.ts",
+    "test:unit": "node --import tsx --test tests/unit/*.test.ts",
+    "test:integration": "node --import tsx --env-file=.env --test --test-concurrency=1 tests/integration/*.test.ts",
+    "test": "node --import tsx --env-file=.env --test --test-concurrency=1 tests/unit/*.test.ts tests/integration/*.test.ts"
+  },
+  "dependencies": {
+    "cookie": "^1.0.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^20.19.0",
+    "@types/pg": "^8.15.5",
+    "embedded-postgres": "18.4.0-beta.17",
+    "jsdom": "^26.1.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3"
+  }
+}
