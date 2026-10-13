@@ -2,7 +2,10 @@ import { createApp } from '../dist/src/server/app.js';
 import { createPerformanceFixture, setupWorkload, validateWorkload } from './fixture.mjs';
 import { instrumentPool } from './telemetry.mjs';
 
-const fixture = await createPerformanceFixture();
+const maxIndex = process.argv.indexOf('--pool-max');
+const poolMax = maxIndex === -1 ? undefined : Number(process.argv[maxIndex + 1]);
+if (poolMax !== undefined && ![10, 30, 60].includes(poolMax)) throw new Error('Experiment pool max must be 10, 30 or 60');
+const fixture = await createPerformanceFixture({ poolMax });
 const metrics = instrumentPool(fixture.pool);
 const port = Number(process.env.PERF_PORT ?? 3101);
 const url = `http://127.0.0.1:${port}`;

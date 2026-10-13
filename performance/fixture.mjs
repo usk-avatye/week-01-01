@@ -8,7 +8,7 @@ export function requireTestDatabase(value) {
     if (!value || !new URL(value).pathname.endsWith('_test')) throw new Error('TEST_DATABASE_URL must end in _test');
     return value;
 }
-export async function createPerformanceFixture() {
+export async function createPerformanceFixture({ poolMax = 30 } = {}) {
     const base = requireTestDatabase(process.env.TEST_DATABASE_URL);
     const schema = `perf_${randomBytes(8).toString('hex')}`;
     const applicationName = `guard_${schema}`;
@@ -17,7 +17,7 @@ export async function createPerformanceFixture() {
     const scoped = new URL(base);
     scoped.searchParams.set('options', `-c search_path=${schema}`);
     scoped.searchParams.set('application_name', applicationName);
-    const pool = createDatabasePool(scoped.toString());
+    const pool = createDatabasePool(scoped.toString(), poolMax);
     const observerUrl = new URL(scoped);
     observerUrl.searchParams.set('application_name', `observer_${schema}`);
     const observer = new pg.Pool({ connectionString: observerUrl.toString(), max: 1 });

@@ -1,6 +1,6 @@
 # 성능 검증 재현
 
-Node.js 20.20.2와 PostgreSQL 18.4를 사용한다. API 연결 풀의 최대 연결은 30개다. `.env`의 `TEST_DATABASE_URL`은 이름이 `_test`로 끝나는 DB를 가리킨다. 각 실행은 이 DB에 새 임시 스키마를 만들고 종료 시 정리한다.
+Node.js 20.20.2와 PostgreSQL 18.4를 사용한다. 서비스 API의 기본 풀 크기는 10이다. 기존 A~D 측정 도구는 이전 비교를 재현하도록 최대 연결 30개를 사용한다. `.env`의 `TEST_DATABASE_URL`은 이름이 `_test`로 끝나는 DB를 가리킨다. 각 실행은 이 DB에 새 임시 스키마를 만들고 종료 시 정리한다.
 
 ## 실행
 
@@ -95,3 +95,23 @@ node performance/analyze.mjs reproduction-confirm-base-d30 reproduction-confirm-
 ```
 
 세 번째 인자는 새 결과 접두사다. 다시 측정할 때는 새 접두사를 사용한다.
+
+## Connection Pool Size Experiment
+
+시연 API를 Ctrl+C로 중지한 뒤 저장소 루트에서 실행한다. PostgreSQL은 계속 실행한다.
+
+```sh
+npm run build
+mkdir -p performance/results/pool-repro/verification
+node --env-file=.env performance/audit-real-data.mjs before performance/results/pool-repro/verification
+node --env-file=.env performance/pool-runner.mjs --label pool-repro
+node performance/pool-analyze.mjs pool-repro
+node --env-file=.env performance/audit-real-data.mjs after performance/results/pool-repro/verification
+npm start
+```
+
+풀 전용 실행기는 max 10, 30, 60을 명시해 C와 D의 동시성 60을 비교한다. 조건마다 새 API와 임시 스키마를 사용하며 2,000작업 워밍업 뒤 12,000작업을 3회 측정한다. D는 작업당 준비와 집행 두 HTTP 요청이다. 교차 순서는 `pool-protocol.mjs`에 고정돼 있다. 실행 중 API, DB, 빌드와 측정 도구 파일의 해시를 확인한다. 출력 레이블은 실행마다 새 이름을 사용한다.
+
+`results/pool-size-experiment/`에 실제 측정 18개 원본 gzip, 환경과 순서 manifest, index, summary JSON/CSV, max30 대비 comparison과 검증 로그를 보존했다. 분석기는 원본 SHA-256과 요청별 지연, 연결 획득 시간, 풀 샘플, PID별 CPU 및 정합성 결과를 다시 계산한다. `results/pool-harness-smoke/`는 작은 작업량으로 실행기를 점검한 결과다.
+
+DB 자원 관찰은 같은 호스트의 PostgreSQL에 접속해 250ms마다 `/bin/ps`를 실행한다. CPU는 프로세스 누적 CPU 시간 차이이며 100%는 한 코어다. DB에는 관찰 연결과 백그라운드 프로세스를 포함한다. RSS 합계에는 프로세스 간 공유 페이지가 중복될 수 있다. API RSS는 측정 종료 시점 값이다. DB CPU 관찰 구간과 HTTP 측정 구간의 길이는 각각 원본에 저장한다.

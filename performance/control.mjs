@@ -2,8 +2,9 @@ import { fork } from 'node:child_process';
 import { once } from 'node:events';
 import { fileURLToPath } from 'node:url';
 
-export async function startServer() {
-    const child = fork(fileURLToPath(new URL('./server.mjs', import.meta.url)), [], { execArgv: [], stdio: ['ignore', 'pipe', 'pipe', 'ipc'] });
+export async function startServer({ poolMax } = {}) {
+    const args = poolMax === undefined ? [] : ['--pool-max', String(poolMax)];
+    const child = fork(fileURLToPath(new URL('./server.mjs', import.meta.url)), args, { execArgv: [], stdio: ['ignore', 'pipe', 'pipe', 'ipc'] });
     const logs = [], pending = new Map();
     let number = 0;
     child.stdout.on('data', data => logs.push(String(data)));

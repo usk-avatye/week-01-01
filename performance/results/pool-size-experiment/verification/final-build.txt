@@ -1,0 +1,12 @@
+
+> campaign-budget-guard@0.1.0 build
+> npm run build:server && npm run build:client
+
+
+> campaign-budget-guard@0.1.0 build:server
+> tsc -p tsconfig.server.json
+
+
+> campaign-budget-guard@0.1.0 build:client
+> tsc -p tsconfig.client.json
+

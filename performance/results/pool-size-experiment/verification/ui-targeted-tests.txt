@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: finalized history shows approved and rejected results without execution actions
+ok 1 - finalized history shows approved and rejected results without execution actions
+  ---
+  duration_ms: 530.818792
+  ...
+# Subtest: unused preparations stay selectable alongside read-only finalized history
+ok 2 - unused preparations stay selectable alongside read-only finalized history
+  ---
+  duration_ms: 459.969875
+  ...
+# Subtest: one submit prepares internally and persists the number and amount before sending
+ok 3 - one submit prepares internally and persists the number and amount before sending
+  ---
+  duration_ms: 56.228458
+  ...
+# Subtest: submitting again during preparation cannot start a second execution
+ok 4 - submitting again during preparation cannot start a second execution
+  ---
+  duration_ms: 12.553292
+  ...
+# Subtest: a lost execution response survives reload and resends the saved number and amount
+ok 5 - a lost execution response survives reload and resends the saved number and amount
+  ---
+  duration_ms: 17.414834
+  ...
+# Subtest: result confirmation keeps unresolved controls until the saved request is finalized
+ok 6 - result confirmation keeps unresolved controls until the saved request is finalized
+  ---
+  duration_ms: 16.741375
+  ...
+# Subtest: terminal confirmation hides recovery controls while campaign and history refresh is delayed
+ok 7 - terminal confirmation hides recovery controls while campaign and history refresh is delayed
+  ---
+  duration_ms: 14.503083
+  ...
+# Subtest: a failed preparation leaves a retryable form and sends no execution
+ok 8 - a failed preparation leaves a retryable form and sends no execution
+  ---
+  duration_ms: 10.920167
+  ...
+# Subtest: invalid amounts are rejected before requesting a number
+ok 9 - invalid amounts are rejected before requesting a number
+  ---
+  duration_ms: 21.887875
+  ...
+# Subtest: storage failure prevents sending an execution after preparing a number
+ok 10 - storage failure prevents sending an execution after preparing a number
+  ---
+  duration_ms: 10.492042
+  ...
+# Subtest: another tab selecting a request during preparation keeps its number intact
+ok 11 - another tab selecting a request during preparation keeps its number intact
+  ---
+  duration_ms: 15.423
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2013.731125

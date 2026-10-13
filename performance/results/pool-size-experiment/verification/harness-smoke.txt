@@ -1,0 +1,12 @@
+{"event":"start","label":"pool-harness-smoke","scenario":"C","poolMax":10,"concurrency":60,"repeat":1,"position":1,"caseId":"C-p10-c60-r1","at":"2026-10-13T12:50:31.616Z"}
+{"event":"done","caseId":"C-p10-c60-r1","rps":2485.5813497220397,"p95Ms":30.756459000000063,"p99Ms":34.79995800000006,"errors":0,"poolWaiting":50,"acquireP95Ms":15.756167000000005,"lockFraction":0,"dbCpu":36.896001048141606}
+{"event":"start","label":"pool-harness-smoke","scenario":"D","poolMax":30,"concurrency":60,"repeat":1,"position":2,"caseId":"D-p30-c60-r1","at":"2026-10-13T12:50:32.330Z"}
+{"event":"done","caseId":"D-p30-c60-r1","rps":1822.9501770904951,"p95Ms":61.846958000000086,"p99Ms":71.6812080000002,"errors":0,"poolWaiting":30,"acquireP95Ms":11.233165999999983,"lockFraction":0.9310344827586207,"dbCpu":6.496514822813648}
+{"event":"start","label":"pool-harness-smoke","scenario":"C","poolMax":60,"concurrency":60,"repeat":1,"position":3,"caseId":"C-p60-c60-r1","at":"2026-10-13T12:50:33.310Z"}
+{"event":"done","caseId":"C-p60-c60-r1","rps":2340.0504959496516,"p95Ms":32.33512500000006,"p99Ms":69.20079200000009,"errors":0,"poolWaiting":0,"acquireP95Ms":0.023250000000075488,"lockFraction":0,"dbCpu":443.13380136643144}
+{"event":"start","label":"pool-harness-smoke","scenario":"D","poolMax":10,"concurrency":60,"repeat":1,"position":4,"caseId":"D-p10-c60-r1","at":"2026-10-13T12:50:34.076Z"}
+{"event":"done","caseId":"D-p10-c60-r1","rps":1922.3328508758434,"p95Ms":39.29320800000005,"p99Ms":47.00033399999984,"errors":0,"poolWaiting":50,"acquireP95Ms":22.559499999999957,"lockFraction":0.8181818181818182,"dbCpu":53.22007662365371}
+{"event":"start","label":"pool-harness-smoke","scenario":"C","poolMax":30,"concurrency":60,"repeat":1,"position":5,"caseId":"C-p30-c60-r1","at":"2026-10-13T12:50:34.935Z"}
+{"event":"done","caseId":"C-p30-c60-r1","rps":2665.7484644178044,"p95Ms":28.088999999999942,"p99Ms":33.66333299999951,"errors":0,"poolWaiting":21,"acquireP95Ms":6.520709000000011,"lockFraction":0,"dbCpu":265.81666441333596}
+{"event":"start","label":"pool-harness-smoke","scenario":"D","poolMax":60,"concurrency":60,"repeat":1,"position":6,"caseId":"D-p60-c60-r1","at":"2026-10-13T12:50:35.627Z"}
+{"event":"done","caseId":"D-p60-c60-r1","rps":1784.1975850142248,"p95Ms":126.51487500000076,"p99Ms":165.74554200000057,"errors":0,"poolWaiting":0,"acquireP95Ms":0.015042000000107691,"lockFraction":0.9047619047619048,"dbCpu":148.24267971202264}

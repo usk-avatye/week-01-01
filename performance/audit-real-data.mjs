@@ -4,6 +4,7 @@ import pg from 'pg';
 
 const label = process.argv[2];
 assert.ok(['before', 'after'].includes(label));
+const output = process.argv[3] ?? 'performance/results/verification';
 const client = new pg.Client({ connectionString: process.env.DATABASE_URL });
 try {
     await client.connect(); await client.query('BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY');
@@ -14,6 +15,6 @@ try {
             FROM public.${table} t`)).rows[0];
     }
     await client.query('COMMIT');
-    await writeFile(`performance/results/verification/real-data-${label}.json`, JSON.stringify({ at: new Date().toISOString(), readOnly: true, tables }, null, 2) + '\n');
+    await writeFile(`${output}/real-data-${label}.json`, JSON.stringify({ at: new Date().toISOString(), readOnly: true, tables }, null, 2) + '\n');
     console.log(JSON.stringify({ label, tables }));
 } finally { await client.end(); }

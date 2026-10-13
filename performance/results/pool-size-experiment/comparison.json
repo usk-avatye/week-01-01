@@ -1,0 +1,149 @@
+{
+  "baselinePoolMax": 30,
+  "comparisons": [
+    {
+      "scenario": "C",
+      "concurrency": 60,
+      "rpsChangePercent": 0.4733621705860447,
+      "p95ChangePercent": 0.24835358154131626,
+      "p99ChangePercent": -0.20778907440154315,
+      "baselinePoolMax": 30,
+      "poolMax": 10,
+      "executeP95ChangePercent": null,
+      "executeP99ChangePercent": null,
+      "prepareP95ChangePercent": 0.24835358154131626,
+      "prepareP99ChangePercent": -0.20778907440154315,
+      "dbCpuChangePercent": -14.761846743685025,
+      "dbAggregateRssPeakChangePercent": -60.54544420891909,
+      "rpsRangesOverlap": true,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": -0.3277480736703198,
+          "executeP95ChangePercent": null,
+          "executeP99ChangePercent": null
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": 1.3277329466469423,
+          "executeP95ChangePercent": null,
+          "executeP99ChangePercent": null
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": 0.44364928514464275,
+          "executeP95ChangePercent": null,
+          "executeP99ChangePercent": null
+        }
+      ]
+    },
+    {
+      "scenario": "C",
+      "concurrency": 60,
+      "rpsChangePercent": 2.1413467605849057,
+      "p95ChangePercent": 4.836492110092072,
+      "p99ChangePercent": 3.2118751072356844,
+      "baselinePoolMax": 30,
+      "poolMax": 60,
+      "executeP95ChangePercent": null,
+      "executeP99ChangePercent": null,
+      "prepareP95ChangePercent": 4.836492110092072,
+      "prepareP99ChangePercent": 3.2118751072356844,
+      "dbCpuChangePercent": 4.957899192061865,
+      "dbAggregateRssPeakChangePercent": 84.26040981409741,
+      "rpsRangesOverlap": true,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 1.2915855390499553,
+          "executeP95ChangePercent": null,
+          "executeP99ChangePercent": null
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": 2.679866383380669,
+          "executeP95ChangePercent": null,
+          "executeP99ChangePercent": null
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": 2.4717513530736257,
+          "executeP95ChangePercent": null,
+          "executeP99ChangePercent": null
+        }
+      ]
+    },
+    {
+      "scenario": "D",
+      "concurrency": 60,
+      "rpsChangePercent": 8.53650195637381,
+      "p95ChangePercent": -37.17846455490176,
+      "p99ChangePercent": -36.716429061570246,
+      "baselinePoolMax": 30,
+      "poolMax": 10,
+      "executeP95ChangePercent": -37.50609153665692,
+      "executeP99ChangePercent": -35.773129352392694,
+      "prepareP95ChangePercent": 30.811604616155776,
+      "prepareP99ChangePercent": 26.70707954822198,
+      "dbCpuChangePercent": -17.183607401535504,
+      "dbAggregateRssPeakChangePercent": -58.94152114637118,
+      "rpsRangesOverlap": true,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 0.274205323235055,
+          "executeP95ChangePercent": -35.63770597826688,
+          "executeP99ChangePercent": -35.773129352392694
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": 6.1412779279412355,
+          "executeP95ChangePercent": -38.60069873334654,
+          "executeP99ChangePercent": -38.13934366145383
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": 21.63683651379491,
+          "executeP95ChangePercent": -44.73522741549171,
+          "executeP99ChangePercent": -84.05959920945457
+        }
+      ]
+    },
+    {
+      "scenario": "D",
+      "concurrency": 60,
+      "rpsChangePercent": -1.7345221769296426,
+      "p95ChangePercent": 157.11973386047276,
+      "p99ChangePercent": 305.7609812311431,
+      "baselinePoolMax": 30,
+      "poolMax": 60,
+      "executeP95ChangePercent": 220.94260145896888,
+      "executeP99ChangePercent": 355.21130735535655,
+      "prepareP95ChangePercent": -66.67716956284886,
+      "prepareP99ChangePercent": -43.562725725556284,
+      "dbCpuChangePercent": 44.196536243858866,
+      "dbAggregateRssPeakChangePercent": 86.9619133259848,
+      "rpsRangesOverlap": true,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": -9.30627875713842,
+          "executeP95ChangePercent": 230.5378490020122,
+          "executeP99ChangePercent": 352.95040326798767
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": -7.080510399093354,
+          "executeP95ChangePercent": 230.49351020767196,
+          "executeP99ChangePercent": 384.77836151965386
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": 14.008045567629889,
+          "executeP95ChangePercent": 166.84810450036215,
+          "executeP99ChangePercent": 0.24648571036589573
+        }
+      ]
+    }
+  ]
+}
