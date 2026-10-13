@@ -1,0 +1,77 @@
+{
+  "reportSnapshotCommit": "2c6dd9c98b79964860cdc00af1ebf6b1309f796d",
+  "oldReportSha256": "23febc0ec847b940668efec93bb339812212a99d2b49d83e0e5483463c9529d9",
+  "snapshot": "performance/results/report-history/FINAL_REPORT-2c6dd9c.md",
+  "reportSha256": "2a36281acfb82c6b0849030802062876ab701081f38f3d38b6c807a813565bfa",
+  "finalPoolMax": 10,
+  "primaryMetrics": {
+    "numberComparison": {
+      "scenario": "C",
+      "concurrency": 60,
+      "rpsChangePercent": 82.82210849777431,
+      "p95ChangePercent": -59.42268712182157,
+      "p99ChangePercent": -60.31435624318633,
+      "dbCpuChangePercent": 13.220566267829348,
+      "dbCpuPerPreparationChangePercent": -37.279411764705884,
+      "rpsRangesOverlap": false,
+      "paired": [
+        {
+          "repeat": 1,
+          "rpsChangePercent": 85.27623094839004,
+          "p95ChangePercent": -59.025902598990285,
+          "p99ChangePercent": -59.42404823663227
+        },
+        {
+          "repeat": 2,
+          "rpsChangePercent": 81.90001860176599,
+          "p95ChangePercent": -59.59819256252248,
+          "p99ChangePercent": -60.63595639524269
+        },
+        {
+          "repeat": 3,
+          "rpsChangePercent": 81.32124649207016,
+          "p95ChangePercent": -58.33625443220638,
+          "p99ChangePercent": -60.2152983386077
+        }
+      ]
+    },
+    "finalC": {
+      "source": "performance/results/preparations-pool10/summary.json",
+      "rps": 4426.9293101797275,
+      "p95Ms": 15.01845800000001,
+      "p99Ms": 17.027207999999973
+    },
+    "finalD": {
+      "source": "performance/results/pool-size-experiment/summary.json",
+      "rps": 2479.6227329756566,
+      "workItemsPerSecond": 1239.8113664878283,
+      "p95Ms": 29.31708300000173,
+      "p99Ms": 32.000708999999915,
+      "endpoints": {
+        "prepare": {
+          "p50Ms": 22.08862500000032,
+          "p95Ms": 25.943374999998923,
+          "p99Ms": 28.663042000000132
+        },
+        "execute": {
+          "p50Ms": 25.910500000001775,
+          "p95Ms": 30.304207999997743,
+          "p99Ms": 33.39433299999655
+        }
+      }
+    }
+  },
+  "reusedVerification": {
+    "serviceTests": 75,
+    "measurementTests": 12,
+    "counterTests": 9
+  },
+  "relativeLinksExist": true,
+  "containsMiddleDot": false,
+  "pool10Unmeasured": [
+    "A",
+    "B",
+    "C/D concurrency 1/10/30"
+  ],
+  "serviceCodeChanged": false
+}

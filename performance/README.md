@@ -2,6 +2,17 @@
 
 Node.js 20.20.2와 PostgreSQL 18.4를 사용한다. 서비스 API의 기본 풀 크기는 10이다. 기존 A~D 측정 도구는 이전 비교를 재현하도록 최대 연결 30개를 사용한다. `.env`의 `TEST_DATABASE_URL`은 이름이 `_test`로 끝나는 DB를 가리킨다. 각 실행은 이 DB에 새 임시 스키마를 만들고 종료 시 정리한다.
 
+## 최종 설정 측정 (Pool10)
+
+현재 API 빌드와 PostgreSQL을 준비한 뒤 저장소 루트에서 실행한다. C 번호 준비와 D 준비 후 집행을 동시성60으로 측정한다.
+
+```sh
+node --env-file=.env performance/pool-runner.mjs --label final-pool10-repro --pool-max 10
+node performance/pool-analyze.mjs final-pool10-repro
+```
+
+워밍업2,000작업 뒤12,000작업을3회 실행하며 실제 풀10을 확인한다. A/B와 다른 동시성의 기존 전체 측정은 아래 풀30 이력 재현 명령을 사용한다.
+
 ## 실행
 
 ```sh
@@ -23,7 +34,7 @@ node performance/analyze.mjs reproduction
 
 측정 중에는 부하 대상 API 하나를 실행한다. 도구가 포트 3101에서 API를 시작하고 종료한다. 포트 변경은 `PERF_PORT` 환경변수를 사용한다. 결과 레이블마다 새 출력 폴더를 만든다.
 
-## Baseline과 후보 비교
+## 이전 Baseline과 후보 비교 (Pool30)
 
 Baseline 코드는 `d8664e2b89873ed979acbb32b486c3d00571ef7c`다. 도구는 이전 캠페인 카운터와 SEQUENCE 구현을 모두 지원한다. 기존 PostgreSQL에 접속할 설정을 준비한 뒤 저장소 루트에서 아래 명령으로 Baseline을 재현한다.
 
@@ -50,7 +61,7 @@ node performance/analyze.mjs baseline-repro optimized-repro
 
 분석기는 원본 gzip의 SHA-256과 조합별 반복 수를 검증한다. 두 결과의 부하 조건, 실행 순서, 측정 도구 해시가 같아야 비교 파일을 생성한다.
 
-## 측정 조건
+## 이전 A~D 측정 조건 (Pool30)
 
 | 구분 | 조건 |
 | --- | --- |
