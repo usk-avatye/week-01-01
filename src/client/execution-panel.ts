@@ -19,7 +19,7 @@ export function renderExecutionPanel(host: HTMLElement, controller: ExecutionCon
     else if (state.pending.kind === 'empty') {
         const prepare = button('요청 번호 준비', () => controller.prepare());
         prepare.disabled = state.busy;
-        card.append(prepare, el('p', '준비에는 비용이 들지 않습니다.', 'muted'));
+        card.append(prepare);
     }
     else {
         const request = state.pending.request, unresolved = request.phase === 'UNRESOLVED';

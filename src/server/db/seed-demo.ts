@@ -2,10 +2,11 @@ import type { Pool } from 'pg';
 import { hashPassword } from '../auth/password.js';
 import { withTransaction } from './transaction.js';
 import { normalizeDemoText } from './normalize-demo-text.js';
+import { demoCampaigns, seedCampaigns } from './seed-campaigns.js';
 const accounts = [
-    { email: 'admin@example.test', name: '운영 관리자', role: 'ADMIN', campaign: null },
-    { email: 'advertiser-a@example.test', name: '광고주 A', role: 'ADVERTISER', campaign: '신제품 런칭' },
-    { email: 'advertiser-b@example.test', name: '광고주 B', role: 'ADVERTISER', campaign: '브랜드 인지도' },
+    { email: 'admin@example.test', name: '운영 관리자', role: 'ADMIN' },
+    { email: 'advertiser-a@example.test', name: '모노픽셀', role: 'ADVERTISER', previousName: '광고주 A' },
+    { email: 'advertiser-b@example.test', name: '누크리빙', role: 'ADVERTISER', previousName: '광고주 B' },
 ] as const;
 export async function seedDemo(pool: Pool, password: string): Promise<void> {
     if ([...password].length < 15 || [...password].length > 128 || Buffer.byteLength(password) > 1024)
@@ -22,9 +23,10 @@ export async function seedDemo(pool: Pool, password: string): Promise<void> {
             }>('SELECT id,role FROM members WHERE email=$1', [account.email])).rows[0]!;
             if (member.role !== account.role)
                 throw new Error('A demo email already belongs to another role; seed refuses to promote or replace it');
-            if (account.campaign)
-                await client.query(`INSERT INTO campaigns(owner_id,name,total_budget)
-        SELECT $1,$2,10000 WHERE NOT EXISTS(SELECT 1 FROM campaigns WHERE owner_id=$1 AND name=$2)`, [member.id, account.campaign]);
+            if ('previousName' in account) {
+                await client.query('UPDATE members SET display_name=$2 WHERE id=$1 AND display_name=$3', [member.id, account.name, account.previousName]);
+                await seedCampaigns(client, member.id, demoCampaigns[account.email]);
+            }
         }
     });
 }

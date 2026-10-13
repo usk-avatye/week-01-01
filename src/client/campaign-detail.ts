@@ -19,9 +19,11 @@ export async function campaignDetail(host: HTMLElement, context: PageContext, ca
         host.append(work);
     }
     host.append(records);
-    function display(value: CampaignDto) { if (context.signal.aborted)
-        return; summary.replaceChildren(campaignSummary(value)); if (!admin)
-        controls.replaceChildren(campaignControls(value, context, display)); }
+    function display(value: CampaignDto): void {
+        if (context.signal.aborted) return;
+        summary.replaceChildren(campaignSummary(value));
+        if (!admin) controls.replaceChildren(campaignControls(value, context, display));
+    }
     display(campaign);
     const controller = admin ? undefined : executionController(context, campaignId, localStorage, () => renderExecutionPanel(panel, controller!), async () => {
         const latest = await context.api.request<CampaignDto>('GET', path);
