@@ -8,3 +8,7 @@ docs/
 *.log
 tmp/
 /presentation.pdf
+/output/pdf/
+/presentation.html
+/PRESENTATION_*.md
+/DEMO_CUE.md
