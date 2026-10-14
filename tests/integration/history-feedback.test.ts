@@ -6,9 +6,9 @@ import { ClientError, type Api } from '../../src/client/api.js';
 import type { ExecutionDto } from '../../src/contracts/executions.js';
 import { createHttpFixture } from '../support/http.js';
 import { advertiser } from '../support/advertiser.js';
-import { setupCampaign } from '../support/campaign.js';
+import { prepare, setupCampaign } from '../support/campaign.js';
 
-async function historyFixture(t: TestContext) {
+async function historyFixture(t: TestContext, adopt?: (id: string) => Promise<void>) {
     const f = await createHttpFixture(); t.after(() => f.close());
     const client = await advertiser(f), { campaign, path } = await setupCampaign(client);
     for (const amount of [1000, 20000, 1000]) {
@@ -18,8 +18,6 @@ async function historyFixture(t: TestContext) {
     const dom = new JSDOM('<main></main>');
     const previous = Object.getOwnPropertyDescriptor(globalThis, 'document');
     Object.defineProperty(globalThis, 'document', { value: dom.window.document, configurable: true });
-    // JSDOM has no layout; visibility and scrolling are checked in Chrome.
-    dom.window.HTMLElement.prototype.scrollIntoView = () => {};
     t.after(() => {
         if (previous) Object.defineProperty(globalThis, 'document', previous);
         else Reflect.deleteProperty(globalThis, 'document');
@@ -32,67 +30,37 @@ async function historyFixture(t: TestContext) {
     } };
     const context = { member: client.member, api, signal: new AbortController().signal };
     const host = dom.window.document.querySelector('main')!;
-    await executionHistory(host, context, campaign.id).refresh();
-    const rows = [...host.querySelectorAll<HTMLTableRowElement>('tbody > tr')];
-    return { f, host, rows, context, campaign };
+    const history = executionHistory(host, context, campaign.id, false, adopt);
+    await history.refresh();
+    return { f, host, history, client, campaign, path };
 }
 
-async function settled(button: HTMLButtonElement): Promise<void> {
-    const deadline = Date.now() + 3000;
-    while (button.disabled) {
-        if (Date.now() >= deadline) throw new Error('Replay did not settle');
-        await new Promise(resolve => setTimeout(resolve, 5));
+test('finalized history shows approved and rejected results without execution actions', async t => {
+    const { f, host, campaign } = await historyFixture(t);
+    const table = host.querySelector('table')!;
+    const rows = [...table.querySelectorAll<HTMLTableRowElement>('tbody > tr')];
+    assert.equal(rows.length, 3);
+    assert.equal(table.querySelector('thead tr')!.children.length, 6);
+    for (const row of rows) {
+        assert.equal(row.children.length, 6);
+        assert.equal(row.querySelector('button'), null);
     }
-}
-
-test('approved and rejected replay results appear beside their triggering rows without changing spend', async t => {
-    const { f, host, rows, campaign } = await historyFixture(t);
-    const approved = rows[0]!.querySelector('button')!;
-    approved.click(); await settled(approved);
-    assert.match(rows[0]!.nextElementSibling?.textContent ?? '', /요청 #3: 승인/);
-    assert.equal(rows[0]!.nextElementSibling?.querySelector('td')?.colSpan, 7);
-    const rejected = rows[1]!.querySelector('button')!;
-    rejected.click(); await settled(rejected);
-    assert.match(rows[1]!.nextElementSibling?.textContent ?? '', /요청 #2: 거절/);
-    assert.match(rows[1]!.nextElementSibling?.textContent ?? '', /예산 부족/);
-    assert.equal(host.querySelectorAll('.receipt').length, 1, 'Only the latest replay result remains open');
+    assert.match(rows[0]!.textContent ?? '', /승인/);
+    assert.match(rows[1]!.textContent ?? '', /거절/);
+    assert.match(rows[1]!.textContent ?? '', /예산 부족/);
     assert.equal((await f.pool.query('SELECT spent_amount FROM campaigns WHERE id=$1', [campaign.id])).rows[0].spent_amount, '2000');
 });
 
-test('replay failure appears beside the triggering row and is replaced by a successful retry', async t => {
-    const { rows, context } = await historyFixture(t);
-    const request = context.api.request;
-    let unavailable = true;
-    context.api.request = async <T>(method: string, endpoint: string, body?: unknown): Promise<T> => {
-        if (method === 'POST' && unavailable) throw new Error('재전송 통신 오류');
-        return request<T>(method, endpoint, body);
-    };
-    const replay = rows[0]!.querySelector('button')!;
-    replay.click(); await settled(replay);
-    const alert = rows[0]!.nextElementSibling?.querySelector('[role="alert"]');
-    assert.equal(alert?.textContent, '재전송 통신 오류');
-    unavailable = false;
-    replay.click(); await settled(replay);
-    assert.equal(rows[0]!.nextElementSibling?.querySelector('[role="alert"]'), null);
-    assert.match(rows[0]!.nextElementSibling?.textContent ?? '', /요청 #3: 승인/);
-});
-
-test('a delayed earlier replay response cannot replace the latest selected row result', async t => {
-    const { host, rows, context } = await historyFixture(t);
-    const request = context.api.request;
-    let release!: () => void, reached!: () => void;
-    const hold = new Promise<void>(resolve => { release = resolve; });
-    const received = new Promise<void>(resolve => { reached = resolve; });
-    context.api.request = async <T>(method: string, endpoint: string, body?: unknown): Promise<T> => {
-        const reply = await request<T>(method, endpoint, body);
-        if (method === 'POST' && endpoint.endsWith('/executions/3')) { reached(); await hold; }
-        return reply;
-    };
-    const earlier = rows[0]!.querySelector('button')!, latest = rows[1]!.querySelector('button')!;
-    earlier.click(); await received;
-    latest.click(); await settled(latest);
-    release(); await settled(earlier);
-    assert.match(rows[1]!.nextElementSibling?.textContent ?? '', /요청 #2: 거절/);
-    assert.equal(host.querySelectorAll('.receipt').length, 1);
-    assert.doesNotMatch(host.querySelector('.receipt')?.textContent ?? '', /요청 #3/);
+test('unused preparations stay selectable alongside read-only finalized history', async t => {
+    const selected: string[] = [];
+    const { host, history, client, path } = await historyFixture(t, async id => { selected.push(id); });
+    const prepared = await prepare(client, path);
+    await history.refresh();
+    const sections = host.querySelectorAll('section');
+    const select = sections[1]!.querySelector('tbody button')! as HTMLButtonElement;
+    assert.ok(select);
+    select.click();
+    assert.deepEqual(selected, [prepared.requestId]);
+    assert.equal(sections[0]!.querySelector('tbody button'), null);
+    assert.equal(sections[0]!.querySelector('thead tr')!.children.length, 6);
 });

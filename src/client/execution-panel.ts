@@ -16,26 +16,24 @@ export function renderExecutionPanel(host: HTMLElement, controller: ExecutionCon
         acknowledge.addEventListener('change', () => { reset.disabled = !acknowledge.checked; });
         card.append(label, reset);
     }
-    else if (state.pending.kind === 'empty') {
-        const prepare = button('요청 번호 준비', () => controller.prepare());
-        prepare.disabled = state.busy;
-        card.append(prepare);
-    }
     else {
-        const request = state.pending.request, unresolved = request.phase === 'UNRESOLVED';
-        card.append(el('p', `요청 #${request.requestId}: ${unresolved ? '결과 미확정' : '준비 완료'}`, 'request-identity'));
-        const amount = amountInput('amount', request.amount ?? 1000);
+        const request = state.pending.kind === 'valid' ? state.pending.request : undefined, unresolved = request?.phase === 'UNRESOLVED';
+        if (unresolved)
+            card.append(el('p', `요청 #${request.requestId}: 결과 미확정`, 'request-identity'));
+        const amount = amountInput('amount', request?.amount ?? state.draftAmount);
         amount.disabled = state.busy || unresolved;
-        const form = el('form', '', 'inline-form'), submit = button(unresolved ? '같은 요청 재전송' : '집행 요청', () => { });
+        const form = el('form', '', 'inline-form'), submit = button(unresolved ? '다시 시도' : '집행 요청', () => { });
         submit.type = 'submit';
         submit.disabled = state.busy;
         form.append(field('집행 금액 (원)', amount), submit);
         form.addEventListener('submit', event => { event.preventDefault(); void controller.execute(request, unresolved ? request.amount! : Number(amount.value)); });
-        const query = button('결과 조회', () => controller.query(request), 'button subtle');
-        query.disabled = state.busy;
-        card.append(form, query);
-        if (unresolved)
-            card.append(el('p', '같은 번호와 금액으로 결과를 확인하세요.', 'muted'));
+        card.append(form);
+        if (unresolved) {
+            const query = button('결과 확인', () => controller.query(request), 'button subtle');
+            query.disabled = state.busy;
+            card.append(query);
+            card.append(el('p', '결과를 확인하거나 같은 요청으로 다시 시도하세요.', 'muted'));
+        }
     }
     if (state.receipt)
         card.append(executionReceipt(state.receipt));

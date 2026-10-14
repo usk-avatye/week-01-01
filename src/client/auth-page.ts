@@ -16,7 +16,7 @@ export function authPage(host: HTMLElement, api: Api, mode: 'signup' | 'login'):
     if (signup)
         form.append(field('이름', name));
     form.append(field('이메일', email), field('비밀번호', password));
-    if (signup) form.append(el('p', '비밀번호는 15~128자입니다.', 'muted'));
+    if (signup) form.append(el('p', '15자 이상 입력해주세요.', 'muted'));
     const notice = el('p', '', 'message'), submit = button(signup ? '가입하기' : '로그인', () => { });
     submit.type = 'submit';
     form.append(submit, notice);

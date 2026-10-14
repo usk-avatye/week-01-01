@@ -5,7 +5,7 @@ import { clearPending, discardCorruptPending, loadPending, savePending, type Pen
 import { errorText } from './dom.js';
 export function executionController(context: PageContext, campaignId: string, storage: Storage, changed: () => void, completed: () => Promise<void>) {
     const base = `/campaigns/${campaignId}`, memberId = context.member.id;
-    let busy = false, notice = '', error = false, receipt: ExecutionDto | undefined;
+    let busy = false, notice = '', error = false, draftAmount = 1000, receipt: ExecutionDto | undefined;
     const pending = () => loadPending(storage, memberId, campaignId);
     async function run(work: () => Promise<void>): Promise<void> {
         if (busy || context.signal.aborted)
@@ -45,18 +45,11 @@ export function executionController(context: PageContext, campaignId: string, st
         clearPending(storage, request);
         receipt = next.result;
         notice = '';
+        changed();
         await completed();
     }
     return {
-        snapshot: () => ({ pending: pending(), busy, notice, error, receipt }),
-        prepare: () => run(async () => {
-            if (pending().kind !== 'empty')
-                throw new Error('기존 요청의 결과를 먼저 확인해 주세요.');
-            const result = await context.api.request<ExecutionDto>('POST', base + '/preparations', {});
-            savePending(storage, { memberId, campaignId, requestId: result.requestId, phase: 'PREPARED', amount: null });
-            receipt = undefined;
-            notice = '';
-        }),
+        snapshot: () => ({ pending: pending(), busy, notice, error, draftAmount, receipt }),
         adopt: (requestId: string) => run(async () => {
             if (pending().kind !== 'empty')
                 throw new Error('이미 선택한 요청의 결과를 먼저 확인해 주세요.');
@@ -67,18 +60,36 @@ export function executionController(context: PageContext, campaignId: string, st
             receipt = undefined;
             notice = '';
         }),
-        execute: (expected: PendingRequest, amount: number) => run(async () => {
-            const request = requirePending(expected);
-            if (request.phase === 'UNRESOLVED' && request.amount !== amount)
-                throw new Error('결과 확인 중인 금액을 바꿀 수 없습니다.');
-            if (!Number.isInteger(amount) || amount < 1 || amount > 1000000000)
-                throw new Error('금액은 1~1,000,000,000원 정수로 입력해 주세요.');
-            const locked: PendingRequest = { ...request, phase: 'UNRESOLVED', amount };
-            savePending(storage, locked);
-            changed();
-            const result = await context.api.request<ExecutionDto>('POST', `${base}/executions/${request.requestId}`, { amount });
-            await accept(locked, result);
-        }),
+        execute: (expected: PendingRequest | undefined, amount: number) => {
+            if (!busy && !context.signal.aborted)
+                draftAmount = amount;
+            return run(async () => {
+                if (!Number.isInteger(amount) || amount < 1 || amount > 1000000000)
+                    throw new Error('금액은 1~1,000,000,000원 정수로 입력해 주세요.');
+                let request: PendingRequest;
+                if (expected) {
+                    request = requirePending(expected);
+                    if (request.phase === 'UNRESOLVED' && request.amount !== amount)
+                        throw new Error('결과 확인 중인 금액을 바꿀 수 없습니다.');
+                }
+                else {
+                    if (pending().kind !== 'empty')
+                        throw new Error('기존 요청의 결과를 먼저 확인해 주세요.');
+                    const result = await context.api.request<ExecutionDto>('POST', base + '/preparations', {});
+                    if (context.signal.aborted)
+                        return;
+                    if (pending().kind !== 'empty')
+                        throw new Error('다른 화면에서 요청 정보가 바뀌었습니다. 현재 요청을 확인해 주세요.');
+                    request = { memberId, campaignId, requestId: result.requestId, phase: 'PREPARED', amount: null };
+                }
+                const locked: PendingRequest = { ...request, phase: 'UNRESOLVED', amount };
+                savePending(storage, locked);
+                receipt = undefined;
+                changed();
+                const result = await context.api.request<ExecutionDto>('POST', `${base}/executions/${request.requestId}`, { amount });
+                await accept(locked, result);
+            });
+        },
         query: (expected: PendingRequest) => run(async () => {
             const request = requirePending(expected);
             const result = await context.api.request<ExecutionDto>('GET', `${base}/executions/${request.requestId}`);

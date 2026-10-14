@@ -3,7 +3,6 @@ import type { Page } from '../contracts/campaigns.js';
 import type { PageContext } from './context.js';
 import { button, el, errorText, message, money, time } from './dom.js';
 import { reasonText, statusText } from './execution-receipt.js';
-import { executionReplay } from './execution-replay.js';
 import { pager } from './pager.js';
 export function executionHistory(host: HTMLElement, context: PageContext, campaignId: string, admin = false, adopt?: (id: string) => Promise<void>) {
     const prefix = `${admin ? '/admin' : ''}/campaigns/${campaignId}`, history = el('section', '', 'data-section'), preparations = el('section', '', 'data-section');
@@ -25,7 +24,7 @@ export function executionHistory(host: HTMLElement, context: PageContext, campai
             else
                 historyPage = page;
             const table = el('table'), head = el('tr');
-            for (const title of [...(prepared ? ['번호', '준비 시각'] : ['번호', '상태', '요청 금액', '차감액', '사유', '처리 시각']), ...(admin ? [] : ['동작'])]) {
+            for (const title of [...(prepared ? ['번호', '준비 시각'] : ['번호', '상태', '요청 금액', '차감액', '사유', '처리 시각']), ...(prepared && !admin ? ['동작'] : [])]) {
                 const cell = el('th', title, ['요청 금액', '차감액'].includes(title) ? 'numeric' : '');
                 cell.scope = 'col';
                 head.append(cell);
@@ -34,7 +33,6 @@ export function executionHistory(host: HTMLElement, context: PageContext, campai
             thead.append(head);
             table.append(thead);
             const body = el('tbody'), notice = el('p');
-            const replay = executionReplay(context, prefix, head.children.length);
             for (const result of data.items) {
                 const row = el('tr');
                 row.append(el('td', '#' + result.requestId));
@@ -44,7 +42,7 @@ export function executionHistory(host: HTMLElement, context: PageContext, campai
                     status.append(el('span', statusText(result), `badge ${result.status.toLowerCase()}`));
                     row.append(status, el('td', money(result.requestedAmount!), 'numeric'), el('td', money(result.approvedAmount), 'numeric'), el('td', reasonText(result)), el('td', time(result.processedAt), 'numeric'));
                 }
-                if (!admin) {
+                if (prepared && !admin) {
                     const action = el('td'), select = button('번호 선택', async () => {
                         select.disabled = true;
                         try {
@@ -57,7 +55,7 @@ export function executionHistory(host: HTMLElement, context: PageContext, campai
                             select.disabled = false;
                         }
                     }, 'button subtle small');
-                    action.append(prepared ? select : replay(row, result));
+                    action.append(select);
                     row.append(action);
                 }
                 body.append(row);
