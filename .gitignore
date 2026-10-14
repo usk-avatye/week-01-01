@@ -6,3 +6,5 @@ public/assets/
 .superpowers/
 docs/
 *.log
+tmp/
+/presentation.pdf
